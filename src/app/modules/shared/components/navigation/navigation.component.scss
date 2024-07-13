@@ -1,0 +1,27 @@
+.navbar {
+    background-color: transparent !important;
+}
+
+.nav-link{
+    padding: 0.5rem 1rem!important;
+    color: #2E3192!important;
+    font-weight: 500!important;
+    /* text-transform: uppercase; */
+    transition: 0.2s ease;
+}
+
+.nav-link:hover, .nav-link::after, .nav-link:active{
+    color: #F38120!important;
+    transition: 0.2s ease-in;
+}
+
+.navbar-collapse{
+    justify-content: space-between;
+}
+
+.navigation{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.site-navigation{box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);}

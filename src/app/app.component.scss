@@ -1,0 +1,10 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.site-container{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px;
+}

@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+$base-font: 'Inter Var', sans-serif;
+
+:root {
+    font-family: $base-font;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-variation-settings: normal;
+  }
+  
+html, body { height: 100%; }
+body { margin: 0;}
