@@ -4,6 +4,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -14,13 +15,15 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     MatToolbarModule,
-    RouterModule
+    RouterModule,
+    MatIconModule
   ],
   exports:[
     NavigationComponent,
     MatToolbarModule,
     FooterComponent,
-    RouterModule
+    RouterModule,
+    MatIconModule
   ]
 })
 export class SharedModule { }
