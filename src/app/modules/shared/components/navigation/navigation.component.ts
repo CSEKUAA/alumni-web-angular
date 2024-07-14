@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent {
+  isLoggedIn!:boolean;
+  isResponsiveMenuOpened!:boolean;
+
+  onToggleMenuState(){
+    this.isResponsiveMenuOpened=!this.isResponsiveMenuOpened;
+  }
+
+  onLogout(){
+
+  }
 
 }

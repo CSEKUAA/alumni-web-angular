@@ -15,11 +15,13 @@
 
 .app-name {
     font-size: 2rem;
+    margin: 1rem 0;
 }
 
 .description {
     margin: 0;
     font-size: 0.875rem;
+    margin: 1rem 0;
 }
 
 .social-links {
@@ -67,4 +69,18 @@
     font-size: .9rem;
     margin-bottom: .2rem;
     font-weight: 500;
+}
+
+@media (max-width: 992px) {
+    .footer {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .contacts-links {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
 }

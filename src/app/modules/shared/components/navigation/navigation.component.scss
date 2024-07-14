@@ -6,7 +6,6 @@
     padding: 0.5rem 1rem !important;
     color: #2E3192 !important;
     font-weight: 500 !important;
-    /* text-transform: uppercase; */
     transition: 0.2s ease;
 }
 
@@ -31,6 +30,88 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 5001;
+    z-index: 2;
     background: white;
 }
+
+
+// Responsive menu design
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.responsive-menu {
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    background-color: white;
+    min-width: 250px;
+    width: 300px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.menu-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e9e9e9;
+    padding: 0.85rem 0.5rem;
+}
+
+.menu-content ul {
+    list-style: none;
+    font-weight: 500;
+    padding: 0;
+}
+
+.menu-content ul li a {
+    display: block;
+    padding: 0.5rem 2rem;
+    text-decoration: none;
+    transition: 0.2s ease;
+    color: #2E3192;
+}
+
+.menu-content ul li {
+    margin: 0.5rem 0;
+}
+
+.menu-content ul li a:hover,
+.menu-content ul li a::after,
+.menu-content ul li a:active {
+    color: rgb(243, 129, 32);
+    transition: 0.2s ease-in;
+    background: rgba(243, 129, 32, 0.2);
+}
+
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav-close {
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+.navbar-toggler {
+    width: 60px;
+    position: absolute;
+    right: 0;
+}
+
+//END
