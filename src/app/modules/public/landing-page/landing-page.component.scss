@@ -122,11 +122,10 @@
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   gap: 20px;
-  padding: 30px;
 }
 
-.scholarship img,
-.donation img {
+.mobile-image,
+.section-image {
   width: 10em;
   height: 100%;
   color: #5050db;
@@ -381,4 +380,57 @@
   width: 1em;
   height: 1em;
   fill: none;
+}
+
+@media(max-width: 1200px) {
+  .sub-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 992px) {
+
+  .committee,
+  .events {
+    grid-template-columns: 1fr 1fr
+  }
+
+  .scholarship-desc img {
+    display: none;
+  }
+
+  .container {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .events,
+  .committee {
+    grid-template-columns: 1fr 1fr
+  }
+
+  .sub-section,
+  .scholarship,
+  .donation {
+    grid-template-columns: 1fr
+  }
+
+  .section-image {
+    width: 100%;
+    height: 10em;
+  }
+
+  .mobile-image {
+    display: none;
+  }
+}
+
+@media (max-width: 660px) {
+
+  .events,
+  .committee {
+    grid-template-columns: 1fr
+  }
 }
