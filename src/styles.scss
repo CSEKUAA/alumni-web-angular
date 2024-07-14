@@ -1,13 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
-$base-font: 'Inter Var', sans-serif;
+@import "./assets/scss/common.scss";
 
 :root {
-    font-family: $base-font;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    font-variation-settings: normal;
-  }
-  
-html, body { height: 100%; }
-body { margin: 0;}
+  font-family: $base-font !important;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  font-variation-settings: normal;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+//   /* width */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 3px rgba($primary, 0.2);
+  background: rgba($primary, 0.2);
+  border-radius: 50px;
+  padding: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $primary;
+  transition: 0.2s ease-out;
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  transition: 0.2s ease-in;
+}
+
+/* Handle corner*/
+::-webkit-scrollbar-corner {
+  box-shadow: inset 0 0 3px rgba($primary, 0.2);
+  background: $primary;
+  border-radius: 50px;
+}
