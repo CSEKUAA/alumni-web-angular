@@ -4,6 +4,7 @@ import { PublicRoutingModule } from './public-routing.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     PublicRoutingModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    NgbCarouselModule
   ]
 })
 export class PublicModule { }
