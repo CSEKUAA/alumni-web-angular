@@ -1,0 +1,25 @@
+<div class="menu-content">
+    <ul>
+      <li><a routerLink="events" routerLinkActive="active">Events</a></li>
+      <li><a routerLink="alumni" routerLinkActive="active">Alumni</a></li>
+      <li><a routerLink="donation" routerLinkActive="active">Donations</a></li>
+      <li><a routerLink="jobs" routerLinkActive="active">Job Circular</a></li>
+      <li> <a routerLink="about" routerLinkActive="active">About</a></li>
+    </ul>
+  </div>
+  <div class="menu-auth">
+    <ul *ngIf="isLoggedIn; else unauthorized;">
+      <li>
+        <a class="btn btn-primary mx-3" routerLink="/profile">Profile</a>
+      </li>
+      <li>
+        <a class="btn btn-success">Logout</a>
+      </li>
+    </ul>
+    <ng-template #unauthorized>
+      <div class="auth-buttons">
+        <a class="btn btn-primary mx-3" routerLink="/auth/login">Login</a>
+        <a class="btn btn-success mx-3" routerLink="/auth/register">Register</a>
+      </div>
+    </ng-template>
+</div>

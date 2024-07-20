@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../shared/services/auth.service';
 import { LoginDTO } from '../../models/auth.models';
+import { UIService } from '../../../shared/services/ui.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { LoginDTO } from '../../models/auth.models';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService:AuthService) { }
+  constructor(private fb: FormBuilder, private authService:AuthService, private uiService:UIService) { }
 
   ngOnInit(): void {
 
@@ -28,10 +29,10 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(loginModel).subscribe(
         response => {
-          alert('Login Success!');
+          this.uiService.showSuccessAlert('Login Successful');
         },
         error => {
-          alert(error);
+          this.uiService.showErrorAlert(error);
         }
       );
     }

@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SharedModule } from './modules/shared/shared.module';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,9 +17,12 @@ import { SharedModule } from './modules/shared/shared.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     MatToolbarModule,
-    SharedModule
+    SharedModule,
+    SweetAlert2Module.forRoot()
   ],
-  providers: [],
+  providers: [ 
+    provideHttpClient(withInterceptorsFromDi())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

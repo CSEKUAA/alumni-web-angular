@@ -3,7 +3,89 @@
 }
 
 .site-container {
+  min-height: calc(100vh - 319px);
   display: flex;
   flex-direction: column;
   margin-top: 65px;
 }
+
+.navbar {
+  background-color: transparent !important;
+}
+
+.navigation {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.site-navigation {
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  background: white;
+}
+
+
+// Responsive menu design
+.responsive-menu {
+  position: fixed;
+  right: 0;
+  height: 100%;
+  background-color: white;
+  min-width: 250px;
+  width: 300px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.menu-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e9e9e9;
+  padding: 0.85rem 0.5rem;
+}
+
+.nav-close {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.navbar-toggler {
+  width: 60px;
+  position: absolute;
+  right: 0;
+}
+
+mat-sidenav {
+  max-width: 300px;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.responsive-button {
+  display: none;
+}
+
+.responsive-button button {
+  background: transparent !important;
+  border-color: #686565 !important;
+}
+
+@media (max-width: 991px) {
+  .responsive-button {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+
+//END

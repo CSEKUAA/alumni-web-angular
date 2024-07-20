@@ -55,3 +55,454 @@ h6 {
   background: $primary;
   border-radius: 50px;
 }
+
+.mat-mdc-card {
+  box-shadow: 0px 2px 1px -1px rgba(46, 49, 146, 0.2),
+    0px 1px 1px 1px rgba(46, 49, 146, 0.14),
+    0px 1px 3px 2px rgba(46, 49, 146, 0.12) !important;
+}
+
+// Events
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+}
+
+.section-title {
+  line-height: 1;
+  text-transform: capitalize;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #dd4919;
+}
+
+.section-desc {
+  max-width: 80ch;
+  word-wrap: break-word;
+  font-size: 1rem;
+  color: #595b5c;
+}
+
+.events {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+
+.event {
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 0 12px #00000017;
+  background-color: #fff;
+}
+
+.event img {
+  border-radius: inherit;
+  width: 100%;
+  height: 15em;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.event time {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 60px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 600;
+  background-color: #5050db;
+  color: #eff4fe;
+  text-shadow: 0 0 #080808;
+  background-color: #d3d3f10d;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+}
+
+.description .title {
+  font-size: 1.3rem;
+  color: black;
+  font-weight: 500;
+}
+
+.description p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: .875rem;
+  color: #595b5c;
+}
+
+.description span {
+  color: #5050db;
+}
+
+.description span svg {
+  width: 1em;
+  height: 1em;
+  fill: none;
+}
+
+//END
+.landing-container {
+  background-color: #fafbfc;
+}
+
+.custom-carousel {
+  width: 100%;
+  height: 60vh;
+}
+
+.custom-carousel img {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+  /* Ensures the image covers the entire area */
+}
+
+.custom-carousel .carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Optional: Adds a semi-transparent background to the captions */
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+
+
+.scholarships,
+.donations {
+  background-color: #eff4fe;
+}
+
+.scholarship,
+.donation {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  gap: 20px;
+}
+
+.mobile-image,
+.section-image {
+  width: 10em;
+  height: 100%;
+  color: #5050db;
+}
+
+.scholarship-desc,
+.donation-desc {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.scholarship-desc h1,
+.donation-desc h1 {
+  line-height: 1;
+  text-transform: capitalize;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #5050db;
+}
+
+.scholarship-desc p,
+.donation-desc p {
+  max-width: 80ch;
+  word-wrap: break-word;
+  font-size: 1rem;
+  color: #595b5c;
+}
+
+.btn-apply-scholarship,
+.btn-apply-donation {
+  background-color: transparent;
+  padding: 7px 15px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 5px;
+  border: 1px solid;
+  border-color: #5050db;
+  color: #5050db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.btn-apply-scholarship svg,
+.btn-apply-donation svg {
+  width: 1em;
+  height: 1em;
+}
+
+.sub-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+
+}
+
+.job {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px #0000000f;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.job-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.job-header-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .875rem;
+  color: #595b5c;
+}
+
+.job-header-info img {
+  width: 3.5em;
+  height: 3.5em;
+  border-radius: 10px;
+  border: 1px solid #eff4fe;
+}
+
+.job-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.job-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #5050db;
+  margin: 0;
+}
+
+.keywords {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .875rem;
+  color: #595b5c;
+}
+
+.keyword {
+  padding: 2px 8px;
+  border-radius: 5px;
+  background-color: #eff4fe;
+}
+
+.time-wrap {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.btn-badge {
+  padding: 4px;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #5050db;
+  border: none;
+  background: transparent;
+}
+
+.btn-badge svg {
+  height: 1.5em;
+  width: 1.5em;
+  fill: none;
+}
+
+.post-timer {
+  font-size: .875rem;
+  color: #595b5c;
+}
+
+.job-description {
+  color: #595b5c;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 0.95rem;
+}
+
+.job-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .875rem;
+  color: #595b5c;
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 5px;
+  background-color: #eff4fe;
+}
+
+.btn-more {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.btn-more svg {
+  width: 1em;
+  height: 1em;
+  fill: none;
+}
+
+.committee {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.committee-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px #00000017;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.committee-member img {
+  border-radius: 100%;
+  width: 10rem;
+  height: 10rem;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.member-info strong {
+  font-size: 1.125rem;
+  color: #5050db;
+}
+
+.member-info p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-transform: capitalize;
+  font-size: .875rem;
+  color: #595b5c;
+}
+
+.member-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.link-social {
+  color: #5050db;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.link-social svg {
+  width: 1em;
+  height: 1em;
+  fill: none;
+}
+
+.center-base {
+  min-height: calc(100vh - 319px);
+}
+
+@media(max-width: 1200px) {
+  .sub-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 992px) {
+
+  .committee,
+  .events {
+    grid-template-columns: 1fr 1fr
+  }
+
+  .scholarship-desc img {
+    display: none;
+  }
+
+  .container {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .events,
+  .committee {
+    grid-template-columns: 1fr 1fr
+  }
+
+  .sub-section,
+  .scholarship,
+  .donation {
+    grid-template-columns: 1fr
+  }
+
+  .section-image {
+    width: 100%;
+    height: 10em;
+  }
+
+  .mobile-image {
+    display: none;
+  }
+}
+
+@media (max-width: 660px) {
+
+  .events,
+  .committee {
+    grid-template-columns: 1fr
+  }
+}
