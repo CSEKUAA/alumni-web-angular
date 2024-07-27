@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DropdownModel } from '../../models/dropdown.model';
 import { RegistrationDTO } from '../../models/auth.models';
-import { AuthService } from '../../services/auth.service';
+import { IdentityService } from '../../../shared/services/identity.service';
+import { UIService } from '../../../shared/services/ui.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnInit {
+  title:string = 'Register | KUAA';
   registrationForm!: FormGroup;
   bloodGroups: string[] = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
   disciplines: DropdownModel[] = [
@@ -19,23 +22,19 @@ export class RegisterComponent implements OnInit {
     {id:4, value: "BBA"}
   ];
 
-  constructor(private fb: FormBuilder, private authService:AuthService) { }
+  constructor(private fb: FormBuilder, private identityService:IdentityService, private uiService:UIService, private titleService:Title) { }
 
   ngOnInit(): void {
-
+    this.titleService.setTitle(this.title);
     this.registrationForm = this.fb.group({
       firstName: ['', Validators.required],
-      lastName: [''],
+      lastName: ['', Validators.required],
       roll: ['', Validators.required],
-      nickName: [''],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: [''],
-      bloodGroup: ['', Validators.required],
-      dob: [''],
       password: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-      isAgree: [false, Validators.requiredTrue],
-      disciplineId: ['', Validators.required]
+      isAgree: [false, Validators.requiredTrue]
     }, {
       validator: this.mustMatch('password', 'confirmPassword')
     });
@@ -60,17 +59,21 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     if (this.registrationForm.valid) {
       let formValue = this.registrationForm.value;
-      let formattedValue:RegistrationDTO = {
-        ...formValue,
-        dob: formValue.dob ? this.formatDate(formValue.dob) : ''
+      let registrationModel:RegistrationDTO = {
+        email:formValue.email,
+        firstName:formValue.firstName,
+        lastName:formValue.lastName,
+        password:formValue.password,
+        phoneNumber:formValue.phoneNumber,
+        roll:formValue.roll
       }
 
-      this.authService.registerAlumni(formattedValue).subscribe(
+      this.identityService.registerAlumni(formValue).subscribe(
         response => {
-          alert('Registration Success!');
+          this.uiService.showSuccessAlert('Registration Successful!');
         },
         error => {
-          alert(error);
+          this.uiService.showErrorAlert(error);
         }
       );
     }

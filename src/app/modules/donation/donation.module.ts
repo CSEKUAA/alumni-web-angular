@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DonationRoutingModule } from './donation-routing.module';
 import { DonationListComponent } from './components/donation-list/donation-list.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { DonationListComponent } from './components/donation-list/donation-list.
   ],
   imports: [
     CommonModule,
-    DonationRoutingModule
+    DonationRoutingModule,
+    SharedModule
   ]
 })
 export class DonationModule { }

@@ -1,80 +1,57 @@
-<div class="registration-container my-5">
-    <mat-card class="registration-card">
-      <h2 class="register-title">Create Your Account</h2>
+<div class="registration-container center-base my-5">
+    <mat-card class="registration-card animate__animated animate__fadeIn animate__faster">
+      <h2 class="register-title animate__animated animate__zoomIn">Create Your Account</h2>
       <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-        <div>
-            <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Discipline</mat-label>
-                <mat-select formControlName="disciplineId">
-                  <mat-option *ngFor="let discipline of disciplines" [value]="discipline.id">{{ discipline.value }}</mat-option>
-                </mat-select>
-                <mat-error *ngIf="registrationForm.get('disciplineId')?.invalid && registrationForm.get('disciplineId')?.touched">
-                    Select a Discipline
-                </mat-error>
-            </mat-form-field>
-        </div>
         <div class="form-row">
-          <mat-form-field class="form-field" appearance="outline">
-            <mat-label>First Name</mat-label>
-            <input matInput formControlName="firstName">
-            <mat-error *ngIf="registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched">
-              First name is required
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="form-field" appearance="outline">
-            <mat-label>Last Name</mat-label>
-            <input matInput formControlName="lastName">
-          </mat-form-field>
-        </div>
-        <div class="form-row">
-          <mat-form-field class="form-field" appearance="outline">
+          <mat-form-field class="w-100 animate__animated animate__backInDown animate__faster" appearance="outline">
             <mat-label>Student Id</mat-label>
             <input matInput formControlName="roll">
             <mat-error *ngIf="registrationForm.get('roll')?.invalid && registrationForm.get('roll')?.touched">
               Student Id is required
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="form-field" appearance="outline">
-            <mat-label>Nick Name</mat-label>
-            <input matInput formControlName="nickName">
+        </div>
+        <div class="form-row">
+          <mat-form-field class="form-field animate__animated animate__backInRight animate__faster" appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName">
+            <mat-error *ngIf="registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched">
+              First name is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-field animate__animated animate__backInLeft animate__faster" appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName">
+            <mat-error *ngIf="registrationForm.get('lastName')?.invalid && registrationForm.get('lastName')?.touched">
+              Last name is required
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="form-row">
-          <mat-form-field class="form-field" appearance="outline">
+          <mat-form-field class="form-field animate__animated animate__backInRight animate__faster" appearance="outline">
             <mat-label>Email</mat-label>
             <input matInput formControlName="email">
             <mat-error *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
               Please enter a valid email
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="form-field" appearance="outline">
+          <mat-form-field class="form-field animate__animated animate__backInLeft animate__faster" appearance="outline">
             <mat-label>Mobile</mat-label>
             <input matInput formControlName="phoneNumber">
+            <mat-error *ngIf="registrationForm.get('phoneNumber')?.invalid && registrationForm.get('phoneNumber')?.touched">
+              Please enter a mobile number
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="form-row">
-          <mat-form-field class="form-field" appearance="outline">
-            <mat-label>Blood Group</mat-label>
-            <mat-select formControlName="bloodGroup">
-              <mat-option *ngFor="let group of bloodGroups" [value]="group">{{ group }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="form-field" appearance="outline">
-            <mat-label>Date of Birth</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="dob">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="form-row">
-          <mat-form-field class="form-field" appearance="outline">
+          <mat-form-field class="form-field animate__animated animate__backInRight animate__faster" appearance="outline">
             <mat-label>Password</mat-label>
             <input matInput type="password" formControlName="password">
             <mat-error *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
               Password is required
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="form-field" appearance="outline">
+          <mat-form-field class="form-field animate__animated animate__backInLeft animate__faster" appearance="outline">
             <mat-label>Confirm Password</mat-label>
             <input matInput type="password" formControlName="confirmPassword">
             <mat-error *ngIf="registrationForm.get('confirmPassword')?.invalid && registrationForm.get('confirmPassword')?.touched">
@@ -82,16 +59,16 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="form-row">
-          <mat-checkbox formControlName="isAgree">I accept the terms and conditions</mat-checkbox>
+        <div class="form-row consent animate__animated animate__backInUp animate__faster">
+          <mat-checkbox class="w-100" formControlName="isAgree">I accept the terms and conditions</mat-checkbox>
           <mat-error *ngIf="registrationForm.get('isAgree')?.invalid && registrationForm.get('isAgree')?.touched">
             You must accept the terms and conditions
           </mat-error>
         </div>
-        <div class="form-row">
+        <div class="form-row animate__animated animate__backInUp animate__faster">
           <button mat-flat-button color="primary" type="submit" [disabled]="registrationForm.invalid">Register</button>
         </div>
-        <div class="account-exists">
+        <div class="account-exists animate__animated animate__backInUp animate__faster">
             <span>Already have an account?</span>&nbsp;
             <a class="login-link" routerLink="/auth/login">Log in</a>
           </div>
