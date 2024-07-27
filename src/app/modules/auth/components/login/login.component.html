@@ -1,23 +1,23 @@
-<div class="login-container">
-    <mat-card class="login-card">
-      <h4 class="login-title">Login</h4>
+<div class="login-container center-base">
+    <mat-card class="login-card animate__animated animate__fadeIn animate__faster">
+      <h4 class="login-title animate__animated animate__zoomIn animate__faster">Login</h4>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-        <mat-form-field class="full-width" appearance="outline">
+        <mat-form-field class="full-width animate__animated animate__backInLeft animate__faster" appearance="outline">
           <mat-label>Student ID</mat-label>
           <input matInput formControlName="identifier">
           <mat-error *ngIf="loginForm.get('identifier')?.invalid && loginForm.get('identifier')?.touched">
             Please enter a valid Student ID
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="full-width" appearance="outline">
+        <mat-form-field class="full-width animate__animated animate__backInRight animate__faster" appearance="outline">
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="password">
           <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
             Password is required
           </mat-error>
         </mat-form-field>
-        <button mat-flat-button color="primary" class="w-100" type="submit" [disabled]="loginForm.invalid">Login</button>
-        <div>Want to create account?
+        <button mat-flat-button color="primary" class="w-100 animate__animated animate__backInUp animate__faster" type="submit" [disabled]="loginForm.invalid">Login</button>
+        <div class="animate__animated animate__backInUp animate__faster">Want to create account?
           <a routerLink="/auth/register">
             <span class="register-link">Register</span>
           </a>

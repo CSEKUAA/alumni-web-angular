@@ -1,5 +1,30 @@
-<app-navigation></app-navigation>
-<div class="site-container">
-  <router-outlet></router-outlet>
-</div>
-<app-footer></app-footer>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" position="end">
+    <div class="responsive-menu">
+      <div class="menu">
+        <div class="menu-header">
+          <img src="assets/images/kuaa-logo.png" alt="" width="100px">
+          <button class="nav-close" (click)="sidenav.toggle()">
+            <mat-icon aria-hidden="false" aria-label="menu collapse" fontIcon="close" class="font-bold"></mat-icon>
+          </button>
+        </div>
+        <app-sidenav [isLoggedIn]="isLoggedIn"></app-sidenav>
+      </div>
+    </div>      
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="site-navigation">
+      <nav class="navbar navbar-expand-lg navbar-light bg-transparent navigation mx-4">        
+        <a class="navbar-brand" href="#"><img src="assets/images/kuaa-logo.png" alt="" width="100px"></a>
+        <div class="responsive-button">
+          <button class="btn btn-primary" (click)="sidenav.toggle()"><span class="navbar-toggler-icon"></span></button>
+        </div>
+        <app-primarynav [isLoggedIn]="isLoggedIn"></app-primarynav>
+      </nav>
+    </div>
+    <div class="site-container">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>
