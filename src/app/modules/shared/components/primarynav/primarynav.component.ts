@@ -9,10 +9,10 @@ import { IdentityService } from '../../services/identity.service';
 export class PrimarynavComponent {
   @Input('isLoggedIn') isLoggedIn!:boolean;
 
-  constructor(private authService:IdentityService){}
+  constructor(private identityService:IdentityService){}
   
   onLogout(){
-    this.authService.logout().subscribe({
+    this.identityService.logout().subscribe({
       next: (()=>{        
         window.location.href = window.location.origin;
       })

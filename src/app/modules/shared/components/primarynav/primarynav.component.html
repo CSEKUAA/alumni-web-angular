@@ -18,14 +18,11 @@
     </ul>
     @if(isLoggedIn){
       <ul class="navbar-nav ml-auto">
-        <button mat-button class="caret-link-button" [matMenuTriggerFor]="menu">
-          <span>User</span>
-          <mat-icon>arrow_drop_down</mat-icon>
-        </button>
+        <a class="caret-link-button" [matMenuTriggerFor]="menu"><mat-icon class="user-icon">person</mat-icon></a>
         <mat-menu #menu="matMenu">
           <ul class="auth-dropdown-menu">
             <li>
-              <a routerLink="/">
+              <a routerLink="user/profile">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon>&nbsp;
                 <span class="link-label">Profile</span>
               </a>

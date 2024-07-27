@@ -16,7 +16,7 @@ import { AlertMessage, ErrorCode, ErrorMessage } from './utilities';
 export class HttpRequestInterceptor implements HttpInterceptor {
   constructor(
     private uiService: UIService,
-    private authService: IdentityService,
+    private identityService: IdentityService,
     private store:StoreService
   ) {}
 
@@ -24,11 +24,11 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if(!this.authService.hasValidAccessToken()){
-      this.authService.logout();
+    if(!this.identityService.hasValidAccessToken()){
+      this.identityService.logout();
     }
     
-    if (this.authService.hasValidAccessToken() && request.url.toString().indexOf('auth/login') < 0) {
+    if (this.identityService.hasValidAccessToken() && request.url.toString().indexOf('auth/login') < 0) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${this.store.getAccessToken()}`,
@@ -50,7 +50,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         ) {
           this.uiService.showErrorAlert(AlertMessage.BAD_REQUEST);
         } else if (error.status === ErrorCode.UNAUTHORIZED) {
-          this.authService.logout();
+          this.identityService.logout();
         } else if (
           error.error.code === ErrorCode.INTERNAL_SERVER_ERROR
         ) {

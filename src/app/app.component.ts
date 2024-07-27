@@ -3,6 +3,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { IdentityService } from './modules/shared/services/identity.service';
+import { UIService } from './modules/shared/services/ui.service';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +14,17 @@ export class AppComponent implements OnInit, AfterViewInit{
   title = 'alumni-web-angular';  
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
-  constructor(private router:Router, private authService:IdentityService){}
+  constructor(private router:Router, private identityService:IdentityService, private uiService:UIService){}
   
   isLoggedIn!:boolean;
   
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.hasValidAccessToken();
+    this.isLoggedIn = this.identityService.hasValidAccessToken();
+    this.uiService.loggedIn.subscribe({
+      next:((flag:boolean)=>{
+        this.isLoggedIn=flag;
+      })
+    })
   }
 
   ngAfterViewInit() {

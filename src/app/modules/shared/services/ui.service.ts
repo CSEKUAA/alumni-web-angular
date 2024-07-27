@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -6,42 +7,43 @@ import Swal from 'sweetalert2';
 })
 
 export class UIService{
+  loggedIn:Subject<boolean> = new Subject<boolean>();
 
-    showSuccessAlert(message:string) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Success',
-          text: message,
-          confirmButtonText: 'OKAY'
-        });
+  showSuccessAlert(message:string) {
+    Swal.fire({
+      icon: 'success',
+      title: 'Success',
+      text: message,
+      confirmButtonText: 'OKAY'
+    });
+  }
+
+  showErrorAlert(message:string) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: message,
+      confirmButtonText: 'OKAY'
+    });
+  }
+
+  showConfirmationAlert() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
       }
-    
-      showErrorAlert(message:string) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: message,
-          confirmButtonText: 'OKAY'
-        });
-      }
-    
-      showConfirmationAlert() {
-        Swal.fire({
-          title: 'Are you sure?',
-          text: 'You won\'t be able to revert this!',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
-          }
-        });
-      }
+    });
+  }
 }

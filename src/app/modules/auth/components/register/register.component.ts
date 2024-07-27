@@ -4,6 +4,7 @@ import { DropdownModel } from '../../models/dropdown.model';
 import { RegistrationDTO } from '../../models/auth.models';
 import { IdentityService } from '../../../shared/services/identity.service';
 import { UIService } from '../../../shared/services/ui.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ import { UIService } from '../../../shared/services/ui.service';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnInit {
+  title:string = 'Register | KUAA';
   registrationForm!: FormGroup;
   bloodGroups: string[] = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
   disciplines: DropdownModel[] = [
@@ -20,10 +22,10 @@ export class RegisterComponent implements OnInit {
     {id:4, value: "BBA"}
   ];
 
-  constructor(private fb: FormBuilder, private authService:IdentityService, private uiService:UIService) { }
+  constructor(private fb: FormBuilder, private identityService:IdentityService, private uiService:UIService, private titleService:Title) { }
 
   ngOnInit(): void {
-
+    this.titleService.setTitle(this.title);
     this.registrationForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -66,7 +68,7 @@ export class RegisterComponent implements OnInit {
         roll:formValue.roll
       }
 
-      this.authService.registerAlumni(formValue).subscribe(
+      this.identityService.registerAlumni(formValue).subscribe(
         response => {
           this.uiService.showSuccessAlert('Registration Successful!');
         },
