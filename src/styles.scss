@@ -71,17 +71,20 @@ h6 {
 }
 
 .section-title {
-  line-height: 1;
-  text-transform: capitalize;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #dd4919;
+  font-size: 1.7rem !important;
+  line-height: 2.5rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  margin-bottom: 0 !important;
+  letter-spacing: 0.05rem !important;
+  color: $theme-orange;
 }
 
 .section-desc {
   max-width: 80ch;
   word-wrap: break-word;
   font-size: 1rem;
+  margin-bottom: 0 !important;
   color: #595b5c;
 }
 
@@ -278,8 +281,8 @@ h6 {
 }
 
 .job-header-info img {
-  width: 3.5em;
-  height: 3.5em;
+  width: 4em;
+  height: 4em;
   border-radius: 10px;
   border: 1px solid #eff4fe;
 }
@@ -294,7 +297,7 @@ h6 {
   font-size: 1.125rem;
   font-weight: 600;
   color: #5050db;
-  margin: 0;
+  margin: 0 !important;
 }
 
 .keywords {
@@ -452,6 +455,11 @@ h6 {
 
 .center-base {
   min-height: calc(100vh - 319px);
+}
+
+.mat-mdc-menu-content {
+  padding: 0 !important;
+  background-color: #ffffff !important;
 }
 
 @media(max-width: 1200px) {

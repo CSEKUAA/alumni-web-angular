@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../shared/services/auth.service';
+import { IdentityService } from '../../../shared/services/identity.service';
 import { LoginDTO } from '../../models/auth.models';
 import { UIService } from '../../../shared/services/ui.service';
+import { StoreService } from '../../../shared/services/store.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { UIService } from '../../../shared/services/ui.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService:AuthService, private uiService:UIService) { }
+  constructor(private fb: FormBuilder, private authService:IdentityService, private store:StoreService, private uiService:UIService) { }
 
   ngOnInit(): void {
 
@@ -27,14 +28,14 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       let loginModel:LoginDTO = <LoginDTO> this.loginForm.value;
 
-      this.authService.login(loginModel).subscribe(
-        response => {
-          this.uiService.showSuccessAlert('Login Successful');
-        },
-        error => {
+      this.authService.login(loginModel).subscribe({
+        next: (() => {   
+          window.location.href = window.location.origin;
+        }),
+        error: ((error: any) =>{
           this.uiService.showErrorAlert(error);
-        }
-      );
+        })
+      });
     }
   }
 }

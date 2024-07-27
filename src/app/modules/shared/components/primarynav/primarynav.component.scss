@@ -1,6 +1,8 @@
+@import "../../../../../assets/scss/common.scss";
+
 .nav-link {
     padding: 0.5rem 1rem !important;
-    color: #2E3192 !important;
+    color: $theme-color !important;
     font-weight: 500 !important;
     transition: 0.2s ease;
 }
@@ -9,10 +11,72 @@
 .nav-link::after,
 .nav-link:active,
 .active {
-    color: #F38120 !important;
+    color: $theme-orange !important;
     transition: 0.2s ease-in;
 }
 
 .navbar-collapse {
     justify-content: space-between;
+}
+
+.auth-dropdown-menu {
+    min-width: 170px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.auth-dropdown-menu li {
+    border-bottom: 1px solid rgba(221, 73, 25, 0.3);
+}
+
+.auth-dropdown-menu li a {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s linear;
+    color: $theme-color;
+}
+
+.auth-dropdown-menu li a:hover,
+.auth-dropdown-menu li a::after,
+.auth-dropdown-menu li a:active {
+    transition: 0.3s linear;
+    background: rgba(221, 73, 25, 0.2);
+    color: $theme-orange;
+}
+
+.logout-icon {
+    font-size: 21px !important;
+    text-align: right;
+}
+
+.link-label {
+    font-size: 14px;
+}
+
+.login-face {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 500;
+    color: $theme-color;
+    cursor: pointer;
+}
+
+.caret-link-button {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    font-size: 16px;
+    color: $theme-color !important;
+}
+
+.caret-link-button span {
+    padding: 0 0.5rem;
 }

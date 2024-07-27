@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -43,7 +44,8 @@ import { PrimarynavComponent } from './components/primarynav/primarynav.componen
     MatNativeDateModule,
     MatToolbarModule,
     MatButtonModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    MatMenuModule
   ],
   exports:[
     MatToolbarModule,
@@ -63,7 +65,8 @@ import { PrimarynavComponent } from './components/primarynav/primarynav.componen
     MatNativeDateModule,
     MatToolbarModule,
     MatButtonModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    MatMenuModule
   ]
 })
 export class SharedModule { }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DropdownModel } from '../../models/dropdown.model';
 import { RegistrationDTO } from '../../models/auth.models';
-import { AuthService } from '../../../shared/services/auth.service';
+import { IdentityService } from '../../../shared/services/identity.service';
 import { UIService } from '../../../shared/services/ui.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     {id:4, value: "BBA"}
   ];
 
-  constructor(private fb: FormBuilder, private authService:AuthService, private uiService:UIService) { }
+  constructor(private fb: FormBuilder, private authService:IdentityService, private uiService:UIService) { }
 
   ngOnInit(): void {
 

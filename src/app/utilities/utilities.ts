@@ -1,19 +1,18 @@
 export abstract class SessionKeys {
-    public static authUserId: string = 'user_id';
-    public static authUserRole: string = 'user_role';
-    public static authUserName: string = 'user_name';
-    public static token: string = 'access_token';
-    public static clientId: string = 'client_id';
-    public static market:string = 'market';
-    public static colorScheme:string = 'colorScheme';
+    public static LOGGED_USER_ID: string = 'user_id';
+    public static LOGGED_USER_ROLE: string = 'user_role';
+    public static LOGGED_USER_NAME: string = 'user_name';
+    public static ACCESS_TOKEN: string = 'access_token';
+    public static REFRESH_TOKEN: string = 'refresh_token';
+    public static COLOR_SCHEME:string = 'colorScheme';
+    public static ACCESS_TOKEN_EXPIARY:string = 'access_token_expiary_datetime';
+    public static TOKEN_EXPIRY_MINUTES:string = 'token_expiary_minutes';
 }
 
 export abstract class ErrorMessage {
     public static readonly NO_RECORD: string = 'No record found in the database';
     public static readonly SERVER_ERROR: string = 'Internal Server Error';
-    public static readonly PENDING_AMENDMENT: string =
-        'a pending amendment already exists!';
-    public static readonly UNIQUE_REFERENCE_NO = 'Reference No Must Be Unique';
+    public static readonly DUPLICATE_RECORD: string = 'Duplicate records found!';    
 }
 
 export abstract class ErrorCode {
@@ -38,23 +37,9 @@ export abstract class ErrorCode {
     public static readonly NETWORK_AUTH_REQUIRED: number = 511;
 }
 
-export abstract class AlertType {
-    public static readonly NO_RECORD: string = 'No Record!';
-    public static readonly SUCCESS: string = 'Success!';
-    public static readonly FAILED: string = 'Failed!';
-    public static readonly DUPLICATE: string = 'Already Exists!';
-}
-
 export abstract class AlertMessage {
     public static readonly NO_RECORD: string = 'No record Found';
     public static readonly FAILED: string = 'Oops! Something went wrong!';
-    public static readonly PENDING_AMENDMENT: string =
-        'An amendment is already awaiting for approval. Please complete that first!';
-    public static readonly LOWEST_QUOTATION_EXISTS: string =
-        'Sorry! You cannot bid more than current lowest rate!';
-    public static readonly DUPLICATE_REFERENCE_NO: string =
-        'Provided reference no already exists! Please provide a different one!';
-    public static readonly DUPLICATE_FILE: string =
-        'File Exists! Upload a different file';
+    public static readonly BAD_REQUEST: string = 'Incompatible Request!';
 }
   

@@ -6,7 +6,9 @@ import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SharedModule } from './modules/shared/shared.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpRequestInterceptor } from './utilities/interceptor';
+import { IdentityService } from './modules/shared/services/identity.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,12 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
     SweetAlert2Module.forRoot()
   ],
   providers: [ 
-    provideHttpClient(withInterceptorsFromDi())
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
