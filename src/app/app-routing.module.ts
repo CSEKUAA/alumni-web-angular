@@ -7,8 +7,32 @@ const routes: Routes = [
     loadChildren: () => import('./modules/public/public.module').then(m => m.PublicModule)
   },
   {
+    path: 'events',
+    loadChildren: () => import('./modules/events/events.module').then(m => m.EventsModule)
+  },
+  {
+    path: 'alumni',
+    loadChildren: () => import('./modules/alumni/alumni.module').then(m => m.AlumniModule)
+  },
+  {
+    path: 'donation',
+    loadChildren: () => import('./modules/donation/donation.module').then(m => m.DonationModule)
+  },
+  {
+    path: 'jobs',
+    loadChildren: () => import('./modules/job-circular/job-circular.module').then(m => m.JobCircularModule)
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./modules/about/about.module').then(m => m.AboutModule)
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./modules/user/user.module').then(m=>m.UserModule)
   },
   {
     path: '**',

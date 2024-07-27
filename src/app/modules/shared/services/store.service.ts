@@ -1,0 +1,50 @@
+import { Injectable } from "@angular/core";
+import { SessionKeys } from "../../../utilities/utilities";
+import { LoginResponseDTO } from "../models/api.response";
+
+@Injectable({
+    providedIn:'root'
+})
+
+export class StoreService{
+    // This service is used for storing local srorage variables
+    setAccessToken(token:string){
+        this.setItem(SessionKeys.ACCESS_TOKEN, token);
+    }
+    getAccessToken():string{
+        return this.getItem(SessionKeys.ACCESS_TOKEN);
+    }
+
+    setRefreshToken(token:string){
+        this.setItem(SessionKeys.REFRESH_TOKEN, token);
+    }
+    getRefreshToken():string{
+        return this.getItem(SessionKeys.REFRESH_TOKEN);
+    }
+
+    setTokenExpiary(expiredTime:string){
+        this.setItem(SessionKeys.ACCESS_TOKEN_EXPIARY, expiredTime);
+    }
+    getTokenExpiary():string{
+        return this.getItem(SessionKeys.ACCESS_TOKEN_EXPIARY);
+    }
+
+    setTokenExpiaryMinutes(minutes:number){
+        this.setItem(SessionKeys.TOKEN_EXPIRY_MINUTES, minutes.toString());
+    }
+    getTokenExpiaryMinutes():number{
+        return parseInt(this.getItem(SessionKeys.TOKEN_EXPIRY_MINUTES)!);
+    }
+
+    clearLoginInfo(){
+        localStorage.clear();
+    }
+
+    private setItem(fieldName:string, fieldValue:string){
+        localStorage.setItem(fieldName, fieldValue);
+    }
+
+    private getItem(fieldName:string):string{
+        return localStorage.getItem(fieldName)!;
+    }
+}

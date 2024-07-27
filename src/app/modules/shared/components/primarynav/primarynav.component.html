@@ -1,0 +1,50 @@
+<div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="events" routerLinkActive="active">Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="alumni" routerLinkActive="active">Alumni</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="donation" routerLinkActive="active">Donations</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="jobs" routerLinkActive="active">Job Circular</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="about" routerLinkActive="active">About</a>
+      </li>
+    </ul>
+    @if(isLoggedIn){
+      <ul class="navbar-nav ml-auto">
+        <a class="caret-link-button" [matMenuTriggerFor]="menu"><mat-icon class="user-icon">person</mat-icon></a>
+        <mat-menu #menu="matMenu">
+          <ul class="auth-dropdown-menu">
+            <li>
+              <a routerLink="user/profile">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="person"></mat-icon>&nbsp;
+                <span class="link-label">Profile</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="onLogout()">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="logout" class="logout-icon"></mat-icon>&nbsp;
+                <span class="link-label">Logout</span>
+              </a>
+            </li>
+          </ul>
+        </mat-menu>
+      </ul>
+    } 
+    @else{
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="btn btn-primary mx-3" routerLink="/auth/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-success" routerLink="/auth/register">Register</a>
+        </li>
+      </ul>
+    }
+</div>

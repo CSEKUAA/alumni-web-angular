@@ -1,16 +1,10 @@
 export interface RegistrationDTO{
     roll: string;
-    nickName: string;
-    password: string;
-    confirmPassword: string;
     firstName: string;
     lastName: string;
-    email: string;
     phoneNumber: string;
-    bloodGroup: string;
-    dob: string
-    disciplineId: number;
-    isAgree: boolean;
+    email: string;
+    password: string;
 }
 
 export interface LoginDTO{
