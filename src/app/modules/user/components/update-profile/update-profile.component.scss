@@ -1,0 +1,43 @@
+.title {
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #5050db;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.btn-back {
+    background-color: #5050db;
+    color: white;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-field {
+    width: 48%;
+    padding: 0.2rem 0;
+}
+
+.btn-profile-update {
+    height: 40px;
+    border-radius: 10px;
+    background-color: #5050db;
+    color: white;
+    text-transform: uppercase;
+}
+
+.btn-profile-update>.mat-mdc-fab[disabled],
+.mat-mdc-fab.mat-mdc-button-disabled {
+    background-color: #9090af !important;
+}

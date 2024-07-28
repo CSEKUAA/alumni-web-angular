@@ -18,6 +18,13 @@ export class UserService{
         );
     }
 
+    uploadProfilePicture(formData:FormData):Observable<any>{
+        return this.httpClient.post(`${environment.user_management_service}/profile-picture`, formData)
+        .pipe(
+            catchError(this.handleError)
+        );
+    }
+
     private handleError(error: HttpErrorResponse) {
         let errorMessage = 'An unknown error occurred!';
         if (error.error instanceof ErrorEvent) {

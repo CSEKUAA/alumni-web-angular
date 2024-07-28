@@ -15,12 +15,6 @@ export class RegisterComponent implements OnInit {
   title:string = 'Register | KUAA';
   registrationForm!: FormGroup;
   bloodGroups: string[] = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-  disciplines: DropdownModel[] = [
-    {id:1, value: "ARCH"},
-    {id:2, value: "CSE"},
-    {id:3, value: "ECE"},
-    {id:4, value: "BBA"}
-  ];
 
   constructor(private fb: FormBuilder, private identityService:IdentityService, private uiService:UIService, private titleService:Title) { }
 

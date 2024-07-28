@@ -6,7 +6,7 @@ import { MembershipInfoComponent } from './components/membership-info/membership
 
 const routes: Routes = [
   { path:'profile', component: UserProfileComponent},
-  { path: 'update/:id', component:UpdateProfileComponent},
+  { path: 'update', component:UpdateProfileComponent},
   { path: 'membership', component: MembershipInfoComponent}
 ];
 

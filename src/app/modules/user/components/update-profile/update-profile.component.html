@@ -1,1 +1,112 @@
-<p>update-profile works!</p>
+<div class="update-profile-section">
+    <mat-card class="p-4 animate__animated animate__zoomIn animate__faster">
+        <div class="header">
+            <button mat-mini-fab aria-label="Back to Profile" matTooltip="Back to Profile" matTooltipPosition="below" class="btn-back"><mat-icon>chevron_left</mat-icon></button>
+            <span class="title">Update Profile</span>
+            <span></span>
+        </div>
+        <form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <mat-form-field class="form-field animate__animated animate__backInDown animate__faster" appearance="outline">
+                <mat-label>Student Id</mat-label>
+                <input matInput formControlName="roll">
+                <mat-error *ngIf="userProfileForm.get('roll')?.invalid && userProfileForm.get('roll')?.touched">
+                  Student Id is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field animate__animated animate__backInRight animate__faster" appearance="outline">
+                <mat-label>Nickname</mat-label>
+                <input matInput formControlName="nickName">
+                <mat-error *ngIf="userProfileForm.get('nickName')?.invalid && userProfileForm.get('nickName')?.touched">
+                  First name is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-row">                
+                <mat-form-field class="form-field animate__animated animate__backInLeft animate__faster" appearance="outline">
+                  <mat-label>Blood Group</mat-label>
+                  <input matInput formControlName="bloodGroup">
+                  <mat-error *ngIf="userProfileForm.get('bloodGroup')?.invalid && userProfileForm.get('bloodGroup')?.touched">
+                    Last name is required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field animate__animated animate__backInRight animate__faster" appearance="outline">
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput formControlName="dob">
+                    <mat-error *ngIf="userProfileForm.get('dob')?.invalid && userProfileForm.get('dob')?.touched">
+                      First name is required
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="form-row">                
+                <mat-form-field class="form-field animate__animated animate__backInLeft animate__faster" appearance="outline">
+                  <mat-label>Profession</mat-label>
+                  <input matInput formControlName="profession">
+                  <mat-error *ngIf="userProfileForm.get('profession')?.invalid && userProfileForm.get('profession')?.touched">
+                    Last name is required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field animate__animated animate__backInRight animate__faster" appearance="outline">
+                    <mat-label>Designation</mat-label>
+                    <input matInput formControlName="designation">
+                    <mat-error *ngIf="userProfileForm.get('designation')?.invalid && userProfileForm.get('designation')?.touched">
+                      First name is required
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="form-row">                
+                <mat-form-field class="w-100 animate__animated animate__backInLeft animate__faster" appearance="outline">
+                  <mat-label>Present Address</mat-label>
+                  <textarea matInput formControlName="presentAddress"></textarea>
+                  <mat-error *ngIf="userProfileForm.get('presentAddress')?.invalid && userProfileForm.get('presentAddress')?.touched">
+                    Last name is required
+                  </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-row">                
+                <mat-form-field class="form-field animate__animated animate__backInLeft animate__faster" appearance="outline">
+                  <mat-label>Country</mat-label>
+                  <input matInput formControlName="presentCountry">
+                  <mat-error *ngIf="userProfileForm.get('presentCountry')?.invalid && userProfileForm.get('presentCountry')?.touched">
+                    Last name is required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field animate__animated animate__backInRight animate__faster" appearance="outline">
+                    <mat-label>City</mat-label>
+                    <input matInput formControlName="presentCity">
+                    <mat-error *ngIf="userProfileForm.get('presentCity')?.invalid && userProfileForm.get('presentCity')?.touched">
+                      First name is required
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="form-row">                
+                <mat-form-field class="w-100 animate__animated animate__backInLeft animate__faster" appearance="outline">
+                  <mat-label>Permanent Address</mat-label>
+                  <textarea matInput formControlName="permanentAddress"></textarea>
+                  <mat-error *ngIf="userProfileForm.get('permanentAddress')?.invalid && userProfileForm.get('permanentAddress')?.touched">
+                    Last name is required
+                  </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-row">                
+                <mat-form-field class="form-field animate__animated animate__backInLeft animate__faster" appearance="outline">
+                  <mat-label>Country</mat-label>
+                  <input matInput formControlName="permanentCountry">
+                  <mat-error *ngIf="userProfileForm.get('permanentCountry')?.invalid && userProfileForm.get('permanentCountry')?.touched">
+                    Last name is required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field animate__animated animate__backInRight animate__faster" appearance="outline">
+                    <mat-label>City</mat-label>
+                    <input matInput formControlName="permanentCity">
+                    <mat-error *ngIf="userProfileForm.get('permanentCity')?.invalid && userProfileForm.get('permanentCity')?.touched">
+                      First name is required
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="text-center animate__animated animate__backInUp animate__faster">
+              <button mat-fab extended type="submit" class="btn-profile-update"><mat-icon>check_circle</mat-icon>Update</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

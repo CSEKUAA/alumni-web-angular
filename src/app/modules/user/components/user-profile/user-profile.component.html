@@ -3,8 +3,12 @@
         <div class="profile-section-container">
             <mat-card class="left-panel animate__animated animate__slideInLeft animate__faster">
                 <div class="profile-block">
-                    <div class="profile-picture animate__animated animate__rotateIn">
+                    <div class="profile-picture animate__animated animate__rotateIn" (mouseenter)="showButton()" (mouseleave)="hideButton()">
                         <img [src]="userProfileInfo.photo" alt="Profile Picture">
+                        <button *ngIf="isButtonVisible" mat-mini-fab aria-label="Change Profile Picture" matTooltip="Change Photo" matTooltipPosition="below" class="change-button" (click)="fileInput.click()">
+                            <mat-icon>upload</mat-icon>
+                        </button>
+                        <input type="file" #fileInput (change)="onFileSelected($event)" hidden>
                     </div>
                     <span class="profile-title animate__animated animate__rubberBand">{{userProfileInfo.fullName}}</span>
                 </div>
@@ -27,72 +31,82 @@
                     </a>
                 </div>
             </mat-card>
-            <div class="right-panel">
-                <mat-card class="profile-info animate__animated animate__slideInDown animate__faster">
-                    <span class="title">personal Information</span>
-                    <hr class="m-0">
-                    <div class="details">
-                        <div class="individual">
-                            <span class="label">Full name</span>
-                            <p class="content" [textContent]="userProfileInfo.fullName"></p>
+            @if(!isUpdateCalled){
+                <div class="right-panel">
+                    <mat-card class="profile-info animate__animated animate__slideInDown animate__faster">
+                        <div class="update-block">
+                            <span class="title">personal Information</span>
+                            <button mat-mini-fab aria-label="Update Profile Info" matTooltip="Update Profile" matTooltipPosition="below" class="update-profile" (click)="toggleUpdateMode()">
+                                <mat-icon>edit</mat-icon>
+                            </button>
                         </div>
-                        <div class="individual">
-                            <span class="label">nick name</span>
-                            <p class="content" [textContent]="userProfileInfo.nickName"></p>
+                        <hr class="m-0">
+                        <div class="details">
+                            <div class="individual">
+                                <span class="label">Full name</span>
+                                <p class="content" [textContent]="userProfileInfo.fullName"></p>
+                            </div>
+                            <div class="individual">
+                                <span class="label">nick name</span>
+                                <p class="content" [textContent]="userProfileInfo.nickName"></p>
+                            </div>
+                            <div class="individual">
+                                <span class="label">student id</span>
+                                <p class="content" [textContent]="userProfileInfo.roll"></p>
+                            </div>
+                            <div class="individual">
+                                <span class="label">blood group</span>
+                                <p class="content" [textContent]="userProfileInfo.bloodGroup"></p>
+                            </div>
+                            <div class="individual">
+                                <span class="label">birth date</span>
+                                <p class="content" [textContent]="userProfileInfo.dob"></p>
+                            </div>
+                            <div class="individual">
+                                <span class="label">mobile</span>
+                                <p class="content" [textContent]="userProfileInfo.contactDetail.phoneNumber"></p>
+                            </div>
+                            <div class="individual">
+                                <span class="label">email</span>
+                                <p class="content" [textContent]="userProfileInfo.contactDetail.email"></p>
+                            </div>
+                            <div class="individual">
+                                <span class="label">present address</span>
+                                <p class="content">{{userProfileInfo.contactDetail.presentAddress}},{{userProfileInfo.contactDetail.presentCity}}, {{userProfileInfo.contactDetail.presentCountry}}</p>
+                            </div>
+                            <div class="individual">
+                                <span class="label">permanent address</span>
+                                <p class="content">{{userProfileInfo.contactDetail.permanentAddress}},{{userProfileInfo.contactDetail.permanentCity}}, {{userProfileInfo.contactDetail.permanentCountry}}</p>
+                            </div>
                         </div>
-                        <div class="individual">
-                            <span class="label">student id</span>
-                            <p class="content" [textContent]="userProfileInfo.roll"></p>
+                    </mat-card>
+                    <mat-card class="profile-info animate__animated animate__slideInUp animate__faster">
+                        <span class="title">Professional Information</span>
+                        <hr class="m-0">
+                        <div class="details">
+                            <div class="individual">
+                                <span class="label">Profession</span>
+                                <p class="content" [textContent]="userProfileInfo.contactDetail.profession"></p>
+                            </div>
+                            <div class="individual">
+                                <span class="label">Designation</span>
+                                <p class="content" [textContent]="userProfileInfo.contactDetail.designation"></p>
+                            </div>
+                            <div class="individual">
+                                <span class="label">Company</span>
+                                <p class="content" [textContent]="userProfileInfo.contactDetail.company"></p>
+                            </div>
+                            <div class="individual">
+                                <span class="label">Company Address</span>
+                                <p class="content" [textContent]="userProfileInfo.contactDetail.companyAddress"></p>
+                            </div>
                         </div>
-                        <div class="individual">
-                            <span class="label">blood group</span>
-                            <p class="content" [textContent]="userProfileInfo.bloodGroup"></p>
-                        </div>
-                        <div class="individual">
-                            <span class="label">birth date</span>
-                            <p class="content" [textContent]="userProfileInfo.dob"></p>
-                        </div>
-                        <div class="individual">
-                            <span class="label">mobile</span>
-                            <p class="content" [textContent]="userProfileInfo.contactDetail.phoneNumber"></p>
-                        </div>
-                        <div class="individual">
-                            <span class="label">email</span>
-                            <p class="content" [textContent]="userProfileInfo.contactDetail.email"></p>
-                        </div>
-                        <div class="individual">
-                            <span class="label">present address</span>
-                            <p class="content">{{userProfileInfo.contactDetail.presentAddress}},{{userProfileInfo.contactDetail.presentCity}}, {{userProfileInfo.contactDetail.presentCountry}}</p>
-                        </div>
-                        <div class="individual">
-                            <span class="label">permanent address</span>
-                            <p class="content">{{userProfileInfo.contactDetail.permanentAddress}},{{userProfileInfo.contactDetail.permanentCity}}, {{userProfileInfo.contactDetail.permanentCountry}}</p>
-                        </div>
-                    </div>
-                </mat-card>
-                <mat-card class="profile-info animate__animated animate__slideInUp animate__faster">
-                    <span class="title">Professional Information</span>
-                    <hr class="m-0">
-                    <div class="details">
-                        <div class="individual">
-                            <span class="label">Profession</span>
-                            <p class="content" [textContent]="userProfileInfo.contactDetail.profession"></p>
-                        </div>
-                        <div class="individual">
-                            <span class="label">Designation</span>
-                            <p class="content" [textContent]="userProfileInfo.contactDetail.designation"></p>
-                        </div>
-                        <div class="individual">
-                            <span class="label">Company</span>
-                            <p class="content" [textContent]="userProfileInfo.contactDetail.company"></p>
-                        </div>
-                        <div class="individual">
-                            <span class="label">Company Address</span>
-                            <p class="content" [textContent]="userProfileInfo.contactDetail.companyAddress"></p>
-                        </div>
-                    </div>
-                </mat-card>
-            </div>
+                    </mat-card>
+                </div>
+            }
+            @else {
+                <app-update-profile [userProfile]="userProfileInfo"></app-update-profile>
+            }
         </div>
     }
 </div>

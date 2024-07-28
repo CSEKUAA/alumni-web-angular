@@ -27,8 +27,8 @@
 }
 
 .profile-picture {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     border: 3px solid #5050db;
 }
@@ -112,6 +112,39 @@
     color: $theme-orange;
     font-weight: 500;
     margin: 0 !important;
+}
+
+.update-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.update-profile {
+    background-color: #5050db;
+    color: white;
+    transition: 0.2s ease-out;
+}
+
+.update-profile:hover {
+    background-color: #2d2dac;
+    transition: 0.2s ease-in;
+}
+
+.change-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background-color: #5050db;
+    color: white;
+    transition: 0.2s ease-out;
+}
+
+.profile-picture:hover .change-button {
+    display: block;
 }
 
 @media(max-width: 700px) {
