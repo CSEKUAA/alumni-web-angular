@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserProfileResponseDTO } from '../../../shared/models/api.response';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class UpdateProfileComponent implements OnInit{
   @Input('userProfile') userProfile!:UserProfileResponseDTO;
+  @Output('toggleUpdate') toggleUpdate: EventEmitter<boolean> = new EventEmitter<boolean>();
   userProfileForm!:FormGroup;
 
   constructor(){}
@@ -35,6 +36,10 @@ export class UpdateProfileComponent implements OnInit{
 
   onSubmit(){
     console.log(this.userProfileForm);
+  }
+
+  onBackProfile(){
+    this.toggleUpdate.emit(true);
   }
 
 }

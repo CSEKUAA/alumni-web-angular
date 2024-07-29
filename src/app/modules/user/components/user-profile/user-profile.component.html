@@ -105,7 +105,7 @@
                 </div>
             }
             @else {
-                <app-update-profile [userProfile]="userProfileInfo"></app-update-profile>
+                <app-update-profile [userProfile]="userProfileInfo" (toggleUpdate)="toggleUpdateMode()"></app-update-profile>
             }
         </div>
     }
