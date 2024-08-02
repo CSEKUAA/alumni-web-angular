@@ -1,7 +1,36 @@
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { StoreService } from "./store.service";
+import { catchError, Observable, tap, throwError } from "rxjs";
+import { environment } from "../../../../environments/environment";
 
 @Injectable({providedIn:'root'})
 
 export class MiscService{
+
+    constructor(private httpClient:HttpClient, private store:StoreService){}
+
+    getCountries():Observable<any>{
+        return this.httpClient.get(`${environment.lookup_service}/countries`).pipe(
+            catchError(this.handleError)
+        )
+    }
     
+    getDistrictsForCountry(countryId:number):Observable<any>{
+        return this.httpClient.get(`${environment.lookup_service}/districts/${countryId}`).pipe(
+            catchError(this.handleError)
+        )
+    }
+
+    private handleError(error: HttpErrorResponse) {
+        let errorMessage = 'An unknown error occurred!';
+        if (error.error instanceof ErrorEvent) {
+            // Client-side or network error
+            errorMessage = `Error: ${error.error.message}`;
+        } else {
+            // Backend error
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        }
+        return throwError(()=> new Error(errorMessage));
+      }
 }

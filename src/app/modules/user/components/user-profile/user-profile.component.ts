@@ -37,6 +37,9 @@ export class UserProfileComponent implements OnInit{
 
   toggleUpdateMode(){
     this.isUpdateCalled=!this.isUpdateCalled;
+    if(!this.isUpdateCalled){
+      this.loadProfileInformation();
+    }
   }
 
   showButton() {

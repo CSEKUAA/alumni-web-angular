@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, throwError } from "rxjs";
 import { environment } from "../../../../environments/environment";
+import { UserProfileRequestDTO } from "../models/api.request";
 
 @Injectable({
     providedIn:'root'
@@ -20,6 +21,13 @@ export class UserService{
 
     uploadProfilePicture(formData:FormData):Observable<any>{
         return this.httpClient.post(`${environment.user_management_service}/profile-picture`, formData)
+        .pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    updateUserProfileInfo(userProfileInfo:UserProfileRequestDTO):Observable<any>{
+        return this.httpClient.post(`${environment.user_management_service}/user-info`, userProfileInfo)
         .pipe(
             catchError(this.handleError)
         );

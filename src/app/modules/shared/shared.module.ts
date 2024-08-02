@@ -18,6 +18,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule} from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -50,7 +51,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     NgbCarouselModule,
     MatMenuModule,
     MatTooltipModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatAutocompleteModule
   ],
   exports:[
     MatToolbarModule,
@@ -73,7 +75,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     MatMenuModule,
     MatTooltipModule,    
     LoaderComponent,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatAutocompleteModule
   ]
 })
 export class SharedModule { }

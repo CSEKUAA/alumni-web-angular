@@ -11,7 +11,7 @@ export interface UserProfileResponseDTO{
     nickName: string,
     fullName: string,
     discipline: string,
-    dob: Date,
+    dob: string,
     bloodGroup: string,
     photo: string,
     contactDetail: ContactDetailsDTO,
@@ -38,4 +38,15 @@ export interface MembershipInfoDTO{
     memberShipType: string,
     expirationOn: Date,
     membershipStatus:string
+}
+
+export interface CountryDTO{
+    countryId: number;
+    countryName: string;
+    dialCode: string;
+}
+export interface DistrictDTO{
+    districtId: number;
+    countryId: number;
+    districtName: string;
 }
