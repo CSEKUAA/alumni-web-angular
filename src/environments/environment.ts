@@ -6,5 +6,7 @@ export const environment = {
   user_management_service: `${api_server}`,
   membership_service: `${api_server}/alumni`,
   authentication_service: `${api_server}/auth`,
-  lookup_service: `${api_server}/lookup`
+  lookup_service: `${api_server}/lookup`,
+  file_management_service: `${api_server}/file-service`,
+  external_link_service: `${api_server}/alumni/external-link`,
 };

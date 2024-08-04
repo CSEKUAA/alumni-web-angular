@@ -8,7 +8,7 @@ import { environment } from "../../../../environments/environment";
 
 export class MiscService{
 
-    constructor(private httpClient:HttpClient, private store:StoreService){}
+    constructor(private httpClient:HttpClient){}
 
     getCountries():Observable<any>{
         return this.httpClient.get(`${environment.lookup_service}/countries`).pipe(
@@ -16,8 +16,14 @@ export class MiscService{
         )
     }
     
-    getDistrictsForCountry(countryId:number):Observable<any>{
-        return this.httpClient.get(`${environment.lookup_service}/districts/${countryId}`).pipe(
+    getDistrictsForCountry(countryName:string):Observable<any>{
+        return this.httpClient.get(`${environment.lookup_service}/districts/${countryName}`).pipe(
+            catchError(this.handleError)
+        )
+    }
+
+    getExternalLinkTypes():Observable<any>{
+        return this.httpClient.get(`${environment.external_link_service}/type`).pipe(
             catchError(this.handleError)
         )
     }

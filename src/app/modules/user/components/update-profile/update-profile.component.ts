@@ -88,10 +88,6 @@ export class UpdateProfileComponent implements OnInit{
     if(this.userProfileForm.valid){
       let usrInfo:UserProfileRequestDTO = <UserProfileRequestDTO> this.userProfileForm.value;
       usrInfo.dob = this.toLocalISO(new Date(usrInfo.dob)).split('T')[0];
-      usrInfo.presentCountry = this.getSelectedCountryId(usrInfo.presentCountry);
-      usrInfo.presentCity = this.getSelectedDistrictId(usrInfo.presentCity, 'present');
-      usrInfo.permanentCountry = this.getSelectedCountryId(usrInfo.permanentCountry);
-      usrInfo.permanentCity = this.getSelectedDistrictId(usrInfo.permanentCity, 'permanent');
       
       this.userService.updateUserProfileInfo(usrInfo).subscribe({
         next: (() => {
@@ -128,7 +124,7 @@ export class UpdateProfileComponent implements OnInit{
           let country = this.countries.find(c => c.countryName === this.userProfile.contactDetail.presentCountry);
           if(country){
             this.userProfileForm.get('presentCountry')?.setValue(country?.countryName);
-            this.loadPresentDistricts(country.countryId);
+            this.loadPresentDistricts(country.countryName);
           }
         }
 
@@ -136,18 +132,18 @@ export class UpdateProfileComponent implements OnInit{
           let country = this.countries.find(c => c.countryName === this.userProfile.contactDetail.permanentCountry);
           if(country){
             this.userProfileForm.get('permanentCountry')?.setValue(country?.countryName);
-            this.loadPermanentDistricts(country.countryId);
+            this.loadPermanentDistricts(country.countryName);
           }
         }
       })
     })
   }
   
-  loadPresentDistricts(countryId:number){
-    if (this.presentDistrictCache && this.presentDistrictCache[0].countryId===countryId) {
+  loadPresentDistricts(countryName:string){
+    if (this.presentDistrictCache && this.presentDistrictCache[0].countryName===countryName) {
       this.presentDistrictCache;
     } else{
-      this.miscService.getDistrictsForCountry(countryId).subscribe({
+      this.miscService.getDistrictsForCountry(countryName).subscribe({
         next:(districts => {
           this.userProfileForm.get('presentCity')?.setValue(null);
           this.presentdistricts$ = of([]);
@@ -163,11 +159,11 @@ export class UpdateProfileComponent implements OnInit{
       });
     }
   }
-  loadPermanentDistricts(countryId:number){
-    if (this.permanentDistrictCache && this.permanentDistrictCache[0].countryId===countryId) {
+  loadPermanentDistricts(countryName:string){
+    if (this.permanentDistrictCache && this.permanentDistrictCache[0].countryName===countryName) {
       this.permanentDistrictCache;
     } else{
-      this.miscService.getDistrictsForCountry(countryId).subscribe({
+      this.miscService.getDistrictsForCountry(countryName).subscribe({
         next:(districts =>{
           this.userProfileForm.get('permanentCity')?.setValue(null);
           this.permanentdistricts$ = of([]);
@@ -193,49 +189,16 @@ export class UpdateProfileComponent implements OnInit{
   private getBirthDatePreset(dateStr:string){
     return dateStr?new Date(dateStr):null;
   }
-
-  private getSelectedCountryId(countryStr:string):number|any{
-    if(!countryStr){
-      return null;
-    }
-    let country = this.countries.find(c => c.countryName.toLowerCase() === countryStr.toLowerCase());
-    return country?.countryId;
-  }
-  private getSelectedDistrictId(districtStr:string, type:string):number|any{
-    if(!districtStr){
-      return null;
-    }
-    let district;
-    if(type==="present" && this.presentDistrictCache){
-      district = this.presentDistrictCache.find(d => d.districtName.toLowerCase() === districtStr.toLowerCase());
-      return district?.districtId;
-    }
-    else if(type==="permanent" && this.permanentDistrictCache){
-      district = this.permanentDistrictCache.find(d => d.districtName.toLowerCase() === districtStr.toLowerCase());
-      return district?.districtId;
-    }
-  }
   // END
 
   private _filterCountries(value: any): any[] {
-    if(typeof(value)==='number'){
-      return this.countries.filter(country => country.countryId===value);
-    }
-
+    value=value===null?'':value;
     const filterValue = value.toLowerCase();
     return this.countries.filter(country => country.countryName.toLowerCase().includes(filterValue));
   }
 
   private _filterDistricts(value:string, type:string):any[]{
     value=value===null?'':value;
-    if(typeof(value)==='number'){
-      if(type==="present" && this.presentDistrictCache){
-        return this.presentDistrictCache.filter(country => country.districtId===value);
-      }
-      else if(type==="permanent" && this.permanentDistrictCache){
-        return this.permanentDistrictCache.filter(country => country.districtId===value);
-      }
-    }
     
     if(type==="present" && this.presentDistrictCache){
       const filterValue = value.toLowerCase();

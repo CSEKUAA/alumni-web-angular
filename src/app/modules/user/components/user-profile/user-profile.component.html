@@ -2,7 +2,7 @@
     @if(userProfileInfo){
         <div class="profile-section-container">
             <mat-card class="top-panel animate__animated animate__slideInTop animate__faster">
-                <div class="profile-picture animate__animated animate__rotateIn" (mouseenter)="showButton()" (mouseleave)="hideButton()">
+                <div class="profile-picture animate__animated animate__flipInX" (mouseenter)="showButton()" (mouseleave)="hideButton()">
                     <img [src]="userProfileInfo.photo" alt="Profile Picture">
                     @if(isButtonVisible){
                         <div class="change-button-back">
@@ -21,22 +21,39 @@
                         <div class="phone"><mat-icon>smartphone</mat-icon><span>{{userProfileInfo.contactDetail.phoneNumber}}</span></div>
                     </div>
                     <div class="socials">
-                        <a href="https://www.linkedin.com/" class="social-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+                    @for (item of userProfileInfo.externalLinkInfo; track $index) {
+                        @if(item.alumniExternalLinkName.toLowerCase()==='linkedin'){
+                            <a [href]="item.alumniExternalLinkUrl" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                        }
+                        @else if(item.alumniExternalLinkName.toLowerCase()==='facebook'){
+                            <a [href]="item.alumniExternalLinkUrl" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </a>
+                        }
+                        @else if(item.alumniExternalLinkName.toLowerCase()==='github'){
+                            <a [href]="item.alumniExternalLinkUrl" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path fill-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.82 8.2 11.41.6.11.82-.25.82-.56 0-.28-.01-1.23-.01-2.23-3.02.55-3.8-.74-4.04-1.41-.14-.35-.74-1.41-1.23-1.69-.42-.22-1.01-.74-.02-.76.95-.02 1.62.87 1.85 1.23 1.08 1.81 2.8 1.31 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.46-1.34-5.46-5.93 0-1.31.46-2.39 1.23-3.23-.12-.3-.54-1.52.12-3.18 0 0 1.01-.33 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.56 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.92 1.23 3.23 0 4.6-2.8 5.63-5.48 5.93.43.37.82 1.1.82 2.23 0 1.61-.01 2.9-.01 3.3 0 .31.22.68.83.56A12.004 12.004 0 0024 12c0-6.63-5.37-12-12-12z"></path>   
+                                </svg>
+                            </a>
+                        }
+                        @else if(item.alumniExternalLinkName.toLowerCase()==='x'){
+                            <a href="https://www.twitter.com/" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
                             </svg>
-                        </a>
-                        <a href="https://www.facebook.com/" class="social-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                            </svg>
-                        </a>
-                        <a href="https://www.twitter.com/" class="social-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                        </svg>
-                        </a>
-                        <a href="https://www.google.com/" class="social-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                            </svg>
-                        </a>
+                            </a>
+                        }
+                        @else if(item.alumniExternalLinkName.toLowerCase()==='website'){                           
+                            <a [href]="item.alumniExternalLinkUrl" class="social-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                            </a>
+                        }
+                    }
                     </div>
                 </div>
             </mat-card>
@@ -44,72 +61,164 @@
                 <div class="right-panel">
                     <mat-card class="profile-info animate__animated animate__slideInDown animate__faster">
                         <div class="update-block">
-                            <span class="title">personal Information</span>
+                            <span class="title">Profile</span>
                             <button mat-mini-fab aria-label="Update Profile Info" matTooltip="Update Profile" matTooltipPosition="below" class="update-profile" (click)="toggleUpdateMode()">
                                 <mat-icon>edit</mat-icon>
                             </button>
                         </div>
-                        <hr class="m-0">
-                        <div class="details">
-                            <div class="individual">
-                                <span class="label">Full name</span>
-                                <p class="content" [textContent]="userProfileInfo.fullName"></p>
+                        <fieldset class="custom-fieldset">
+                            <legend class="custom-legend">Presonal Information</legend>
+                            <div class="details">
+                                <div class="individual">
+                                    <span class="label">Full name</span>
+                                    <p class="content" [textContent]="userProfileInfo.fullName"></p>
+                                </div>
+                                <div class="individual">
+                                    <span class="label">nick name</span>
+                                    <p class="content" [textContent]="userProfileInfo.nickName"></p>
+                                </div>
+                                <div class="individual">
+                                    <span class="label">student id</span>
+                                    <p class="content" [textContent]="userProfileInfo.roll"></p>
+                                </div>
+                                <div class="individual">
+                                    <span class="label">blood group</span>
+                                    <p class="content" [textContent]="userProfileInfo.bloodGroup"></p>
+                                </div>
+                                <div class="individual">
+                                    <span class="label">birth date</span>
+                                    <p class="content" [textContent]="userProfileInfo.dob"></p>
+                                </div>
+                                <div class="individual">
+                                    <span class="label">mobile</span>
+                                    <p class="content" [textContent]="userProfileInfo.contactDetail.phoneNumber"></p>
+                                </div>
+                                <div class="individual">
+                                    <span class="label">email</span>
+                                    <p class="content" [textContent]="userProfileInfo.contactDetail.email"></p>
+                                </div>
+                                <div class="individual">
+                                    <span class="label">present address</span>
+                                    <p class="content">{{userProfileInfo.contactDetail.presentAddress}},{{userProfileInfo.contactDetail.presentCity}}, {{userProfileInfo.contactDetail.presentCountry}}</p>
+                                </div>
+                                <div class="individual">
+                                    <span class="label">permanent address</span>
+                                    <p class="content">{{userProfileInfo.contactDetail.permanentAddress}},{{userProfileInfo.contactDetail.permanentCity}}, {{userProfileInfo.contactDetail.permanentCountry}}</p>
+                                </div>
                             </div>
-                            <div class="individual">
-                                <span class="label">nick name</span>
-                                <p class="content" [textContent]="userProfileInfo.nickName"></p>
-                            </div>
-                            <div class="individual">
-                                <span class="label">student id</span>
-                                <p class="content" [textContent]="userProfileInfo.roll"></p>
-                            </div>
-                            <div class="individual">
-                                <span class="label">blood group</span>
-                                <p class="content" [textContent]="userProfileInfo.bloodGroup"></p>
-                            </div>
-                            <div class="individual">
-                                <span class="label">birth date</span>
-                                <p class="content" [textContent]="userProfileInfo.dob"></p>
-                            </div>
-                            <div class="individual">
-                                <span class="label">mobile</span>
-                                <p class="content" [textContent]="userProfileInfo.contactDetail.phoneNumber"></p>
-                            </div>
-                            <div class="individual">
-                                <span class="label">email</span>
-                                <p class="content" [textContent]="userProfileInfo.contactDetail.email"></p>
-                            </div>
-                            <div class="individual">
-                                <span class="label">present address</span>
-                                <p class="content">{{userProfileInfo.contactDetail.presentAddress}},{{userProfileInfo.contactDetail.presentCity}}, {{userProfileInfo.contactDetail.presentCountry}}</p>
-                            </div>
-                            <div class="individual">
-                                <span class="label">permanent address</span>
-                                <p class="content">{{userProfileInfo.contactDetail.permanentAddress}},{{userProfileInfo.contactDetail.permanentCity}}, {{userProfileInfo.contactDetail.permanentCountry}}</p>
-                            </div>
-                        </div>
+                        </fieldset>
+                        @if(userProfileInfo.contactDetail.company){                            
+                            <fieldset class="custom-fieldset">
+                                <legend class="custom-legend">Professional Information</legend>
+                                <div class="details">
+                                    <div class="individual">
+                                        <span class="label">Profession</span>
+                                        <p class="content" [textContent]="userProfileInfo.contactDetail.profession"></p>
+                                    </div>
+                                    <div class="individual">
+                                        <span class="label">Designation</span>
+                                        <p class="content" [textContent]="userProfileInfo.contactDetail.designation"></p>
+                                    </div>
+                                    <div class="individual">
+                                        <span class="label">Company</span>
+                                        <p class="content" [textContent]="userProfileInfo.contactDetail.company"></p>
+                                    </div>
+                                    <div class="individual">
+                                        <span class="label">Company Address</span>
+                                        <p class="content" [textContent]="userProfileInfo.contactDetail.companyAddress"></p>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        }
                     </mat-card>
-                    <mat-card class="profile-info animate__animated animate__slideInUp animate__faster">
-                        <span class="title">Professional Information</span>
-                        <hr class="m-0">
-                        <div class="details">
-                            <div class="individual">
-                                <span class="label">Profession</span>
-                                <p class="content" [textContent]="userProfileInfo.contactDetail.profession"></p>
-                            </div>
-                            <div class="individual">
-                                <span class="label">Designation</span>
-                                <p class="content" [textContent]="userProfileInfo.contactDetail.designation"></p>
-                            </div>
-                            <div class="individual">
-                                <span class="label">Company</span>
-                                <p class="content" [textContent]="userProfileInfo.contactDetail.company"></p>
-                            </div>
-                            <div class="individual">
-                                <span class="label">Company Address</span>
-                                <p class="content" [textContent]="userProfileInfo.contactDetail.companyAddress"></p>
-                            </div>
+                    
+                    <mat-card class="external-link-info animate__animated animate__slideInDown animate__faster">    
+                        <div class="external-header">
+                            <span class="ext-link-title">External Links</span>
+                            <button *ngIf="userProfileInfo.externalLinkInfo.length>0" mat-mini-fab aria-label="Update External Link Info" matTooltip="Update Links" matTooltipPosition="below" class="update-profile" (click)="onToggleEditExternalLink()">
+                                <mat-icon>edit</mat-icon>
+                            </button>
                         </div>
+                        <fieldset class="custom-fieldset mt-2">
+                            <legend class="custom-legend">Social Links</legend>
+                            @if(!editExternalLinkSection || isAdd){
+                                @if(userProfileInfo.externalLinkInfo.length>0){
+                                <div class="link-group">
+                                    @for(item of userProfileInfo.externalLinkInfo; track item){
+                                    <div class="individual">
+                                        <span class="label">{{item.alumniExternalLinkName | titlecase}}</span>
+                                        <a class="content" [href]="item.alumniExternalLinkUrl" target="_blank">{{item.description}}</a>
+                                    </div>
+                                    }
+                                    @if(!isAdd){
+                                    <div class="add-more">
+                                        <button mat-fab extended class="btn-ext-link default" (click)="onToggleAddExternalLink()" matTooltip="Add More ..." matTooltipPosition="below"><mat-icon>add_circle</mat-icon></button>
+                                    </div>
+                                    }
+                                </div>
+                                }@else if(userProfileInfo.externalLinkInfo.length===0){
+                                <div class="no-links">
+                                    <i class="no-records m-0">No records found</i> <button mat-fab extended class="btn-app inline-button" (click)="onToggleAddExternalLink()"><mat-icon>add_circle</mat-icon>Add</button>
+                                </div>
+                                }
+                            }
+
+                            @if(editExternalLinkSection){
+                            <form class="mt-3" [formGroup]="extLinksForm" (ngSubmit)="isAdd?onSubmitExternalLinkCreate():onSubmitExternalLinkUpdate()">
+                                <div formArrayName="items">
+                                    @if(items){
+                                        <div *ngFor="let item of items.controls; let i = index">
+                                            <div [formGroupName]="i">
+                                                <div class="form-row ext-link-row">
+                                                    <input formControlName="externalLinkId" type="hidden">
+
+                                                    <mat-form-field class="form-field animate__animated animate__fadeIn animate__faster" appearance="outline">
+                                                        <mat-label>Type</mat-label>
+                                                        <mat-select formControlName="externalTypeName" required>
+                                                        @for (type of externalLinkTypes; track type) {
+                                                            <mat-option [value]="type.typeName">{{type.typeName}}</mat-option>
+                                                        }
+                                                        </mat-select>
+                                                        <mat-error *ngIf="item.get('externalTypeName')?.invalid && item.get('externalTypeName')?.touched">
+                                                        Pick one
+                                                        </mat-error>
+                                                    </mat-form-field>
+
+                                                    <mat-form-field class="form-field animate__animated animate__fadeIn animate__faster" appearance="outline">
+                                                    <mat-label>Link</mat-label>
+                                                    <input matInput formControlName="externalLinkUrl">
+                                                    <mat-error *ngIf="item.get('externalLinkUrl')?.invalid && item.get('externalLinkUrl')?.touched">
+                                                        Link is required
+                                                    </mat-error>
+                                                    </mat-form-field>
+
+                                                    <mat-form-field class="form-field animate__animated animate__fadeIn animate__faster" appearance="outline">
+                                                    <mat-label>Description</mat-label>
+                                                    <input matInput formControlName="description">
+                                                    <!-- <mat-error *ngIf="item.get('description')?.invalid && item.get('description')?.touched">
+                                                        Description is required
+                                                    </mat-error> -->
+                                                    </mat-form-field>   
+
+                                                    <div class="row-buttons pt-1 pb-4 animate__animated animate__fadeIn animate__faster">
+                                                        <button mat-fab extended type="button" class="btn-ext-link red mx-2" matTooltip="Remove Item" matTooltipPosition="below" (click)="removeItem(i, item.get('externalLinkId')?.value)"><mat-icon>close</mat-icon></button>
+                                                
+                                                        @if(extLinkCount-1===i && isAdd){
+                                                            <button mat-fab extended type="button" class="btn-ext-link green mx-2" matTooltip="Remove Item" matTooltipPosition="below" (click)="addItem()"><mat-icon>add</mat-icon></button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="ext-links">
+                                    <button mat-fab extended class="btn-app" type="button" style="background-color: firebrick!important;" (click)="isAdd? onToggleAddExternalLink():onToggleEditExternalLink()"><mat-icon>cancel</mat-icon>Cancle</button>
+                                    <button mat-fab extended class="btn-app" type="submit" [disabled]="extLinksForm.invalid"><mat-icon>check_circle</mat-icon>Submit</button>
+                                </div>
+                            </form>
+                            }                            
+                        </fieldset>
                     </mat-card>
                 </div>
             }

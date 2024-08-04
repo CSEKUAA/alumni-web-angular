@@ -15,3 +15,16 @@ export interface UserProfileRequestDTO{
     company: string;
     companyAddress: string;
 }
+
+export interface ExternalLinkCreateRequestDTO{
+    externalLinkId:number;
+    externalTypeName: string;
+    externalLinkUrl: string;
+    description: string;
+}
+
+export interface ExternalLinkUpdateRequestDTO{
+    id: string;
+    description: string;
+    url: string;
+}

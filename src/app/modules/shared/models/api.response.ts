@@ -15,7 +15,7 @@ export interface UserProfileResponseDTO{
     bloodGroup: string,
     photo: string,
     contactDetail: ContactDetailsDTO,
-    externalLinkInfo: {},
+    externalLinkInfo: AlumniExternalLinkInfoDTO[],
     membershipInfos: MembershipInfoDTO[]
 }
 
@@ -40,13 +40,23 @@ export interface MembershipInfoDTO{
     membershipStatus:string
 }
 
+export interface AlumniExternalLinkInfoDTO{
+    alumniExternalLinkId: number;
+    alumniExternalLinkName: string;
+    alumniExternalLinkUrl: string;
+    description: string;
+}
+
 export interface CountryDTO{
-    countryId: number;
     countryName: string;
-    dialCode: string;
+    countryCode: string;
 }
 export interface DistrictDTO{
-    districtId: number;
-    countryId: number;
     districtName: string;
+    countryName: string;
+}
+
+export interface ExternalLinkTypeDTO{
+    typeName: string;
+    typeUrl: string;
 }

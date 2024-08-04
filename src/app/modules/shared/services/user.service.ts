@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, throwError } from "rxjs";
 import { environment } from "../../../../environments/environment";
-import { UserProfileRequestDTO } from "../models/api.request";
+import { ExternalLinkCreateRequestDTO, ExternalLinkUpdateRequestDTO, UserProfileRequestDTO } from "../models/api.request";
 
 @Injectable({
     providedIn:'root'
@@ -31,6 +31,27 @@ export class UserService{
         .pipe(
             catchError(this.handleError)
         );
+    }
+
+    saveAllExternalLinks(externalLinkDTO:ExternalLinkCreateRequestDTO[]){
+        return this.httpClient.post(`${environment.external_link_service}`, externalLinkDTO)
+        .pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    updateAllExternalLinks(externalLinkDTO:ExternalLinkUpdateRequestDTO[]){
+        return this.httpClient.post(`${environment.external_link_service}/batch-update`, externalLinkDTO)
+        .pipe(
+            catchError(this.handleError)
+        );
+    }
+
+    deleteExternalLink(id:number){
+        return this.httpClient.post(`${environment.external_link_service}/${id}`, {})
+        .pipe(
+            catchError(this.handleError)
+        )
     }
 
     private handleError(error: HttpErrorResponse) {
