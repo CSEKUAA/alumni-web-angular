@@ -1,0 +1,78 @@
+.title {
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #5050db;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-back {
+    background-color: #5050db;
+    color: white;
+}
+
+.custom-fieldset {
+    margin-top: 2rem;
+    border: 1px solid rgba(80, 80, 219, 0.6);
+    border-radius: 7px;
+    padding: 0 1rem;
+    width: 100%;
+    background-color: #fdfbff;
+    box-shadow: inset 0 0px 5px rgba(80, 80, 219, 0.2);
+}
+
+.custom-legend {
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    padding: 0 10px;
+    position: absolute;
+    margin-top: -0.8rem;
+    background: #5050db;
+    display: inline-flex;
+    width: fit-content !important;
+    border: 1px solid;
+    border-radius: 7px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-field {
+    width: 48%;
+    padding: 0.2rem 0;
+}
+
+.btn-profile-update {
+    height: 40px;
+    border-radius: 10px;
+    background-color: #5050db;
+    color: white;
+    text-transform: uppercase;
+}
+
+.btn-profile-update>.mat-mdc-fab[disabled],
+.mat-mdc-fab.mat-mdc-button-disabled {
+    background-color: #9090af !important;
+}
+
+
+@media (max-width: 550px) {
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-field {
+        width: 100%;
+    }
+}
