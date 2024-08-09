@@ -37,7 +37,7 @@ export interface ContactDetailsDTO{
 export interface MembershipInfoDTO{
     memberShipType: string,
     expirationOn: Date,
-    membershipStatus:string
+    membershipStatus: string
 }
 
 export interface AlumniExternalLinkInfoDTO{
@@ -59,4 +59,10 @@ export interface DistrictDTO{
 export interface ExternalLinkTypeDTO{
     typeName: string;
     typeUrl: string;
+}
+
+export interface MembershipTypesDTO{
+    memberShipTypeId:number;
+    membershipType:string;
+    membershipFee:string;
 }
