@@ -9,6 +9,7 @@ import { MembershipInfoComponent } from './components/membership-info/membership
 import { SharedModule } from '../shared/shared.module';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { ExternalLinksComponent } from './components/external-links/external-links.component';
+import { ProfileOutlineComponent } from './components/profile-outline/profile-outline.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ExternalLinksComponent } from './components/external-links/external-lin
     UpdateProfileComponent,
     MembershipInfoComponent,
     UpdatePasswordComponent,
-    ExternalLinksComponent
+    ExternalLinksComponent,
+    ProfileOutlineComponent
   ],
   imports: [
     CommonModule,

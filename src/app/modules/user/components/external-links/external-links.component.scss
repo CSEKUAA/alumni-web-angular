@@ -88,7 +88,7 @@
 }
 
 .link-group .individual .label {
-    color: #37379c;
+    color: #5050db;
     font-weight: 500;
     text-transform: capitalize;
 }
@@ -114,7 +114,15 @@
     right: 1.5rem;
 }
 
-@media(max-width: 850px) {
+@media(max-width: 650px) {
+
+    .details,
+    .individual {
+        display: flex !important;
+        flex-direction: column;
+        gap: 5px;
+    }
+
     .ext-link-row {
         grid-template-columns: 1fr 1fr;
     }

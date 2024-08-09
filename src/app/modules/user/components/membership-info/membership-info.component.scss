@@ -63,8 +63,14 @@
     padding: 10px;
 }
 
+.m-key {
+    color: #5050db;
+    font-weight: 500;
+}
+
 .m-value {
     color: rgb(221, 73, 25);
+    font-weight: 500;
 }
 
 @media(max-width: 600px) {

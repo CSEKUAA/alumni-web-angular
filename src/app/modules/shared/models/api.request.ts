@@ -32,3 +32,9 @@ export interface ExternalLinkUpdateRequestDTO{
 export interface MembershipRequestDTO{
     membershipTypeId: number
 }
+
+export interface UpdatePasswordRequestDTO{
+    oldPassword: string;
+    newPassword: string;
+    confirmPassword: string;
+}
