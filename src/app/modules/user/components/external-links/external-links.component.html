@@ -1,0 +1,88 @@
+<mat-card class="external-link-info animate__animated animate__slideInDown animate__faster">    
+    <div class="external-header">
+        <span class="ext-link-title">External Links</span>
+        <button *ngIf="externalLinks.length>0" mat-mini-fab aria-label="Update External Link Info" matTooltip="Update Links" matTooltipPosition="below" class="update-external" (click)="onToggleEditExternalLink()">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+    <fieldset class="custom-fieldset mt-2">
+        <legend class="custom-legend">Social Links</legend>
+        @if(!editExternalLinkSection || isAdd){
+            @if(externalLinks.length>0){
+            <div class="link-group">
+                @for(item of externalLinks; track item){
+                <div class="individual">
+                    <span class="label">{{item.alumniExternalLinkName | titlecase}}</span>
+                    <a class="content" [href]="item.alumniExternalLinkUrl" target="_blank">{{item.description}}</a>
+                </div>
+                }
+                @if(!isAdd){
+                <div class="add-more">
+                    <button mat-fab extended class="btn-ext-link default" (click)="onToggleAddExternalLink()" matTooltip="Add More ..." matTooltipPosition="below"><mat-icon>add_circle</mat-icon></button>
+                </div>
+                }
+            </div>
+            }@else if(externalLinks.length===0){
+            <div class="no-links">
+                <i class="no-records m-0">No records found</i> <button mat-fab extended class="btn-app inline-button" (click)="onToggleAddExternalLink()"><mat-icon>add_circle</mat-icon>Add</button>
+            </div>
+            }
+        }
+
+        @if(editExternalLinkSection){
+        <form class="mt-3" [formGroup]="extLinksForm" (ngSubmit)="isAdd?onSubmitExternalLinkCreate():onSubmitExternalLinkUpdate()">
+            <div formArrayName="items">
+                @if(items){
+                    <div *ngFor="let item of items.controls; let i = index">
+                        <div [formGroupName]="i">
+                            <div class="form-row ext-link-row">
+                                <input formControlName="externalLinkId" type="hidden">
+
+                                <mat-form-field class="form-field animate__animated animate__fadeIn animate__faster" appearance="outline">
+                                    <mat-label>Type</mat-label>
+                                    <mat-select formControlName="externalTypeName" required>
+                                    @for (type of externalLinkTypes; track type) {
+                                        <mat-option [value]="type.typeName">{{type.typeName}}</mat-option>
+                                    }
+                                    </mat-select>
+                                    <mat-error *ngIf="item.get('externalTypeName')?.invalid && item.get('externalTypeName')?.touched">
+                                    Pick one
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field animate__animated animate__fadeIn animate__faster" appearance="outline">
+                                <mat-label>Link</mat-label>
+                                <input matInput formControlName="externalLinkUrl">
+                                <mat-error *ngIf="item.get('externalLinkUrl')?.invalid && item.get('externalLinkUrl')?.touched">
+                                    Link is required
+                                </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field animate__animated animate__fadeIn animate__faster" appearance="outline">
+                                <mat-label>Description</mat-label>
+                                <input matInput formControlName="description">
+                                <!-- <mat-error *ngIf="item.get('description')?.invalid && item.get('description')?.touched">
+                                    Description is required
+                                </mat-error> -->
+                                </mat-form-field>   
+
+                                <div class="row-buttons pt-1 pb-4 animate__animated animate__fadeIn animate__faster">
+                                    <button mat-fab extended type="button" class="btn-ext-link red mx-2" matTooltip="Remove Item" matTooltipPosition="below" (click)="removeItem(i, item.get('externalLinkId')?.value)"><mat-icon>close</mat-icon></button>
+                            
+                                    @if(extLinkCount-1===i && isAdd){
+                                        <button mat-fab extended type="button" class="btn-ext-link green mx-2" matTooltip="Remove Item" matTooltipPosition="below" (click)="addItem()"><mat-icon>add</mat-icon></button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="ext-links">
+                <button mat-fab extended class="btn-app" type="button" style="background-color: firebrick!important;" (click)="isAdd? onToggleAddExternalLink():onToggleEditExternalLink()"><mat-icon>cancel</mat-icon>Cancle</button>
+                <button mat-fab extended class="btn-app" type="submit" [disabled]="extLinksForm.invalid"><mat-icon>check_circle</mat-icon>Submit</button>
+            </div>
+        </form>
+        }                            
+    </fieldset>
+</mat-card>

@@ -28,3 +28,7 @@ export interface ExternalLinkUpdateRequestDTO{
     description: string;
     url: string;
 }
+
+export interface MembershipRequestDTO{
+    membershipTypeId: number
+}

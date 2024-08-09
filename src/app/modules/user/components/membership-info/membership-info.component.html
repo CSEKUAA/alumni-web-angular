@@ -1,1 +1,57 @@
-<p>membership-info works!</p>
+<mat-card class="membership-container animate__animated animate__slideInDown animate__faster">
+    <div class="membership-header">
+        <span class="membership-title">Membership</span>
+        <!-- <button mat-mini-fab aria-label="Update membership Info" matTooltip="Update Membership" matTooltipPosition="below" class="update-membership">
+            <mat-icon>edit</mat-icon>
+        </button> -->
+    </div>
+    <fieldset class="custom-fieldset mt-2">
+        <legend class="custom-legend">Membership Information</legend>
+        @if(membershipDetails.length>0){
+        <div class="membership-detail">
+            @for (membership of membershipDetails; track $index) {
+            <div class="membership">
+                <div class="membership-row">
+                    <p class="m-key m-0">Membership</p>
+                    <p class="m-value m-0" [textContent]="membership.memberShipType | titlecase"></p>
+                </div> 
+                <div class="membership-row">
+                    <p class="m-key m-0">Status</p>
+                    <p class="m-value m-0" [textContent]="membership.membershipStatus!==null?membership.membershipStatus!==null:'Not Active'"></p>
+                </div>                
+                @if(membership.expirationOn!==null){
+                <div class="membership-row">
+                    <p class="m-key m-0">Valid Upto</p>
+                    <p class="m-value m-0" [textContent]="membership.expirationOn"></p>
+                </div>
+                }
+            </div>
+            }
+        </div>
+        }@else if(membershipDetails.length===0 && !isApplyOpen){
+        <div class="apply-membership">
+            <button mat-fab extended class="btn-app inline-button" (click)="onToggleApplyMembership()" ><mat-icon>add_circle</mat-icon>Apply Membership</button>
+        </div>
+        }
+        @else {
+        <form [formGroup]="membershipApplicationForm" class="membership-form pt-3" (submit)="onSubmit()">
+            <mat-form-field class="form-field animate__animated animate__fadeIn animate__faster" appearance="outline">
+                <mat-label>Subscription Type</mat-label>
+                <mat-select formControlName="membershipTypeId" required>
+                @for (type of membershipTypes; track type) {
+                    <mat-option [value]="type.membershipType">{{type.membershipType | uppercase}}</mat-option>
+                }
+                </mat-select>
+                <mat-error *ngIf="membershipApplicationForm.get('membershipTypeId')?.invalid && membershipApplicationForm.get('membershipTypeId')?.touched">
+                Choose One
+                </mat-error>
+            </mat-form-field>
+            <mat-label *ngIf="isPlanSelected" class="plan-info">{{planInfo}}</mat-label>
+            <div class="action-buttons">
+                <button mat-fab extended class="btn-app btn-cancle" type="button" (click)="onToggleApplyMembership()"><mat-icon>close</mat-icon>Cancle</button>
+                <button mat-fab extended class="btn-app btn-apply" type="submit" [disabled]="membershipApplicationForm.invalid"><mat-icon>done_outline</mat-icon>Apply</button>
+            </div>
+        </form>
+        }       
+    </fieldset>
+</mat-card>
