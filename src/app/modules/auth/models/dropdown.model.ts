@@ -1,4 +1,4 @@
 export interface DropdownModel{
-    id: number;
+    id: string;
     value:string;
 }

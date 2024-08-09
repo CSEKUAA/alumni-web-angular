@@ -1,0 +1,135 @@
+.external-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.external-link-info {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.ext-link-title {
+    text-transform: capitalize;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #5050db;
+}
+
+.ext-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.ext-link-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1.5fr 0.5fr;
+    gap: 10px;
+}
+
+.btn-ext-link {
+    height: 40px;
+    width: 40px;
+    color: white !important;
+    padding: 5px !important;
+    border-radius: 12px;
+}
+
+.btn-ext-link .mat-icon {
+    font-size: 25px !important;
+    height: 25px !important;
+    width: 28px !important;
+    margin: 0 !important;
+}
+
+.default {
+    background-color: #5050db !important;
+}
+
+.red {
+    background-color: rgb(197, 2, 2);
+}
+
+.green {
+    background-color: rgb(0, 116, 0);
+}
+
+.inline-button {
+    height: 30px !important;
+}
+
+.no-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.no-records {
+    font-weight: 500;
+    letter-spacing: 0rem;
+}
+
+.link-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.link-group .individual {
+    display: grid;
+    grid-template-columns: 250px auto;
+    transition: 0.3s ease-out;
+    padding: 10px;
+}
+
+.link-group .individual .label {
+    color: #5050db;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.link-group .individual .content {
+    color: rgb(221, 73, 25);
+    font-weight: 500;
+    margin: 0 !important;
+    width: fit-content;
+}
+
+.add-more {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+}
+
+.update-external {
+    background-color: #5050db;
+    color: white;
+    transition: 0.2s ease-out;
+    position: absolute;
+    right: 1.5rem;
+}
+
+@media(max-width: 650px) {
+
+    .details,
+    .individual {
+        display: flex !important;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .ext-link-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 550px) {
+    .ext-link-row {
+        grid-template-columns: 1fr;
+    }
+}

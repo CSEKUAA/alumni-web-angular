@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['user/profile']);
         }),
         error: ((error: any) =>{
-          this.uiService.showErrorAlert(error);
+          this.uiService.showErrorAlert(error.message);
         })
       });
     }

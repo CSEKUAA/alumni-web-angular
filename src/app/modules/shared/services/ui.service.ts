@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import Swal from 'sweetalert2';
+import { IdentityService } from "./identity.service";
 
 @Injectable({
     providedIn:'root'
@@ -8,6 +9,7 @@ import Swal from 'sweetalert2';
 
 export class UIService{
   loggedIn:Subject<boolean> = new Subject<boolean>();
+  constructor(private identityService:IdentityService){}
 
   showSuccessAlert(message:string) {
     Swal.fire({
@@ -43,6 +45,24 @@ export class UIService{
           'Your file has been deleted.',
           'success'
         )
+      }
+    });
+  }
+
+  showConfirmationLogoutAlert(message:string) {
+    Swal.fire({
+      title: 'Success',
+      text: message,
+      icon: 'success',
+      showCancelButton: false,
+      confirmButtonText: 'OKAY'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.identityService.logout().subscribe({
+          next: (()=>{        
+            window.location.href = window.location.origin;
+          })
+        })
       }
     });
   }

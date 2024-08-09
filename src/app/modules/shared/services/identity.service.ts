@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { LoginDTO } from "../../auth/models/auth.models";
+import { LoginDTO, RegistrationDTO } from "../../auth/models/auth.models";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { BehaviorSubject, catchError, Observable, of, switchMap, tap, throwError } from "rxjs";
 import { environment } from "../../../../environments/environment";
@@ -17,7 +17,7 @@ export class IdentityService{
     
   constructor(private httpClient:HttpClient, private store:StoreService){}
 
-  registerAlumni(userData: any): Observable<any> {
+  registerAlumni(userData: RegistrationDTO): Observable<any> {
       return this.httpClient.post<any>(`${environment.user_management_service}/register`, userData)
         .pipe(
           catchError(this.handleError)

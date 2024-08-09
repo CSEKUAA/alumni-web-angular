@@ -5,25 +5,32 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpErrorResponse,
+  HttpResponse,
 } from '@angular/common/http';
 import { catchError, Observable, tap } from 'rxjs';
 import { UIService } from '../modules/shared/services/ui.service';
 import { IdentityService } from '../modules/shared/services/identity.service';
 import { StoreService } from '../modules/shared/services/store.service';
 import { AlertMessage, ErrorCode, ErrorMessage } from './utilities';
+import { LoaderService } from '../modules/shared/services/loader.service';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
   constructor(
     private uiService: UIService,
     private identityService: IdentityService,
-    private store:StoreService
+    private store:StoreService,
+    private loaderService:LoaderService
   ) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    if(this.identityService.hasValidAccessToken() && request.url.toString().indexOf('auth/refresh-token') < 0){
+      this.loaderService.show();
+    }
+    
     if(!this.identityService.hasValidAccessToken()){
       this.identityService.logout();
     }
@@ -38,8 +45,13 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     }
 
     return next.handle(request).pipe(
-      tap(),
+      tap((event: HttpEvent<any>)=>{
+        if (event instanceof HttpResponse) {
+          this.loaderService.hide();
+        }
+      }),
       catchError((error: HttpErrorResponse) => {
+        this.loaderService.hide();
         if (
           error.status === ErrorCode.INTERNAL_SERVER_ERROR &&
           error.error.error === ErrorMessage.SERVER_ERROR

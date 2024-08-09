@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DropdownModel } from '../../models/dropdown.model';
 import { RegistrationDTO } from '../../models/auth.models';
 import { IdentityService } from '../../../shared/services/identity.service';
 import { UIService } from '../../../shared/services/ui.service';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,26 +16,20 @@ export class RegisterComponent implements OnInit {
   title:string = 'Register | KUAA';
   registrationForm!: FormGroup;
   bloodGroups: string[] = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-  disciplines: DropdownModel[] = [
-    {id:1, value: "ARCH"},
-    {id:2, value: "CSE"},
-    {id:3, value: "ECE"},
-    {id:4, value: "BBA"}
-  ];
 
-  constructor(private fb: FormBuilder, private identityService:IdentityService, private uiService:UIService, private titleService:Title) { }
+  constructor(private fb: FormBuilder, private identityService:IdentityService, private uiService:UIService, private titleService:Title, private router:Router) { }
 
   ngOnInit(): void {
     this.titleService.setTitle(this.title);
     this.registrationForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      roll: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-      isAgree: [false, Validators.requiredTrue]
+      firstName: new FormControl('', { validators: [Validators.required] }),
+      lastName: new FormControl('', { validators: [Validators.required] }),
+      roll: new FormControl('', { validators: [Validators.required] }),
+      email: new FormControl('', { validators: [Validators.required, Validators.email] }),
+      password: new FormControl('', { validators: [Validators.required] }),
+      phoneNumber: new FormControl('', { validators: [Validators.required] }),
+      confirmPassword: new FormControl('', { validators: [Validators.required] }),
+      isAgree: new FormControl(false, { validators: [Validators.requiredTrue] })
     }, {
       validator: this.mustMatch('password', 'confirmPassword')
     });
@@ -67,15 +62,16 @@ export class RegisterComponent implements OnInit {
         phoneNumber:formValue.phoneNumber,
         roll:formValue.roll
       }
-
-      this.identityService.registerAlumni(formValue).subscribe(
-        response => {
+      
+      this.identityService.registerAlumni(registrationModel).subscribe({
+        next: (()=>{
           this.uiService.showSuccessAlert('Registration Successful!');
-        },
-        error => {
-          this.uiService.showErrorAlert(error);
-        }
-      );
+          this.router.navigate(['auth/login']);
+        }),
+        error: ((error:Error)=>{
+          this.uiService.showErrorAlert(error.message);
+        })
+      });
     }
   }
 

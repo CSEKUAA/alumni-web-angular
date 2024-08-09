@@ -1,0 +1,82 @@
+.membership-container {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.membership-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.membership-title {
+    text-transform: capitalize;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #5050db;
+}
+
+.apply-membership {
+    display: flex;
+    justify-content: center;
+}
+
+.apply-membership button {
+    background-color: green !important;
+}
+
+.membership-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-field {
+    min-width: 250px;
+    margin-bottom: 0.3rem;
+}
+
+.plan-info {
+    padding: 1rem 0.5rem;
+    margin-top: -1.5rem;
+    color: rgb(221, 73, 25);
+    font-weight: 500;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn-cancle {
+    background-color: firebrick !important;
+}
+
+.membership-row {
+    display: grid;
+    grid-template-columns: 250px auto;
+    transition: 0.3s ease-out;
+    padding: 10px;
+}
+
+.m-key {
+    color: #5050db;
+    font-weight: 500;
+}
+
+.m-value {
+    color: rgb(221, 73, 25);
+    font-weight: 500;
+}
+
+@media(max-width: 600px) {
+    .membership-row {
+        display: flex !important;
+        flex-direction: column;
+        gap: 5px;
+    }
+}

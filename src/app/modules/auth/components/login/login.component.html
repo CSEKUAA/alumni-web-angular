@@ -16,10 +16,10 @@
             Password is required
           </mat-error>
         </mat-form-field>
-        <button mat-flat-button color="primary" class="w-100 animate__animated animate__backInUp animate__faster" type="submit" [disabled]="loginForm.invalid">Login</button>
-        <div class="animate__animated animate__backInUp animate__faster">Want to create account?
+        <button mat-fab extended class="w-100 btn-app animate__animated animate__backInUp animate__faster" type="submit" [disabled]="loginForm.invalid"><mat-icon>login</mat-icon>Login</button>
+        <div class="animate__animated animate__backInUp animate__faster">Don't have an account?
           <a routerLink="/auth/register">
-            <span class="register-link">Register</span>
+            <span class="register-link">Join Now</span>
           </a>
         </div>
       </form>
