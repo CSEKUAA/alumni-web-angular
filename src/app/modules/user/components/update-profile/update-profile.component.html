@@ -164,7 +164,7 @@
               </div>
           </fieldset>
           <div class="text-center mt-4 animate__animated animate__zoomIn animate__faster">
-            <button mat-fab extended type="submit" class="btn-profile-update" [disabled]="userProfileForm.invalid"><mat-icon>check_circle</mat-icon>Update</button>
+            <button mat-fab extended type="submit" class="btn-profile-update" [disabled]="userProfileForm.invalid || !userProfileForm.dirty"><mat-icon>check_circle</mat-icon>Update</button>
           </div>
         </form>
     </mat-card>
