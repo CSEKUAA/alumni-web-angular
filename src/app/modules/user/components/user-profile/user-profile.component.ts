@@ -1,8 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserProfileResponseDTO } from '../../../shared/models/api.response';
 import { UserService } from '../../../shared/services/user.service';
 import { Title } from '@angular/platform-browser';
-import { UIService } from '../../../shared/services/ui.service';
 
 @Component({
   selector: 'app-user-profile',

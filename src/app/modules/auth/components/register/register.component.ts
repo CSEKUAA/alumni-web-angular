@@ -6,6 +6,7 @@ import { IdentityService } from '../../../shared/services/identity.service';
 import { UIService } from '../../../shared/services/ui.service';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
   registrationForm!: FormGroup;
   bloodGroups: string[] = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
-  constructor(private fb: FormBuilder, private identityService:IdentityService, private uiService:UIService, private titleService:Title, private router:Router) { }
+  constructor(private fb: FormBuilder, private identityService:IdentityService, private uiService:UIService, 
+    private titleService:Title, private router:Router, private userService:UserService) { }
 
   ngOnInit(): void {
     this.titleService.setTitle(this.title);
@@ -63,7 +65,7 @@ export class RegisterComponent implements OnInit {
         roll:formValue.roll
       }
       
-      this.identityService.registerAlumni(registrationModel).subscribe({
+      this.userService.registerAlumni(registrationModel).subscribe({
         next: (()=>{
           this.uiService.showSuccessAlert('Registration Successful!');
           this.router.navigate(['auth/login']);

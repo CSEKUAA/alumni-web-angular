@@ -5,6 +5,7 @@ import { LoginDTO } from '../../models/auth.models';
 import { UIService } from '../../../shared/services/ui.service';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { UserAccessService } from '../../../shared/services/user.access.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   title:string = 'Login | KUAA';
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private identityService:IdentityService, private router:Router, private uiService:UIService, private titleService:Title) { }
+  constructor(private fb: FormBuilder, private identityService:IdentityService, private router:Router, 
+    private uiService:UIService, private titleService:Title, private userAccessService:UserAccessService) { }
 
   ngOnInit(): void {
     this.titleService.setTitle(this.title);
@@ -33,7 +35,14 @@ export class LoginComponent implements OnInit {
       this.identityService.login(loginModel).subscribe({
         next: (() => {
           this.uiService.loggedIn.next(true); 
-          this.router.navigate(['user/profile']);
+          this.userAccessService.getCurrentUserRole().subscribe({
+            next: (()=>{              
+              this.router.navigate(['user/profile']);
+            }),
+            error:(()=>{
+              this.uiService.showErrorAlert('Something went wrong while login, please try again!');
+            })
+          })
         }),
         error: ((error: any) =>{
           this.uiService.showErrorAlert(error.message);

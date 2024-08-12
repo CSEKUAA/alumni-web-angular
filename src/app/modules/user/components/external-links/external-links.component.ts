@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { UserService } from '../../../shared/services/user.service';
 import { UIService } from '../../../shared/services/ui.service';
 import { ExternalLinkCreateRequestDTO, ExternalLinkUpdateRequestDTO } from '../../../shared/models/api.request';
+import { ExternalLinkService } from '../../../shared/services/external.link.service';
 
 @Component({
   selector: 'app-external-links',
@@ -24,7 +25,7 @@ export class ExternalLinksComponent implements OnInit, OnChanges{
   externalLinkTypes: ExternalLinkTypeDTO[] = [];
   extLinkCount:number=0;
 
-  constructor(private formBuilder:FormBuilder, private miscService:MiscService, private userService:UserService, private uiService:UIService){}
+  constructor(private formBuilder:FormBuilder, private miscService:MiscService, private externalService:ExternalLinkService, private uiService:UIService){}
 
   ngOnInit(): void {
     this.externalLinks = this.userProfile.externalLinkInfo;
@@ -108,7 +109,7 @@ export class ExternalLinksComponent implements OnInit, OnChanges{
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          this.userService.deleteExternalLink(id).subscribe({
+          this.externalService.deleteExternalLink(id).subscribe({
             next: (resp=>{
               this.uiService.showSuccessAlert('External Link Deleted Successfully!');
               this.items.removeAt(index);
@@ -163,7 +164,7 @@ export class ExternalLinksComponent implements OnInit, OnChanges{
     if(this.extLinksForm.valid){
       let formData = this.extLinksForm.value;
       let externalLinkDTO:ExternalLinkCreateRequestDTO[] = formData.items;
-      this.userService.saveAllExternalLinks(externalLinkDTO).subscribe({
+      this.externalService.saveAllExternalLinks(externalLinkDTO).subscribe({
         next: (() =>{
           this.uiService.showSuccessAlert('Successfully Saved!');
           this.editExternalLinkSection=!this.editExternalLinkSection;
@@ -177,11 +178,6 @@ export class ExternalLinksComponent implements OnInit, OnChanges{
   }
 
   onSubmitExternalLinkUpdate(){
-    if(!this.extLinksForm.dirty){
-      this.uiService.showErrorAlert("Nothing Changed to Update!");
-      return;
-    }
-
     if(this.extLinksForm.valid){
       let formData = this.extLinksForm.value;
       let externalLinkDTO:ExternalLinkUpdateRequestDTO[] = formData.items.map((item:ExternalLinkCreateRequestDTO)=>{
@@ -189,7 +185,7 @@ export class ExternalLinksComponent implements OnInit, OnChanges{
           id: item.externalLinkId, description:item.description, url:item.externalLinkUrl
         })
       });
-      this.userService.updateAllExternalLinks(externalLinkDTO).subscribe({
+      this.externalService.updateAllExternalLinks(externalLinkDTO).subscribe({
         next: (() =>{
           this.uiService.showSuccessAlert('Successfully Updated!');
           this.editExternalLinkSection=!this.editExternalLinkSection;
