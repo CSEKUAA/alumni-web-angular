@@ -1,29 +1,30 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { StoreService } from "./store.service";
-import { catchError, Observable, tap, throwError } from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
 import { environment } from "../../../../environments/environment";
 
 @Injectable({providedIn:'root'})
 
 export class MiscService{
+    private externalLinkService:string=`${environment.server_root}/alumni/external-link`;
+    private lookupService:string=`${environment.server_root}/lookup`;
 
     constructor(private httpClient:HttpClient){}
 
     getCountries():Observable<any>{
-        return this.httpClient.get(`${environment.lookup_service}/countries`).pipe(
+        return this.httpClient.get(`${this.lookupService}/countries`).pipe(
             catchError(this.handleError)
         )
     }
     
     getDistrictsForCountry(countryName:string):Observable<any>{
-        return this.httpClient.get(`${environment.lookup_service}/districts/${countryName}`).pipe(
+        return this.httpClient.get(`${this.lookupService}/districts/${countryName}`).pipe(
             catchError(this.handleError)
         )
     }
 
     getExternalLinkTypes():Observable<any>{
-        return this.httpClient.get(`${environment.external_link_service}/type`).pipe(
+        return this.httpClient.get(`${this.externalLinkService}/type`).pipe(
             catchError(this.handleError)
         )
     }

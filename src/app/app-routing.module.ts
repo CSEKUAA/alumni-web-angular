@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticationService } from './modules/shared/services/authentication.service';
 
 const routes: Routes = [
   {
@@ -31,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'user',
+    path: 'user', canActivate: [() => inject(AuthenticationService).isLoggedIn()],
     loadChildren: () => import('./modules/user/user.module').then(m=>m.UserModule)
   },
   {

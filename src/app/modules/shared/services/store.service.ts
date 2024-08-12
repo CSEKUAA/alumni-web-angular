@@ -29,6 +29,14 @@ export class StoreService{
         return this.getItem(SessionKeys.ACCESS_TOKEN_EXPIARY);
     }
 
+    setLoggedUserRole(role:string){
+        this.setItem(SessionKeys.LOGGED_USER_ROLE, role);
+    }
+
+    getLoggedUserRole():string{
+        return this.getItem(SessionKeys.LOGGED_USER_ROLE)!;
+    }
+
     setTokenExpiaryMinutes(minutes:number){
         this.setItem(SessionKeys.TOKEN_EXPIRY_MINUTES, minutes.toString());
     }

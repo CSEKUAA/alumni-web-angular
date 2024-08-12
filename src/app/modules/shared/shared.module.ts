@@ -24,6 +24,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { PrimarynavComponent } from './components/primarynav/primarynav.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { AdminDirective } from './directives/admin.directive';
+import { UserDirective } from './directives/user.directive';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { LoaderComponent } from './components/loader/loader.component';
     FooterComponent,
     SidenavComponent,
     PrimarynavComponent,
-    LoaderComponent
+    LoaderComponent,
+    AdminDirective,
+    UserDirective
   ],
   imports: [
     CommonModule,
@@ -76,7 +80,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     MatTooltipModule,    
     LoaderComponent,
     MatProgressBarModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    AdminDirective
   ]
 })
 export class SharedModule { }

@@ -42,4 +42,10 @@ export abstract class AlertMessage {
     public static readonly FAILED: string = 'Oops! Something went wrong!';
     public static readonly BAD_REQUEST: string = 'Incompatible Request!';
 }
+
+export abstract class UserRole{
+    public static readonly ADMIN: string = 'ADMIN';
+    public static readonly USER: string = 'USER';
+    public static readonly COMMITTEE: string = 'COMMITTEE'; 
+}
   
