@@ -9,6 +9,8 @@ import { environment } from "../../../../environments/environment";
 })
 
 export class MembershipService{
+    private membershipService:string=`${environment.server_root}/alumni/membership`;
+
     constructor(private httpClient:HttpClient){}
 
     getMembershipInfo(){
@@ -16,10 +18,10 @@ export class MembershipService{
     }
 
     getMembershipTypes():Observable<any>{
-        return this.httpClient.get(`${environment.membership_service}/membership-type`);
+        return this.httpClient.get(`${this.membershipService}/membership-type`);
     }
 
     applyMembership(membershipRequestDto: MembershipRequestDTO):Observable<any>{
-        return this.httpClient.post(`${environment.membership_service}/apply`, membershipRequestDto);
+        return this.httpClient.post(`${this.membershipService}/apply`, membershipRequestDto);
     }
 }

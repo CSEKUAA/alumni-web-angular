@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
-import { LoginDTO, RegistrationDTO } from "../../auth/models/auth.models";
+import { LoginDTO } from "../../auth/models/auth.models";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { BehaviorSubject, catchError, Observable, of, switchMap, tap, throwError } from "rxjs";
 import { environment } from "../../../../environments/environment";
 import { StoreService } from "./store.service";
 import { LoginResponseDTO } from "../models/api.response";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn:'root'
@@ -14,18 +15,12 @@ export class IdentityService{
   private refreshTokenTimeout!:any;
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private auththenticationService:string=`${environment.server_root}/auth`;
     
-  constructor(private httpClient:HttpClient, private store:StoreService){}
-
-  registerAlumni(userData: RegistrationDTO): Observable<any> {
-      return this.httpClient.post<any>(`${environment.user_management_service}/register`, userData)
-        .pipe(
-          catchError(this.handleError)
-        );
-  }
+  constructor(private httpClient:HttpClient, private store:StoreService, private router:Router){}
 
   login(model:LoginDTO): Observable<any>{
-      return this.httpClient.post<any>(`${environment.authentication_service}/login`, model)
+      return this.httpClient.post<any>(`${this.auththenticationService}/login`, model)
         .pipe(
           tap((resp:LoginResponseDTO)=>{
             this.storeTokens(resp);
@@ -35,7 +30,7 @@ export class IdentityService{
   }
 
   logout(): Observable<any> {
-    return this.httpClient.post<any>(`${environment.authentication_service}/logout`,{})
+    return this.httpClient.post<any>(`${this.auththenticationService}/logout`,{})
       .pipe(
         tap(()=>{          
           this.store.clearLoginInfo();
@@ -94,7 +89,7 @@ export class IdentityService{
         return throwError(()=> new Error('No refresh token available'));
       }
 
-      return this.httpClient.post<any>(`${environment.authentication_service}/refresh-token`, { "refreshToken": refreshToken })
+      return this.httpClient.post<any>(`${this.auththenticationService}/refresh-token`, { "refreshToken": refreshToken })
         .pipe(
           tap((tokens:LoginResponseDTO) => {
             this.isRefreshing = false;
@@ -103,7 +98,7 @@ export class IdentityService{
           }),
           catchError(error => {
             this.isRefreshing = false;
-            this.logout();
+            this.router.navigate(['auth/login']);
             return throwError(()=> new Error('Silent Refresh Error!'));
           })
         );

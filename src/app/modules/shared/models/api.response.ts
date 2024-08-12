@@ -66,3 +66,16 @@ export interface MembershipTypesDTO{
     membershipType:string;
     membershipFee:string;
 }
+
+export interface PermissionsDTO{
+    name: string;
+    parentId:number;
+    order:number;
+    link:string;
+    identifier:string;
+}
+
+export interface RoleWithPermissionDTO{
+    role:string;
+    permissions:PermissionsDTO[];
+}

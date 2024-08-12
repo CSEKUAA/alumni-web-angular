@@ -38,3 +38,14 @@ export interface UpdatePasswordRequestDTO{
     newPassword: string;
     confirmPassword: string;
 }
+
+// Events Request Models
+export interface CreateEventRequestDTO{
+    id:number;
+    name:string;
+    description:string;
+    datetime:string; // it'll be a ISO datetime formate e.g 2024-08-15T13:10:00.000Z
+    location:string;
+    link:string;
+}
+//END
