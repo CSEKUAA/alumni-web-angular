@@ -112,20 +112,17 @@ h6 {
 }
 
 .event time {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 60px;
   padding: 10px;
   border-radius: 5px;
   text-align: center;
   font-weight: 600;
-  background-color: #5050db;
   color: #eff4fe;
-  text-shadow: 0 0 #080808;
-  background-color: #d3d3f10d;
+  text-shadow: 1px 1px 3px #080808;
+  background-color: rgb(249 249 249 / 40%);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  max-width: 200px;
+  width: 200px;
 }
 
 .description {

@@ -79,3 +79,22 @@ export interface RoleWithPermissionDTO{
     role:string;
     permissions:PermissionsDTO[];
 }
+
+export interface EventTypesDTO{
+    id:number;
+    eventTypeName:string;
+    eventTypeDescription:string;
+}
+
+export interface EventResponseDTO{
+    id:number;
+    eventName: string;
+    eventType: string;
+    description: string;
+    eventDate: string;
+    eventTime: string;
+    location: string;
+    link: string;
+    createdDate: string;
+    updatedDate: string;
+}

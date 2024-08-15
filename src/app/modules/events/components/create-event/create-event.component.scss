@@ -1,0 +1,33 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-back {
+    background-color: #5050db;
+    color: white;
+}
+
+.title {
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    text-align: center;
+    font-weight: 600;
+    color: #5050db;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-field {
+    width: 100%;
+    padding: 0.2rem 0;
+}
+
+.form-field-half {
+    width: 48%;
+    padding: 0.2rem 0;
+}
