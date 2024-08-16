@@ -15,3 +15,19 @@
     justify-content: center;
     gap: 20px;
 }
+
+.event-action {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width:640px) {
+    .event-action {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+}

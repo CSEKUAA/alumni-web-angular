@@ -9,6 +9,7 @@ import { EventDetailsComponent } from './components/event-details/event-details.
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { UpdateEventComponent } from './components/update-event/update-event.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     EventsRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    MatPaginatorModule
   ]
 })
 export class EventsModule { }

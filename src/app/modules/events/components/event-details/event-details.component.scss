@@ -1,0 +1,97 @@
+@import '../../../../../assets/scss/common.scss';
+
+.header {
+    display: flex;
+    height: 10em;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/assets/images/event-back.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* Scales image while preserving aspect ratio */
+}
+
+.title {
+    padding: 0.5rem 2rem;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.details .individual {
+    display: grid;
+    grid-template-columns: 180px auto;
+    transition: 0.3s ease-out;
+    padding: 10px;
+}
+
+.details .individual:hover {
+    background-color: rgba($color: $theme-color, $alpha: 0.1);
+    transition: 0.3s ease-in;
+    transition: 0.3s ease-in;
+    border-radius: 10px;
+}
+
+.details .individual .label {
+    color: #5050db;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.details .individual .content {
+    color: $theme-orange;
+    font-weight: 500;
+    margin: 0 !important;
+}
+
+.event-action {
+    background-color: #5050db;
+    color: white;
+    transition: 0.2s ease-out;
+}
+
+.event-details {
+    line-height: 2rem;
+    color: #5959f1;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.event-action:hover {
+    background-color: #2d2dac;
+    transition: 0.2s ease-in;
+}
+
+@media(max-width: 850px) {
+
+    .details,
+    .individual {
+        display: flex !important;
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+@media(max-width: 550px) {
+
+    .profile-brief,
+    .profile-shorts {
+        align-items: center;
+        gap: 5px;
+    }
+
+    .ext-link-row {
+        grid-template-columns: 1fr;
+    }
+}

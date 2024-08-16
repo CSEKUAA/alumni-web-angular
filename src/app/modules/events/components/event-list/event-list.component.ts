@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { EventService } from '../../../shared/services/events.service';
-import { EventRequestDTO, pageRequestDTO } from '../../../shared/models/api.request';
+import { pageRequestDTO } from '../../../shared/models/api.request';
 import { PagedAPIResponseDTO, PageinfoDTO } from '../../../shared/models/paged.response';
 import { EventResponseDTO } from '../../../shared/models/api.response';
 import moment from 'moment';
+import { PageModel } from '../../../shared/models/ui.models';
 
 @Component({
   selector: 'app-event-list',
@@ -16,14 +17,21 @@ export class EventListComponent implements OnInit{
 
   events:EventResponseDTO[]=[];
   pageInfo!:PageinfoDTO;
+  initClass!:boolean;
   
   constructor(private titleService:Title, private eventService:EventService){}
 
   ngOnInit(): void {
     this.titleService.setTitle(this.title);
-    let pageRequestDTO:pageRequestDTO={page:0, size:10}
+    this.loadEvents();
+  }
+
+  loadEvents(page:number=0, size:number=12){
+    let pageRequestDTO:pageRequestDTO={page:page, size:size}
     this.eventService.getAllEvents(pageRequestDTO).subscribe({
       next:((resp:PagedAPIResponseDTO)=>{
+        this.events=[];        
+        this.initClass=true;
 
         let response:PagedAPIResponseDTO = <PagedAPIResponseDTO> resp; 
 
@@ -47,5 +55,11 @@ export class EventListComponent implements OnInit{
         };
       })
     })
+  }
+
+  onPage(e:any){
+    this.initClass=false;
+    let pageInfo:PageModel = <PageModel> e;
+    this.loadEvents(pageInfo.pageIndex, pageInfo.pageSize);
   }
 }

@@ -36,10 +36,13 @@ export class EventService{
 
     updateEvent<EventRequestDTO>(eventRequest:EventRequestDTO):Observable<any>{
         return this.httpClient.post(`${this.eventService}/update`, eventRequest).pipe(
-            tap((resp:any)=>{
-                console.log(resp);
-            }),
             catchError(this.error.handleError)
         );
+    }
+
+    getEvent(eventId:number):Observable<any>{
+        return this.httpClient.get(`${this.eventService}/${eventId}`).pipe(
+            catchError(this.error.handleError)
+        )
     }
 }
