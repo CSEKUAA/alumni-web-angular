@@ -7,6 +7,7 @@ import { AlumniListComponent } from './components/alumni-list/alumni-list.compon
 import { SharedModule } from '../shared/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MatTableModule } from '@angular/material/table';
     SharedModule,
     MatPaginatorModule,
     MatTableModule,
-    FormsModule
+    FormsModule,
+    MatSortModule
   ]
 })
 export class AlumniModule { }
