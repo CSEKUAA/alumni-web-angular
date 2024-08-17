@@ -579,3 +579,8 @@ h6 {
 .event-paginator .mat-mdc-paginator-page-size-label {
   font-size: 14px;
 }
+
+.search-box .mat-mdc-form-field-subscript-wrapper,
+.discipline-filter .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}

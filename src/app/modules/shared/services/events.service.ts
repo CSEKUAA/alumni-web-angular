@@ -3,8 +3,7 @@ import { Injectable } from "@angular/core";
 import { catchError, Observable, tap } from "rxjs";
 import { environment } from "../../../../environments/environment";
 import { ErrorService } from "./error.service";
-import { EventRequestDTO, pageRequestDTO } from "../models/api.request";
-import { PagedAPIResponseDTO, PagedResponseDTO } from "../models/paged.response";
+import { PageRequestDTO } from "../models/paged.response";
 
 @Injectable({
     providedIn:'root'
@@ -22,7 +21,7 @@ export class EventService{
         );
     }
 
-    getAllEvents(pageRequestDTO:pageRequestDTO):Observable<any>{
+    getAllEvents(pageRequestDTO:PageRequestDTO):Observable<any>{
         return this.httpClient.post(`${this.eventService}/all`, pageRequestDTO).pipe(
             catchError(this.error.handleError)
         );

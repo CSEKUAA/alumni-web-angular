@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { EventService } from '../../../shared/services/events.service';
-import { pageRequestDTO } from '../../../shared/models/api.request';
-import { PagedAPIResponseDTO, PageinfoDTO } from '../../../shared/models/paged.response';
+import { PagedAPIResponseDTO, PageinfoDTO, PageRequestDTO } from '../../../shared/models/paged.response';
 import { EventResponseDTO } from '../../../shared/models/api.response';
 import moment from 'moment';
 import { PageModel } from '../../../shared/models/ui.models';
@@ -27,7 +26,7 @@ export class EventListComponent implements OnInit{
   }
 
   loadEvents(page:number=0, size:number=12){
-    let pageRequestDTO:pageRequestDTO={page:page, size:size}
+    let pageRequestDTO:PageRequestDTO={page:page, size:size, disciplineName:''}
     this.eventService.getAllEvents(pageRequestDTO).subscribe({
       next:((resp:PagedAPIResponseDTO)=>{
         this.events=[];        

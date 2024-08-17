@@ -98,3 +98,9 @@ export interface EventResponseDTO{
     createdDate: string;
     updatedDate: string;
 }
+
+export interface DisciplineDTO{
+    disciplineCode: string;
+    shortName: string;
+    fullName: string;
+}

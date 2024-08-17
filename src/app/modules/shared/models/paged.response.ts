@@ -1,3 +1,8 @@
+export interface PageRequestDTO{
+    page:number;
+    size:number;
+    disciplineName:string;
+}
 export interface PagedAPIResponseDTO{
     content:any[];
     last: boolean,

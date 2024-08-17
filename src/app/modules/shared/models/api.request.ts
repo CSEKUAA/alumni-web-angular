@@ -51,8 +51,3 @@ export interface EventRequestDTO{
     link:string;
 }
 //END
-
-export interface pageRequestDTO{
-    page:number;
-    size:number;
-}

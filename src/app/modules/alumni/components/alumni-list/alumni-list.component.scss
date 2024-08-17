@@ -1,0 +1,16 @@
+.search-box,
+.discipline-filter {
+    width: 100%;
+    max-width: 250px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.event-action {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
