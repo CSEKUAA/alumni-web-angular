@@ -1,0 +1,82 @@
+<div class="section container">
+    <mat-card class="p-4 animate__animated animate__zoomIn animate__faster">
+        <div class="header">
+            <button mat-mini-fab aria-label="Back to Profile" matTooltip="Back to Profile" matTooltipPosition="below" class="btn-back" (click)="onBackToEvents()"><mat-icon>chevron_left</mat-icon></button>
+            <span class="title m-0">Update Event</span>
+            <span></span>
+        </div>
+        <form [formGroup]="updateEventForm" (ngSubmit)="onSubmit()" class="mt-4" *ngIf="updateEventForm">
+            <input matInput formControlName="id" hidden>
+            <div class="form-row mb-2">
+                <mat-form-field class="form-field-half animate__animated animate__zoomIn animate__faster" appearance="outline">
+                <mat-label>Event Name</mat-label>
+                <input matInput formControlName="eventName">
+                <mat-error *ngIf="updateEventForm.get('eventName')?.invalid && updateEventForm.get('eventName')?.touched">
+                    Event Name Required!
+                </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field-half animate__animated animate__zoomIn animate__faster" appearance="outline">
+                    <mat-label>Event Type</mat-label>
+                    <mat-select formControlName="eventType" required>
+                    @for (eventType of eventTypes; track $index) {
+                        <mat-option [value]="eventType.eventTypeName">{{eventType.eventTypeName}}</mat-option>
+                    }
+                    </mat-select>
+                    <mat-error *ngIf="updateEventForm.get('eventType')?.invalid && updateEventForm.get('eventType')?.touched">
+                    Event type required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-row mb-2">                   
+                <mat-form-field class="form-field-half animate__animated animate__zoomIn animate__faster" appearance="outline">
+                    <mat-label>Event Date</mat-label>
+                    <input matInput formControlName="eventDate" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" />
+                    <mat-hint class="text-info">MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="updateEventForm.get('eventDate')?.invalid && updateEventForm.get('eventDate')?.touched">
+                    Event Date is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field-half animate__animated animate__zoomIn animate__faster" appearance="outline">
+                    <mat-label>Event Time</mat-label>
+                    <input matInput [ngxTimepicker]="timePicker" formControlName="eventTime" placeholder="Select time">
+                    <ngx-material-timepicker #timePicker></ngx-material-timepicker>
+                    <mat-error *ngIf="updateEventForm.get('eventTime')?.invalid && updateEventForm.get('eventTime')?.touched">
+                        Event Time is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-row mb-2">
+                <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" rows="5"></textarea>
+                <mat-error *ngIf="updateEventForm.get('description')?.invalid && updateEventForm.get('description')?.touched">
+                    Description Required!
+                </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-row mb-2">
+                <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                <mat-label>Location</mat-label>
+                <input matInput formControlName="location">
+                <mat-error *ngIf="updateEventForm.get('location')?.invalid && updateEventForm.get('location')?.touched">
+                    Location Required!
+                </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-row mb-2">
+                <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                <mat-label>Link</mat-label>
+                <input matInput formControlName="link">
+                <mat-error *ngIf="updateEventForm.get('link')?.invalid && updateEventForm.get('link')?.touched">
+                    Event Name Required!
+                </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="text-center mt-2 animate__animated animate__zoomIn animate__faster">
+                <button mat-fab extended type="submit" class="btn-app btn-create-event" [disabled]="updateEventForm.invalid || !updateEventForm.dirty"><mat-icon>check_circle</mat-icon>Update</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

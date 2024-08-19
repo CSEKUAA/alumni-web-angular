@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfileResponseDTO } from '../../../shared/models/api.response';
 import { UserService } from '../../../shared/services/user.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,19 +9,29 @@ import { UserService } from '../../../shared/services/user.service';
   styleUrl: './user-profile.component.scss'
 })
 export class UserProfileComponent implements OnInit{
+  title:string = 'Profile | KUAA';
   userProfileInfo!:UserProfileResponseDTO;
-  profileImage:string='https://cdn.pixabay.com/photo/2016/03/31/19/57/avatar-1295404_960_720.png';
+  isUpdateCalled!:boolean;
 
-  constructor(private userService:UserService){}
+  constructor(private userService:UserService, private titleService:Title){}
 
   ngOnInit(): void {
+    this.titleService.setTitle(this.title);
+    this.loadProfileInformation();
+  }
+
+  loadProfileInformation(){
     this.userService.getUserProfile().subscribe({
       next: ((resp:UserProfileResponseDTO)=>{
         this.userProfileInfo = resp;
-        if(resp.photo==='--'){
-          this.userProfileInfo.photo=this.profileImage;
-        }
       })
-    })
+    });
+  }
+
+  toggleUpdateMode(){
+    this.isUpdateCalled=!this.isUpdateCalled;
+    if(!this.isUpdateCalled){
+      this.loadProfileInformation();
+    }
   }
 }

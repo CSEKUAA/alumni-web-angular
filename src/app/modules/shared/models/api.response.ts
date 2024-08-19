@@ -11,11 +11,11 @@ export interface UserProfileResponseDTO{
     nickName: string,
     fullName: string,
     discipline: string,
-    dob: Date,
+    dob: string,
     bloodGroup: string,
     photo: string,
     contactDetail: ContactDetailsDTO,
-    externalLinkInfo: {},
+    externalLinkInfo: AlumniExternalLinkInfoDTO[],
     membershipInfos: MembershipInfoDTO[]
 }
 
@@ -37,5 +37,70 @@ export interface ContactDetailsDTO{
 export interface MembershipInfoDTO{
     memberShipType: string,
     expirationOn: Date,
-    membershipStatus:string
+    membershipStatus: string
+}
+
+export interface AlumniExternalLinkInfoDTO{
+    alumniExternalLinkId: number;
+    alumniExternalLinkName: string;
+    alumniExternalLinkUrl: string;
+    description: string;
+}
+
+export interface CountryDTO{
+    countryName: string;
+    countryCode: string;
+}
+export interface DistrictDTO{
+    districtName: string;
+    countryName: string;
+}
+
+export interface ExternalLinkTypeDTO{
+    typeName: string;
+    typeUrl: string;
+}
+
+export interface MembershipTypesDTO{
+    memberShipTypeId:number;
+    membershipType:string;
+    membershipFee:string;
+}
+
+export interface PermissionsDTO{
+    name: string;
+    parentId:number;
+    order:number;
+    link:string;
+    identifier:string;
+}
+
+export interface RoleWithPermissionDTO{
+    role:string;
+    permissions:PermissionsDTO[];
+}
+
+export interface EventTypesDTO{
+    id:number;
+    eventTypeName:string;
+    eventTypeDescription:string;
+}
+
+export interface EventResponseDTO{
+    id:number;
+    eventName: string;
+    eventType: string;
+    description: string;
+    eventDate: string;
+    eventTime: string;
+    location: string;
+    link: string;
+    createdDate: string;
+    updatedDate: string;
+}
+
+export interface DisciplineDTO{
+    disciplineCode: string;
+    shortName: string;
+    fullName: string;
 }

@@ -1,1 +1,171 @@
-<p>update-profile works!</p>
+<div class="update-profile-section">
+    <mat-card class="p-4 animate__animated animate__lightSpeedInRight animate__faster">
+        <div class="header">
+            <button mat-mini-fab aria-label="Back to Profile" matTooltip="Back to Profile" matTooltipPosition="below" class="btn-back" (click)="onBackProfile()"><mat-icon>chevron_left</mat-icon></button>
+            <span class="title m-0">Update Profile</span>
+            <span></span>
+        </div>
+        <form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
+          <fieldset class="custom-fieldset">
+            <legend class="custom-legend">Personal Information</legend>
+            <br>
+            <div class="form-row">
+              <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                <mat-label>Student Id</mat-label>
+                <input matInput formControlName="roll">
+                <mat-error *ngIf="userProfileForm.get('roll')?.invalid && userProfileForm.get('roll')?.touched">
+                  Student Id is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                <mat-label>Nickname</mat-label>
+                <input matInput formControlName="nickName">
+                <mat-error *ngIf="userProfileForm.get('nickName')?.invalid && userProfileForm.get('nickName')?.touched">
+                  First name is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-row"> 
+                <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                  <mat-label>Blood Group</mat-label>
+                  <mat-select formControlName="bloodGroup" required>
+                    @for (bloodGroup of bloodGroups; track bloodGroup) {
+                      <mat-option [value]="bloodGroup.id">{{bloodGroup.value}}</mat-option>
+                    }
+                  </mat-select>
+                  <mat-error *ngIf="userProfileForm.get('bloodGroup')?.invalid && userProfileForm.get('bloodGroup')?.touched">
+                    Blood Group required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                  <mat-label>Date of Birth</mat-label>
+                  <input matInput formControlName="dob" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" />
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="userProfileForm.get('dob')?.invalid && userProfileForm.get('dob')?.touched">
+                    Birth Date is required
+                  </mat-error>
+                </mat-form-field>
+            </div>
+          </fieldset>
+          <fieldset class="custom-fieldset">
+            <legend class="custom-legend">Present Address</legend>
+            <br>
+            <div class="form-row">                
+              <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                <mat-label>Country</mat-label>
+                <input type="text" matInput [matAutocomplete]="autoPresentCountry" formControlName="presentCountry">
+                <mat-autocomplete #autoPresentCountry="matAutocomplete" (optionSelected)="loadPresentDistricts(userProfileForm.get('presentCountry')?.value)">
+                @for(country of (filteredPresentCountries$ | async); track country){
+                    <mat-option [value]="country.countryName">{{country.countryName }}</mat-option>
+                }
+                </mat-autocomplete>
+                <mat-error *ngIf="userProfileForm.get('presentCountry')?.invalid && userProfileForm.get('presentCountry')?.touched">
+                  Present Country required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                  <mat-label>City</mat-label>
+                  <input type="text" matInput [matAutocomplete]="autoPresentCity" formControlName="presentCity">
+                  <mat-autocomplete #autoPresentCity="matAutocomplete">
+                    @for(district of (presentdistricts$ | async); track district){
+                      <mat-option [value]="district.districtName">{{district.districtName}}</mat-option>
+                    }
+                  </mat-autocomplete>
+                  <mat-error *ngIf="userProfileForm.get('presentCity')?.invalid && userProfileForm.get('presentCity')?.touched">
+                    First name is required
+                  </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-row">                
+                <mat-form-field class="w-100 animate__animated animate__zoomIn animate__faster" appearance="outline">
+                  <mat-label>Present Address</mat-label>
+                  <textarea matInput formControlName="presentAddress"></textarea>
+                  <mat-error *ngIf="userProfileForm.get('presentAddress')?.invalid && userProfileForm.get('presentAddress')?.touched">
+                    Last name is required
+                  </mat-error>
+                </mat-form-field>
+            </div>
+          </fieldset>
+          <fieldset class="custom-fieldset">
+            <legend class="custom-legend">Permanent Address</legend>
+            <br>
+            <div class="form-row">                
+              <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                <mat-label>Country</mat-label>
+                <input type="text" matInput [matAutocomplete]="autoPermanentCountry" formControlName="permanentCountry">
+                <mat-autocomplete #autoPermanentCountry="matAutocomplete" (optionSelected)="loadPermanentDistricts(userProfileForm.get('permanentCountry')?.value)">
+                @for(country of (filteredPermanentCountries$ | async); track country){
+                    <mat-option [value]="country.countryName">{{country.countryName }}</mat-option>
+                }
+                </mat-autocomplete>
+                <mat-error *ngIf="userProfileForm.get('permanentCountry')?.invalid && userProfileForm.get('permanentCountry')?.touched">
+                  Permanent Country required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                  <mat-label>City</mat-label>
+                  <input type="text" matInput [matAutocomplete]="autoPermanentCity" formControlName="permanentCity">
+                  <mat-autocomplete #autoPermanentCity="matAutocomplete">
+                    @for(district of (permanentdistricts$ | async); track district){
+                      <mat-option [value]="district.districtName">{{district.districtName}}</mat-option>
+                    }
+                  </mat-autocomplete>
+                  <mat-error *ngIf="userProfileForm.get('permanentCity')?.invalid && userProfileForm.get('permanentCity')?.touched">
+                    First name is required
+                  </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-row">                
+                <mat-form-field class="w-100 animate__animated animate__zoomIn animate__faster" appearance="outline">
+                  <mat-label>Permanent Address</mat-label>
+                  <textarea matInput formControlName="permanentAddress"></textarea>
+                  <mat-error *ngIf="userProfileForm.get('permanentAddress')?.invalid && userProfileForm.get('permanentAddress')?.touched">
+                    Last name is required
+                  </mat-error>
+                </mat-form-field>
+            </div>
+          </fieldset>
+          <fieldset class="custom-fieldset">
+            <legend class="custom-legend">Company Info</legend>
+            <br>
+            <div class="form-row">                
+              <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                <mat-label>Company</mat-label>
+                  <input matInput formControlName="company">
+                  <mat-error *ngIf="userProfileForm.get('company')?.invalid && userProfileForm.get('company')?.touched">
+                    Company required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                    <mat-label>Company Location</mat-label>
+                    <input matInput formControlName="companyAddress">
+                    <mat-error *ngIf="userProfileForm.get('companyAddress')?.invalid && userProfileForm.get('companyAddress')?.touched">
+                      Company Address required
+                    </mat-error>
+                  </mat-form-field>
+              </div>
+              <div class="form-row">                
+                <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                  <mat-label>Profession</mat-label>
+                  <input matInput formControlName="profession">
+                  <mat-error *ngIf="userProfileForm.get('profession')?.invalid && userProfileForm.get('profession')?.touched">
+                    Last name is required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                  <mat-label>Designation</mat-label>
+                  <input matInput formControlName="designation">
+                  <mat-error *ngIf="userProfileForm.get('designation')?.invalid && userProfileForm.get('designation')?.touched">
+                    First name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+          </fieldset>
+          <div class="text-center mt-4 animate__animated animate__zoomIn animate__faster">
+            <button mat-fab extended type="submit" class="btn-profile-update" [disabled]="userProfileForm.invalid || !userProfileForm.dirty"><mat-icon>check_circle</mat-icon>Update</button>
+          </div>
+        </form>
+    </mat-card>
+</div>

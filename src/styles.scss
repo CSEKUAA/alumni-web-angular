@@ -11,6 +11,7 @@ html,
 body {
   height: 100%;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 h1,
@@ -67,7 +68,8 @@ h6 {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 30px;
+  padding: 20px;
+  transition: 0.3s ease;
 }
 
 .section-title {
@@ -110,20 +112,17 @@ h6 {
 }
 
 .event time {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 60px;
   padding: 10px;
   border-radius: 5px;
   text-align: center;
   font-weight: 600;
-  background-color: #5050db;
   color: #eff4fe;
-  text-shadow: 0 0 #080808;
-  background-color: #d3d3f10d;
+  text-shadow: 1px 1px 3px #080808;
+  background-color: rgb(249 249 249 / 40%);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  max-width: 200px;
+  width: 200px;
 }
 
 .description {
@@ -145,6 +144,16 @@ h6 {
   -webkit-box-orient: vertical;
   font-size: .875rem;
   color: #595b5c;
+}
+
+.description .details {
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+  color: $theme-orange;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
 }
 
 .description span {
@@ -462,6 +471,46 @@ h6 {
   background-color: #ffffff !important;
 }
 
+.btn-app {
+  height: 40px !important;
+  border-radius: 10px !important;
+  background-color: #5050db !important;
+  color: white !important;
+  text-transform: uppercase !important;
+  transition: 0.3s ease !important;
+}
+
+.btn-app>.mat-mdc-fab[disabled],
+.mat-mdc-fab.mat-mdc-button-disabled {
+  color: rgba(26, 27, 31, 0.38) !important;
+  background-color: rgba(26, 27, 31, 0.12) !important;
+  transition: 0.3s ease !important;
+}
+
+.custom-fieldset {
+  margin-top: 2rem;
+  border: 1px solid rgba(80, 80, 219, 0.6);
+  border-radius: 7px;
+  padding: 1rem;
+  width: 100%;
+  background-color: #fdfdfd;
+  box-shadow: inset 0 0px 5px rgba(80, 80, 219, 0.2);
+}
+
+.custom-legend {
+  font-size: 14px;
+  font-weight: 400;
+  color: white;
+  padding: 0 10px;
+  position: absolute;
+  margin-top: -1.8rem;
+  background: #5050db;
+  display: inline-flex;
+  width: fit-content !important;
+  border: 1px solid;
+  border-radius: 7px;
+}
+
 @media(max-width: 1200px) {
   .sub-section {
     grid-template-columns: 1fr 1fr;
@@ -513,4 +562,25 @@ h6 {
   .committee {
     grid-template-columns: 1fr
   }
+}
+
+@media (max-width:550px) {
+  .section {
+    padding: 15px;
+    transition: 0.3s ease;
+  }
+}
+
+.event-paginator {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.event-paginator .mat-mdc-paginator-page-size-label {
+  font-size: 14px;
+}
+
+.search-box .mat-mdc-form-field-subscript-wrapper,
+.discipline-filter .mat-mdc-form-field-subscript-wrapper {
+  display: none;
 }

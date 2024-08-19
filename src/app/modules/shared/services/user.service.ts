@@ -1,32 +1,45 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, Observable, throwError } from "rxjs";
+import { catchError, Observable } from "rxjs";
 import { environment } from "../../../../environments/environment";
+import { UserProfileRequestDTO } from "../models/api.request";
+import { RegistrationDTO } from "../../auth/models/auth.models";
+import { ErrorService } from "./error.service";
 
 @Injectable({
     providedIn:'root'
 })
 
 export class UserService{
+    private userService:string = `${environment.server_root}`;
 
-    constructor(private httpClient:HttpClient){}
+    constructor(private httpClient:HttpClient, private error:ErrorService){}
+
+    registerAlumni(userData: RegistrationDTO): Observable<any> {
+        return this.httpClient.post<any>(`${this.userService}/register`, userData)
+          .pipe(
+            catchError(this.error.handleError)
+          );
+    }
 
     getUserProfile():Observable<any>{
-        return this.httpClient.get(`${environment.user_management_service}/user-info`)
+        return this.httpClient.get(`${this.userService}/user-info`)
         .pipe(
-            catchError(this.handleError)
+            catchError(this.error.handleError)
         );
     }
 
-    private handleError(error: HttpErrorResponse) {
-        let errorMessage = 'An unknown error occurred!';
-        if (error.error instanceof ErrorEvent) {
-            // Client-side or network error
-            errorMessage = `Error: ${error.error.message}`;
-        } else {
-            // Backend error
-            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-        }
-        return throwError(()=> new Error(errorMessage));
+    uploadProfilePicture(formData:FormData):Observable<any>{
+        return this.httpClient.post(`${this.userService}/profile-picture`, formData)
+        .pipe(
+            catchError(this.error.handleError)
+        );
+    }
+
+    updateUserProfileInfo(userProfileInfo:UserProfileRequestDTO):Observable<any>{
+        return this.httpClient.post(`${this.userService}/user-info`, userProfileInfo)
+        .pipe(
+            catchError(this.error.handleError)
+        );
     }
 }

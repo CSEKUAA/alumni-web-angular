@@ -16,17 +16,26 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule} from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { PrimarynavComponent } from './components/primarynav/primarynav.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { AdminDirective } from './directives/admin.directive';
+import { UserDirective } from './directives/user.directive';
 
 
 @NgModule({
   declarations: [
     FooterComponent,
     SidenavComponent,
-    PrimarynavComponent
+    PrimarynavComponent,
+    LoaderComponent,
+    AdminDirective,
+    UserDirective
   ],
   imports: [
     CommonModule,
@@ -36,7 +45,6 @@ import { PrimarynavComponent } from './components/primarynav/primarynav.componen
     MatSidenavModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule,
     MatFormFieldModule,
     MatCheckboxModule,
     MatSelectModule,
@@ -45,7 +53,10 @@ import { PrimarynavComponent } from './components/primarynav/primarynav.componen
     MatToolbarModule,
     MatButtonModule,
     NgbCarouselModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule,
+    MatProgressBarModule,
+    MatAutocompleteModule
   ],
   exports:[
     MatToolbarModule,
@@ -57,7 +68,6 @@ import { PrimarynavComponent } from './components/primarynav/primarynav.componen
     PrimarynavComponent,
     MatInputModule,
     MatCardModule,
-    MatButtonModule,
     MatFormFieldModule,
     MatCheckboxModule,
     MatSelectModule,
@@ -66,7 +76,12 @@ import { PrimarynavComponent } from './components/primarynav/primarynav.componen
     MatToolbarModule,
     MatButtonModule,
     NgbCarouselModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule,    
+    LoaderComponent,
+    MatProgressBarModule,
+    MatAutocompleteModule,
+    AdminDirective
   ]
 })
 export class SharedModule { }
