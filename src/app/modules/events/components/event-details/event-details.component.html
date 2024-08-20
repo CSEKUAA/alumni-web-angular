@@ -1,1 +1,52 @@
-<p>event-details works!</p>
+<div class="section container">
+    <mat-card class="animate__animated animate__fadeIn animate__faster pb-4 gap-2" *ngIf="event">
+        <div class="header"> 
+            <span class="title m-0 animate__animated animate__jackInTheBox">{{event.eventName}}</span> 
+        </div>                   
+        <div class="actions px-4">
+            <button mat-mini-fab aria-label="Back to events" matTooltip="Back to Events" matTooltipPosition="below" 
+                class="event-action animate__animated animate__pulse animate__fast" (click)="onBackToEvents()"><mat-icon>chevron_left</mat-icon></button>
+            <p class="event-details m-0 px-4 py-2">Event Details</p>
+            <a mat-mini-fab aria-label="edit event" matTooltip="Edit Event" matTooltipPosition="below" 
+                class="event-action animate__animated animate__pulse animate__fast" routerLink="update"><mat-icon>edit</mat-icon></a>
+        </div>
+        <div class="event-content px-4">
+            <fieldset class="custom-fieldset mt-2">
+                <div class="details">
+                    <div class="individual">
+                        <span class="label">Type</span>
+                        <p class="content" [textContent]="event.eventType"></p>
+                    </div>
+                    <div class="individual">
+                        <span class="label">Description</span>
+                        <p class="content" [textContent]="event.description"></p>
+                    </div>
+                    <div class="individual">
+                        <span class="label">Event Date</span>
+                        <p class="content" [textContent]="event.eventDate"></p>
+                    </div>
+                    <div class="individual">
+                        <span class="label">Start Time</span>
+                        <p class="content" [textContent]="event.eventTime"></p>
+                    </div>
+                    <div class="individual">
+                        <span class="label">Event Location</span>
+                        <p class="content" [textContent]="event.location"></p>
+                    </div>
+                    <div class="individual">
+                        <span class="label">Event Link</span>
+                        <p class="content" [textContent]="event.link"></p>
+                    </div>
+                    <div class="individual">
+                        <span class="label">Created On</span>
+                        <p class="content" [textContent]="event.createdDate"></p>
+                    </div>
+                    <div class="individual">
+                        <span class="label">Last Updated</span>
+                        <p class="content" [textContent]="event.updatedDate"></p>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </mat-card>
+</div>

@@ -27,7 +27,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if(this.identityService.hasValidAccessToken() && request.url.toString().indexOf('auth/refresh-token') < 0){
+    if(request.url.toString().indexOf('auth/refresh-token') < 0){
       this.loaderService.show();
     }
     

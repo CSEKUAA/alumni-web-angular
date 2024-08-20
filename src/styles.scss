@@ -68,7 +68,7 @@ h6 {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 30px;
+  padding: 20px;
   transition: 0.3s ease;
 }
 
@@ -112,20 +112,17 @@ h6 {
 }
 
 .event time {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 60px;
   padding: 10px;
   border-radius: 5px;
   text-align: center;
   font-weight: 600;
-  background-color: #5050db;
   color: #eff4fe;
-  text-shadow: 0 0 #080808;
-  background-color: #d3d3f10d;
+  text-shadow: 1px 1px 3px #080808;
+  background-color: rgb(249 249 249 / 40%);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  max-width: 200px;
+  width: 200px;
 }
 
 .description {
@@ -147,6 +144,16 @@ h6 {
   -webkit-box-orient: vertical;
   font-size: .875rem;
   color: #595b5c;
+}
+
+.description .details {
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+  color: $theme-orange;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
 }
 
 .description span {
@@ -562,4 +569,18 @@ h6 {
     padding: 15px;
     transition: 0.3s ease;
   }
+}
+
+.event-paginator {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.event-paginator .mat-mdc-paginator-page-size-label {
+  font-size: 14px;
+}
+
+.search-box .mat-mdc-form-field-subscript-wrapper,
+.discipline-filter .mat-mdc-form-field-subscript-wrapper {
+  display: none;
 }

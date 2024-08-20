@@ -1,0 +1,33 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    height: 15em;
+    width: 100%;
+    background-color: rgb(6 6 6 / 19%);
+    z-index: 12322565958;
+    display: block;
+    backdrop-filter: blur(5px);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.event-action {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width:640px) {
+    .event-action {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+}

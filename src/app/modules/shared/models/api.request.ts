@@ -40,11 +40,13 @@ export interface UpdatePasswordRequestDTO{
 }
 
 // Events Request Models
-export interface CreateEventRequestDTO{
+export interface EventRequestDTO{
     id:number;
-    name:string;
+    eventName:string;
+    eventType:string;
     description:string;
-    datetime:string; // it'll be a ISO datetime formate e.g 2024-08-15T13:10:00.000Z
+    eventDate:string; // it'll be a ISO datetime formate e.g 2024-08-15T13:10:00.000Z
+    eventTime:string;
     location:string;
     link:string;
 }

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import Swal from 'sweetalert2';
 import { IdentityService } from "./identity.service";
+import { Location } from "@angular/common";
 
 @Injectable({
     providedIn:'root'
@@ -9,7 +10,7 @@ import { IdentityService } from "./identity.service";
 
 export class UIService{
   loggedIn:Subject<boolean> = new Subject<boolean>();
-  constructor(private identityService:IdentityService){}
+  constructor(private identityService:IdentityService, private location:Location){}
 
   showSuccessAlert(message:string) {
     Swal.fire({
@@ -63,6 +64,20 @@ export class UIService{
             window.location.href = window.location.origin;
           })
         })
+      }
+    });
+  }
+
+  showSuccessAlertWithGoBackAction(message:string){
+    Swal.fire({
+      title: 'Success',
+      text: message,
+      icon: 'success',
+      showCancelButton: false,
+      confirmButtonText: 'OKAY'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.location.back();
       }
     });
   }
