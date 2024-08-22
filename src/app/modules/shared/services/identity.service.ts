@@ -6,6 +6,7 @@ import { environment } from "../../../../environments/environment";
 import { StoreService } from "./store.service";
 import { LoginResponseDTO } from "../models/api.response";
 import { Router } from "@angular/router";
+import moment from "moment";
 
 @Injectable({
   providedIn:'root'
@@ -24,8 +25,7 @@ export class IdentityService{
         .pipe(
           tap((resp:LoginResponseDTO)=>{
             this.storeTokens(resp);
-          }),
-          catchError(this.handleError),
+          })
         );
   }
 
@@ -108,9 +108,16 @@ export class IdentityService{
   private storeTokens(tokenResp:LoginResponseDTO){
     this.store.setAccessToken(tokenResp.token);
     this.store.setRefreshToken(tokenResp.refreshToken);
-    this.store.setTokenExpiary(tokenResp.expireTime);
-    this.store.setTokenExpiaryMinutes(Math.floor((new Date(tokenResp.expireTime).getTime() - Date.now())/(1000*60)));
-    this.scheduleRefreshToken();
+
+    const originalDateTime = moment(tokenResp.expireTime);
+    // Get the machine's timezone offset in minutes
+    const machineTimezoneOffset = moment().utcOffset();
+    // Apply the machine's timezone offset to the ISO datetime
+    const adjustedDateTime = originalDateTime.utcOffset(machineTimezoneOffset).format('YYYY-MM-DDTHH:mm:ss[Z]');
+
+    this.store.setTokenExpiary(adjustedDateTime);
+    this.store.setTokenExpiaryMinutes(Math.floor((new Date(adjustedDateTime).getTime() - Date.now())/(1000*60)));
+    // this.scheduleRefreshToken();
   }
 
   private getTimeDifferenceInMinutes(expDate:Date, currentDate:Date): number{
