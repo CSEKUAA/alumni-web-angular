@@ -34,8 +34,18 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     if(!this.identityService.hasValidAccessToken()){
       this.identityService.logout();
     }
-    
-    if (this.identityService.hasValidAccessToken() && request.url.toString().indexOf('auth/login') < 0) {
+
+    if(this.identityService.hasValidAccessToken() && 
+      (request.url.toString().indexOf('api/profile-picture') || request.url.toString().indexOf('file-service/upload'))){
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${this.store.getAccessToken()}`,
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'multipart/form-data'
+        },
+      });
+    }    
+    else if (this.identityService.hasValidAccessToken() && request.url.toString().indexOf('auth/login') < 0) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${this.store.getAccessToken()}`,
