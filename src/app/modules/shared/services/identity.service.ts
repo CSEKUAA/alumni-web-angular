@@ -46,7 +46,7 @@ export class IdentityService{
     if(tokenExpiary && accessToken){
       let expDate = new Date(tokenExpiary);
       if(this.getTimeDifferenceInMinutes(expDate, new Date())>=0){
-        this.scheduleRefreshToken();
+        // this.scheduleRefreshToken();
         return true;
       }
     }
