@@ -50,7 +50,7 @@ export class ProfileOutlineComponent implements OnInit, OnChanges{
 
   changeProfilePicture(imageFile:File){
     const formData = new FormData();
-    formData.append('image', imageFile);
+    formData.append('file', imageFile);
 
     this.userService.uploadProfilePicture(formData).subscribe({
       next: ()=>{
