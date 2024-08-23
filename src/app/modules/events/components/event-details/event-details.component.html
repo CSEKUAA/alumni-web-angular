@@ -7,8 +7,10 @@
             <button mat-mini-fab aria-label="Back to events" matTooltip="Back to Events" matTooltipPosition="below" 
                 class="event-action animate__animated animate__pulse animate__fast" (click)="onBackToEvents()"><mat-icon>chevron_left</mat-icon></button>
             <p class="event-details m-0 px-4 py-2">Event Details</p>
-            <a mat-mini-fab aria-label="edit event" matTooltip="Edit Event" matTooltipPosition="below" 
+            <div class="edit-block">
+                <a *isAdmin mat-mini-fab aria-label="edit event" matTooltip="Edit Event" matTooltipPosition="below" 
                 class="event-action animate__animated animate__pulse animate__fast" routerLink="update"><mat-icon>edit</mat-icon></a>
+            </div>
         </div>
         <div class="event-content px-4">
             <fieldset class="custom-fieldset mt-2">
