@@ -42,18 +42,18 @@ export class UpdateProfileComponent implements OnInit{
   ngOnInit(): void {
     this.userProfileForm = this.formBuilder.group({
       bloodGroup: new FormControl(this.getBloodGorupValue(this.userProfile.bloodGroup), {validators: [Validators.required]}),
-      company: new FormControl(this.userProfile.contactDetail.company, {validators: [Validators.required]}),
-      companyAddress: new FormControl(this.userProfile.contactDetail.companyAddress, {validators: [Validators.required]}),
-      designation: new FormControl(this.userProfile.contactDetail.designation, { validators: [Validators.required]}),
-      dob: new FormControl(this.getBirthDatePreset(this.userProfile.dob), { validators: [Validators.required] }),
-      nickName: new FormControl(this.userProfile.nickName, { validators: [Validators.required]}),
-      permanentAddress: new FormControl(this.userProfile.contactDetail.permanentAddress,{ validators: [Validators.required]}),
-      permanentCity: new FormControl(this.userProfile.contactDetail.permanentCity, { validators: [Validators.required]}),
-      permanentCountry: new FormControl(this.userProfile.contactDetail.permanentCountry, { validators: [Validators.required]}),
-      presentAddress:new FormControl(this.userProfile.contactDetail.presentAddress, {validators: [Validators.required]}),
-      presentCity: new FormControl(this.userProfile.contactDetail.presentCity, {validators: [Validators.required]}),
-      presentCountry: new FormControl(this.userProfile.contactDetail.presentCountry, {validators: [Validators.required]}),
-      profession: new FormControl(this.userProfile.contactDetail.profession, {validators: [Validators.required]}),
+      company: new FormControl(this.userProfile.contactDetail.company),
+      companyAddress: new FormControl(this.userProfile.contactDetail.companyAddress),
+      designation: new FormControl(this.userProfile.contactDetail.designation),
+      dob: new FormControl(this.getBirthDatePreset(this.userProfile.dob), {validators: [Validators.required]}),
+      nickName: new FormControl(this.userProfile.nickName),
+      permanentAddress: new FormControl(this.userProfile.contactDetail.permanentAddress),
+      permanentCity: new FormControl(this.userProfile.contactDetail.permanentCity),
+      permanentCountry: new FormControl(this.userProfile.contactDetail.permanentCountry),
+      presentAddress:new FormControl(this.userProfile.contactDetail.presentAddress),
+      presentCity: new FormControl(this.userProfile.contactDetail.presentCity),
+      presentCountry: new FormControl(this.userProfile.contactDetail.presentCountry),
+      profession: new FormControl(this.userProfile.contactDetail.profession),
       roll: new FormControl(this.userProfile.roll, {validators: [Validators.required]})
     });
 

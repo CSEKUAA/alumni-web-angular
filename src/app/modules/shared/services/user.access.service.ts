@@ -15,9 +15,10 @@ export class UserAccessService{
     constructor(private httpClient:HttpClient, private store:StoreService){}
 
     getCurrentUserRole():Observable<any>{
-        return this.httpClient.get<RoleWithPermissionDTO[]>(`${this.userAccessService}/user-role/current`)
+        return this.httpClient.get(`${this.userAccessService}/user-role/current`)
         .pipe(
-            tap((resp:RoleWithPermissionDTO[])=>{
+            tap((resp:any)=>{
+                console.log(resp);
                 this.store.setLoggedUserRole(resp[0].role);
             })
         );

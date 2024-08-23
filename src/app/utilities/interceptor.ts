@@ -36,7 +36,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     }
 
     if(this.identityService.hasValidAccessToken() && 
-      (request.url.toString().indexOf('api/profile-picture') || request.url.toString().indexOf('file-service/upload'))){
+      (request.url.toString().indexOf('api/profile-picture')>=0 || request.url.toString().indexOf('file-service/upload')>=0)){
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${this.store.getAccessToken()}`,
@@ -50,6 +50,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         setHeaders: {
           Authorization: `Bearer ${this.store.getAccessToken()}`,
           'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
         },
       });
     }
