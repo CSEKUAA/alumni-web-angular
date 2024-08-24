@@ -4,7 +4,7 @@
             <app-profile-outline [userProfile]="userProfileInfo" (onSuccessApplication)="loadProfileInformation()" ></app-profile-outline>
             @if(!isUpdateCalled){
             <div class="right-panel">
-                <mat-card class="profile-info animate__animated animate__slideInDown animate__faster">
+                <mat-card class="profile-info animate__animated animate__fadeIn animate__delay_10 animate__faster">
                     <div class="update-block">
                         <span class="title">Profile</span>
                         <button mat-mini-fab aria-label="Update Profile Info" matTooltip="Update Profile" matTooltipPosition="below" class="update-profile" (click)="toggleUpdateMode()">
