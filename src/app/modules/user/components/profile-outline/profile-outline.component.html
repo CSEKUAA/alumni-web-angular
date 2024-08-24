@@ -1,4 +1,4 @@
-<mat-card class="top-panel animate__animated animate__zoomIn animate__faster" *ngIf="userProfile">
+<mat-card class="top-panel animate__animated animate__fadeIn animate__delay_5 animate__faster" *ngIf="userProfile">
     <div class="profile-picture animate__animated animate__flipInX" (mouseenter)="showButton()" (mouseleave)="hideButton()">
         <img [src]="userProfile.photo" alt="Profile Picture">
         @if(isButtonVisible){

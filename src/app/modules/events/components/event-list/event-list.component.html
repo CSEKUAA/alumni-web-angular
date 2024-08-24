@@ -5,7 +5,7 @@
 <div class="event-overview section container margin-top-50">
     <div class="events">
         @for(event of events; track $index){
-            <div class="event" [ngClass]="{'animate__animated animate__zoomIn animate__fast':initClass}">
+            <div class="event" [ngClass]="{'animate__animated animate__zoomIn animate__faster':initClass}">
                 <img src="../../../../../assets/images/event-back.jpg" alt="You should have eagle’s eye on new trends and techonogies" class="event-background">
                 <div class="overlay">
                     <time class="event-time">Time: {{event.eventTime}}</time>
