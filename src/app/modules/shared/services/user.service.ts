@@ -30,10 +30,7 @@ export class UserService{
     }
 
     uploadProfilePicture(formData:FormData):Observable<any>{
-        return this.httpClient.post(`${this.userService}/profile-picture`, formData)
-        .pipe(
-            catchError(this.error.handleError)
-        );
+        return this.httpClient.post(`${this.userService}/profile-picture`, formData);
     }
 
     updateUserProfileInfo(userProfileInfo:UserProfileRequestDTO):Observable<any>{
