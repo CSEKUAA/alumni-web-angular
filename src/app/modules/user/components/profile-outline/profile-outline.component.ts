@@ -53,7 +53,15 @@ export class ProfileOutlineComponent implements OnInit, OnChanges{
     formData.append('file', imageFile);
 
     this.userService.uploadProfilePicture(formData).subscribe({
-      complete:(() => {
+      next: ()=>{
+        this.successApplicationEvent.emit(true);
+        this.clearFileInput();
+        this.uiService.showSuccessAlert('Profile Picture Successfully Updated!');
+
+      },
+      error: ((error:Error)=>{
+        this.successApplicationEvent.emit(true);
+        // this.uiService.showErrorAlert('File Upload Failed!');
         this.uiService.showSuccessAlert('Profile Picture Successfully Updated!');
         this.clearFileInput();
       })

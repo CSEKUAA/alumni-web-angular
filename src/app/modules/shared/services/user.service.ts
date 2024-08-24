@@ -30,7 +30,7 @@ export class UserService{
     }
 
     uploadProfilePicture(formData:FormData):Observable<any>{
-        return this.httpClient.post(`${this.userService}/profile-picture`, formData);
+        return this.httpClient.post(`http://5.189.128.185:8080/api/profile-picture`, formData);
     }
 
     updateUserProfileInfo(userProfileInfo:UserProfileRequestDTO):Observable<any>{
