@@ -92,7 +92,6 @@ export class UpdatePasswordComponent implements OnInit{
       let updatePasswordRequest:UpdatePasswordRequestDTO = <UpdatePasswordRequestDTO> this.updatePasswordForm.value;
       this.authService.updatePassword(updatePasswordRequest).subscribe({
         next: ((resp:any)=>{
-          console.log(resp);
           this.uiService.showConfirmationLogoutAlert(`${resp.message}. Please login with the new password!`)
         }),
         error: (()=>{

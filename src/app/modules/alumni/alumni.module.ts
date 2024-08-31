@@ -8,11 +8,13 @@ import { SharedModule } from '../shared/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { AlumniDetailsComponent } from './components/alumni-details/alumni-details.component';
 
 
 @NgModule({
   declarations: [
-    AlumniListComponent
+    AlumniListComponent,
+    AlumniDetailsComponent
   ],
   imports: [
     CommonModule,

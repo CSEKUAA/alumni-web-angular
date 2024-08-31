@@ -18,3 +18,29 @@ mat-form-field {
 th.mat-sort-header-sorted {
     color: black;
 }
+
+.grid-photo {
+    width: 75px;
+    border-radius: 10px;
+    border: 2px solid #2e78ffb0;
+    margin: 5px;
+}
+
+.no-image {
+    height: 75px;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    border: 2px solid #2e78ffb0;
+    border-radius: 10px;
+    opacity: 0.4;
+}
+
+.no-photo-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    color: #2e78ffb0;
+}

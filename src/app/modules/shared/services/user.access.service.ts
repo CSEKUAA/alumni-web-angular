@@ -18,7 +18,6 @@ export class UserAccessService{
         return this.httpClient.get(`${this.userAccessService}/user-role/current`)
         .pipe(
             tap((resp:any)=>{
-                console.log(resp);
                 this.store.setLoggedUserRole(resp[0].role);
             })
         );

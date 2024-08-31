@@ -8,6 +8,13 @@ import { LoginResponseDTO } from "../models/api.response";
 
 export class StoreService{
     // This service is used for storing local srorage variables
+    isLoggedIn():boolean{
+        if(this.getAccessToken() && this.getAccessToken()!=='')
+            return true;
+
+        return false;
+    }
+
     setAccessToken(token:string){
         this.setItem(SessionKeys.ACCESS_TOKEN, token);
     }

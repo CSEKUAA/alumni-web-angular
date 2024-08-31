@@ -8,6 +8,8 @@ import { PagedAPIResponseDTO, PageinfoDTO, PageRequestDTO } from '../../../share
 import moment from 'moment';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
+import { PublicService } from '../../../shared/services/public.service';
+import { StoreService } from '../../../shared/services/store.service';
 
 @Component({
   selector: 'app-alumni-list',
@@ -16,7 +18,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 })
 export class AlumniListComponent implements OnInit{
   title:string = 'Alumni | KUAA';
-  displayedColumns: string[] = ['roll', 'fullName', 'discipline', 'phoneNumber'];
+  displayedColumns: string[] = ['alumni', 'roll', 'fullName', 'discipline'];
   dataSource = new MatTableDataSource<UserProfileResponseDTO>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -31,12 +33,16 @@ export class AlumniListComponent implements OnInit{
   page:number=0;
   size:number=10;
   
-  constructor(private titleService:Title, private alumniService:AlumniService){}
+  constructor(private titleService:Title, private alumniService:AlumniService, private publicService:PublicService, private store:StoreService){
+    if(store.isLoggedIn()){
+      this.displayedColumns.push('action');
+    }
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle(this.title);
 
-    this.alumniService.getAllDisciplines().subscribe({
+    this.publicService.getAllDisciplines().subscribe({
       next:((resp:any)=>{
         this.disciplines = <DisciplineDTO[]> resp;
         this.selectedDiscipline=this.disciplines[0].shortName;
@@ -47,7 +53,7 @@ export class AlumniListComponent implements OnInit{
 
   loadAlumnis(){
     let pageRequest:PageRequestDTO={page:this.page, size:this.size, disciplineName:this.selectedDiscipline};
-    this.alumniService.getAllAlumnis(pageRequest).subscribe({
+    this.publicService.getAllAlumnis(pageRequest).subscribe({
       next:((resp:PagedAPIResponseDTO)=>{
         this.alumnis=[];       
         let response:PagedAPIResponseDTO = <PagedAPIResponseDTO> resp; 

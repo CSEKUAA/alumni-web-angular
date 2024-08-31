@@ -6,7 +6,7 @@
     <div class="events">
         @for(event of events; track $index){
             <div class="event" [ngClass]="{'animate__animated animate__zoomIn animate__faster':initClass}">
-                <app-event [event]="event"></app-event>
+                <app-event [event]="event" [isHome]="false"></app-event>
             </div>
         }
     </div>

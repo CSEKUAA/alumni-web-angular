@@ -40,13 +40,11 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['user/profile']);
             }),
             error:((error:Error)=>{
-              console.log(error);
               this.uiService.showErrorAlert('Something went wrong while login, please try again!');
             })
           })
         }),
         error: ((error: Error) =>{
-          console.log(error);
           this.uiService.showErrorAlert(error.message);
         })
       });

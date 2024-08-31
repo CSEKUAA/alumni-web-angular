@@ -25,4 +25,16 @@ export class PublicService{
             catchError(this.error.handleError)
         )
     }
+
+    getAllAlumnis(pageRequest:PageRequestDTO):Observable<any>{
+        return this.httpClient.post(`${this.publicService}/all-user`, pageRequest).pipe(
+            catchError(this.error.handleError)
+        )
+    }
+
+    getAllDisciplines():Observable<any>{
+        return this.httpClient.get(`${this.publicService}/discipline`).pipe(
+            catchError(this.error.handleError)
+        )
+    }
 }
