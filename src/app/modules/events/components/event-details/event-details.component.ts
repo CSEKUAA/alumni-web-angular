@@ -5,6 +5,7 @@ import { EventResponseDTO } from '../../../shared/models/api.response';
 import { ActivatedRoute} from '@angular/router';
 import { EventService } from '../../../shared/services/events.service';
 import moment from 'moment';
+import { PublicService } from '../../../shared/services/public.service';
 
 @Component({
   selector: 'app-event-details',
@@ -16,13 +17,14 @@ export class EventDetailsComponent implements OnInit{
   event!:EventResponseDTO;
   eventId!:number;
 
-  constructor(private location:Location, private titleService:Title, private route:ActivatedRoute, private eventService:EventService){    
+  constructor(private location:Location, private titleService:Title, private route:ActivatedRoute, 
+    private eventService:EventService, private publicService:PublicService){    
     this.titleService.setTitle(this.title);
   }
 
   ngOnInit(): void {
     this.eventId = +this.route.snapshot.paramMap.get('eventId')!;
-    this.eventService.getEvent(this.eventId).subscribe({
+    this.publicService.getEvent(this.eventId).subscribe({
       next:((resp:EventResponseDTO)=>{
         this.event=resp;
         this.event = {

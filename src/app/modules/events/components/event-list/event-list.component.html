@@ -1,4 +1,4 @@
-<div class="event-action container animate__animated animate__zoomIn animate__faster pt-2 px-4">
+<div class="event-action container animate__animated animate__zoomIn animate__faster pt-3 px-4">
     <a *isAdmin mat-fab extended class="btn-app" type="button" routerLink="create"><mat-icon>add_circle</mat-icon>Create Event</a>
     <mat-paginator class="event-paginator" [length]="pageInfo.totalElements" [pageSize]="pageInfo.size" [pageSizeOptions]="[6, 12, 36, 100]" aria-label="Select page" (page)="onPage($event)" *ngIf="pageInfo"> </mat-paginator>
 </div>
@@ -6,18 +6,7 @@
     <div class="events">
         @for(event of events; track $index){
             <div class="event" [ngClass]="{'animate__animated animate__zoomIn animate__faster':initClass}">
-                <img src="../../../../../assets/images/event-back.jpg" alt="You should have eagle’s eye on new trends and techonogies" class="event-background">
-                <div class="overlay">
-                    <time class="event-time">Time: {{event.eventTime}}</time>
-                    <time class="event-time">Date: {{event.eventDate}}</time>
-                </div>
-                <div class="description">
-                    <p class="title" [textContent]="event.eventName"></p>
-                    <p class="brief" [textContent]="event.description"></p>
-                    <a class="details" [routerLink]="[event.id]">
-                        Details<mat-icon>chevron_right</mat-icon>
-                    </a>
-                </div>
+                <app-event [event]="event"></app-event>
             </div>
         }
     </div>

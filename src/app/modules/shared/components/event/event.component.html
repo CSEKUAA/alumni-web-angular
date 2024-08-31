@@ -1,0 +1,16 @@
+@if(event){
+    <img src="../../../../../assets/images/event-back.jpg" alt="You should have eagle’s eye on new trends and techonogies" class="event-background">
+    <div class="overlay">
+        <time class="event-time">Time: {{event.eventTime}}</time>
+        <time class="event-time">Date: {{event.eventDate}}</time>
+    </div>
+    <div class="description">
+        <p class="title" [textContent]="event.eventName"></p>
+        <p class="brief" [textContent]="event.description"></p>
+        @if(!isHome){
+            <a class="details" [routerLink]="[event.eventId]">
+                Details<mat-icon>chevron_right</mat-icon>
+            </a>            
+        }
+    </div>
+}

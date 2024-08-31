@@ -42,7 +42,7 @@ export class UpdateEventComponent {
     this.eventService.getEvent(this.eventId).subscribe({
       next: ((event:EventResponseDTO)=>{        
         this.updateEventForm = this.formBuilder.group({
-          id:new FormControl(event.id, {validators: [Validators.required]}),
+          id:new FormControl(event.eventId, {validators: [Validators.required]}),
           eventName:new FormControl(event.eventName, {validators: [Validators.required]}),
           eventType:new FormControl(event.eventType, {validators: [Validators.required]}),
           description:new FormControl(event.description, {validators: [Validators.required]}),

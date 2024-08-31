@@ -5,6 +5,7 @@ import { PagedAPIResponseDTO, PageinfoDTO, PageRequestDTO } from '../../../share
 import { EventResponseDTO } from '../../../shared/models/api.response';
 import moment from 'moment';
 import { PageModel } from '../../../shared/models/ui.models';
+import { PublicService } from '../../../shared/services/public.service';
 
 @Component({
   selector: 'app-event-list',
@@ -18,7 +19,7 @@ export class EventListComponent implements OnInit{
   pageInfo!:PageinfoDTO;
   initClass!:boolean;
   
-  constructor(private titleService:Title, private eventService:EventService){}
+  constructor(private titleService:Title, private eventService:EventService, private publicService:PublicService){}
 
   ngOnInit(): void {
     this.titleService.setTitle(this.title);
@@ -27,7 +28,7 @@ export class EventListComponent implements OnInit{
 
   loadEvents(page:number=0, size:number=12){
     let pageRequestDTO:PageRequestDTO={page:page, size:size, disciplineName:''}
-    this.eventService.getAllEvents(pageRequestDTO).subscribe({
+    this.publicService.getAllEvents(pageRequestDTO).subscribe({
       next:((resp:PagedAPIResponseDTO)=>{
         this.events=[];        
         this.initClass=true;

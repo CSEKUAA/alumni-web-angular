@@ -87,7 +87,7 @@ export interface EventTypesDTO{
 }
 
 export interface EventResponseDTO{
-    id:number;
+    eventId:number;
     eventName: string;
     eventType: string;
     description: string;

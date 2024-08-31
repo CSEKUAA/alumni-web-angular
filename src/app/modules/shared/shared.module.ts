@@ -26,6 +26,7 @@ import { PrimarynavComponent } from './components/primarynav/primarynav.componen
 import { LoaderComponent } from './components/loader/loader.component';
 import { AdminDirective } from './directives/admin.directive';
 import { UserDirective } from './directives/user.directive';
+import { EventComponent } from './components/event/event.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { UserDirective } from './directives/user.directive';
     PrimarynavComponent,
     LoaderComponent,
     AdminDirective,
-    UserDirective
+    UserDirective,
+    EventComponent
   ],
   imports: [
     CommonModule,
@@ -81,7 +83,8 @@ import { UserDirective } from './directives/user.directive';
     LoaderComponent,
     MatProgressBarModule,
     MatAutocompleteModule,
-    AdminDirective
+    AdminDirective,    
+    EventComponent
   ]
 })
 export class SharedModule { }
