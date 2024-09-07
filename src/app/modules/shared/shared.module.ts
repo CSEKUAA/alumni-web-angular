@@ -19,6 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule} from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -58,7 +59,8 @@ import { EventComponent } from './components/event/event.component';
     MatMenuModule,
     MatTooltipModule,
     MatProgressBarModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatChipsModule
   ],
   exports:[
     MatToolbarModule,
@@ -83,6 +85,7 @@ import { EventComponent } from './components/event/event.component';
     LoaderComponent,
     MatProgressBarModule,
     MatAutocompleteModule,
+    MatChipsModule,
     AdminDirective,    
     EventComponent
   ]

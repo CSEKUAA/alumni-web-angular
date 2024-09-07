@@ -51,3 +51,8 @@ export interface EventRequestDTO{
     link:string;
 }
 //END
+
+export interface SkillRequestDTO{
+    skillId:number;
+    skillName:string
+}

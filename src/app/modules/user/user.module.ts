@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { ExternalLinksComponent } from './components/external-links/external-links.component';
 import { ProfileOutlineComponent } from './components/profile-outline/profile-outline.component';
+import { SkillComponent } from './components/skill/skill.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ProfileOutlineComponent } from './components/profile-outline/profile-ou
     MembershipInfoComponent,
     UpdatePasswordComponent,
     ExternalLinksComponent,
-    ProfileOutlineComponent
+    ProfileOutlineComponent,
+    SkillComponent
   ],
   imports: [
     CommonModule,
