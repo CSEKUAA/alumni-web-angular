@@ -104,3 +104,8 @@ export interface DisciplineDTO{
     shortName: string;
     fullName: string;
 }
+
+export interface SkillResponseDTO{
+    skillId:number;
+    skillName:string;
+}

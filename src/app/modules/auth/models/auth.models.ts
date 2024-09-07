@@ -5,6 +5,7 @@ export interface RegistrationDTO{
     phoneNumber: string;
     email: string;
     password: string;
+    fullName:string;
 }
 
 export interface LoginDTO{

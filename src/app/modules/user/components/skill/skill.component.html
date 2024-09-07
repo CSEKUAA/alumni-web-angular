@@ -1,0 +1,62 @@
+<mat-card class="membership-container animate__animated animate__fadeIn animate__delay_20 animate__faster">
+    <div class="membership-header">
+        <span class="membership-title">Skills</span>
+        <!-- <button mat-mini-fab aria-label="Update membership Info" matTooltip="Update Membership" matTooltipPosition="below" class="update-membership">
+            <mat-icon>edit</mat-icon>
+        </button> -->
+    </div>
+    <fieldset class="custom-fieldset mt-2">
+        <legend class="custom-legend">Skill Informations</legend>
+        @if(alumniSkills.length>0){
+        <div class="link-group mt-2">
+            @if(!isAdd){
+            <div class="skills">
+                @for(item of alumniSkills; track item){
+                <mat-chip [removable]="false"> {{ item.skillName }} <mat-icon matChipRemove class="green">check_circle</mat-icon></mat-chip>
+                }
+            </div>
+            <div class="add-more">
+                <button mat-fab extended class="btn-add-skill default" (click)="onToggleAddSkill()" matTooltip="Add/Edit Skills" matTooltipPosition="below">
+                    <mat-icon>add_circle</mat-icon>
+                </button>
+            </div>
+            }
+        </div>
+        }@else{
+            @if(!isAdd){
+            <div class="no-links">
+                <i class="no-records m-0">No records found</i> <button mat-fab extended class="btn-app inline-button" (click)="onToggleAddSkill()"><mat-icon>add_circle</mat-icon>Add</button>
+            </div>
+            }
+        }
+
+        @if(isAdd){
+        <label for="skills_selection" class="mt-2 select-lable">Select Skill</label>
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-chip-grid #chipList aria-label="Autocomplete multi-select">
+                <mat-chip *ngFor="let item of selectedItems" [removable]="true" (removed)="remove(item)">
+                {{ item }}
+                <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input
+                matInput
+                [formControl]="itemControl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)"
+                />
+            </mat-chip-grid>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="select($event)">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{ option }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <div class="action">
+            <button mat-fab extended class="btn-app" type="button" style="background-color: firebrick!important;" (click)="onCancleSkill()"><mat-icon>cancel</mat-icon>Cancle</button>
+            <button mat-fab extended class="btn-app" (click)="submit()" [disabled]="selectedItems.length===0"><mat-icon>check_circle</mat-icon>Submit</button>
+        </div>
+        }
+    </fieldset>
+</mat-card>

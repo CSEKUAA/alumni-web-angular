@@ -34,7 +34,7 @@ export class UserService{
     }
 
     updateUserProfileInfo(userProfileInfo:UserProfileRequestDTO):Observable<any>{
-        return this.httpClient.post(`${this.userService}/user-info`, userProfileInfo)
+        return this.httpClient.put(`${this.userService}/user-info`, userProfileInfo)
         .pipe(
             catchError(this.error.handleError)
         );

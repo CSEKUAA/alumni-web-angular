@@ -62,7 +62,8 @@ export class RegisterComponent implements OnInit {
         lastName:formValue.lastName,
         password:formValue.password,
         phoneNumber:formValue.phoneNumber,
-        roll:formValue.roll
+        roll:formValue.roll,
+        fullName: `${formValue.firstName} ${formValue.lastName}`
       }
       
       this.userService.registerAlumni(registrationModel).subscribe({

@@ -4,3 +4,8 @@ export interface PageModel{
     pageSize: number;
     length: number;
 }
+
+export interface SkillTypes{
+    skillId:number;
+    skillName:string;
+}
