@@ -50,6 +50,10 @@
                                 <span class="label">permanent address</span>
                                 <p class="content">{{userProfileInfo.contactDetail.permanentAddress}},{{userProfileInfo.contactDetail.permanentCity}}, {{userProfileInfo.contactDetail.permanentCountry}}</p>
                             </div>
+                            <div class="individual" *ngIf="this.cvUrl">
+                                <span class="label">CV</span>
+                                <p class="content"><a class="download-cv" (click)="downloadFile()">Download CV</a></p>
+                            </div>
                         </div>
                     </fieldset>
                     @if(userProfileInfo.contactDetail.company){                            
@@ -86,4 +90,6 @@
             }
         </div>
     }
+
+    <app-cv (onSuccessApplication)="loadProfileInformation()"></app-cv>
 </div>

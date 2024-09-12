@@ -1,0 +1,12 @@
+<!-- <div class="cv-upload">
+    <button mat-mini-fab aria-label="Update Profile Info" matTooltip="Update Profile" matTooltipPosition="below" class="update-profile">
+        <mat-icon>edit</mat-icon>
+    </button>
+</div> -->
+
+<div class="file-upload-container">
+    <input type="file" (change)="onFileSelected($event)" id="fileInput" style="display: none;">    
+    <button mat-raised-button color="primary" class="change-button" (click)="triggerFileInput()" matTooltip="Upload/Update CV" matTooltipPosition="above"> 
+        <mat-icon>cloud_upload</mat-icon>
+    </button>
+</div>
