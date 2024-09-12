@@ -105,6 +105,24 @@
     }
 }
 
+.download-cv {
+    cursor: pointer;
+    background-color: #5050db;
+    color: white;
+    padding: 0.3rem 0.7rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: 0.2s ease-out;
+}
+
+.download-cv:hover {
+    transition: 0.2s ease-in;
+    background-color: rgb(239 95 48);
+    color: white;
+    text-shadow: 1px 1px 3px black;
+}
+
 @media(max-width: 550px) {
     .top-panel {
         margin: 0;

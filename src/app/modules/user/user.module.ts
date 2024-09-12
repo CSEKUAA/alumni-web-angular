@@ -11,6 +11,7 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
 import { ExternalLinksComponent } from './components/external-links/external-links.component';
 import { ProfileOutlineComponent } from './components/profile-outline/profile-outline.component';
 import { SkillComponent } from './components/skill/skill.component';
+import { CvComponent } from './components/cv/cv.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SkillComponent } from './components/skill/skill.component';
     UpdatePasswordComponent,
     ExternalLinksComponent,
     ProfileOutlineComponent,
-    SkillComponent
+    SkillComponent,
+    CvComponent
   ],
   imports: [
     CommonModule,
