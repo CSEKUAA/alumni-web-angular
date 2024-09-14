@@ -73,6 +73,11 @@
     transition: 0.2s ease-in;
 }
 
+.change-bannar {
+    position: absolute;
+    right: 1.5rem;
+}
+
 @media(max-width: 850px) {
 
     .details,

@@ -74,6 +74,13 @@
                 </mat-error>
                 </mat-form-field>
             </div>
+            <div class="form-row mb-4">
+                <input type="file" (change)="onFileSelected($event)" id="fileInput" style="display: none;">
+                <span class="event-bannar-selection">
+                    <button mat-raised-button (click)="triggerFileInput()" class="btn-app">Choose Bannar</button>
+                    <input matInput readonly [value]="selectedFilePath">
+                </span>
+            </div>
             <div class="text-center mt-2 animate__animated animate__zoomIn animate__faster">
                 <button mat-fab extended type="submit" class="btn-app btn-create-event" [disabled]="createEventForm.invalid || !createEventForm.dirty"><mat-icon>check_circle</mat-icon>Create</button>
             </div>

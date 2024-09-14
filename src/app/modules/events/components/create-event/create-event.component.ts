@@ -18,6 +18,7 @@ export class CreateEventComponent implements OnInit{
   private title:string='Create Event | KUAA';
   createEventForm!:FormGroup;
   eventTypes!:EventTypesDTO[];
+  selectedFilePath:string='';
 
   // Set the minimum to Current Date and Max will be 3 years from today.
   private readonly _currentYear = new Date().getFullYear();
@@ -91,5 +92,22 @@ export class CreateEventComponent implements OnInit{
     const day = String(inDate.getDate()).padStart(2, '0');
     
     return `${year}-${month}-${day}T00:00:00.000Z`;
-}
+  }
+
+  triggerFileInput(){
+    const fileInput = document.getElementById('fileInput') as HTMLElement;
+    fileInput.click();
+  }
+
+  onFileSelected(event:any){
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      this.selectedFilePath=file.name;
+    }
+  }
 }
