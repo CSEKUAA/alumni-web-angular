@@ -46,7 +46,6 @@ export class IdentityService{
     if(tokenExpiary && accessToken){
       let expDate = new Date(tokenExpiary);
       if(this.getTimeDifferenceInMinutes(expDate, new Date())>=0){
-        // this.scheduleRefreshToken();
         return true;
       }
     }
@@ -58,7 +57,14 @@ export class IdentityService{
     const accessToken = this.store.getAccessToken();
     if (!accessToken) return;
 
-    const tokenExpTime:number = this.getTimeDifferenceInMinutes(new Date(this.store.getTokenExpiary()), new Date()); // Refresh one minute before token expires
+    const endTime = moment(this.store.getTokenExpiary());
+    const startTime = moment();
+
+    // console.log(this.store.getTokenExpiary());
+    // console.log(endTime.format('YYYY-MM-DD HH:mm:ss'));
+    // console.log(startTime.format('YYYY-MM-DD HH:mm:ss'));
+
+    const tokenExpTime:number = Math.ceil(endTime.diff(startTime)/(1000*60)); // Refresh one minute before token expires
     if(tokenExpTime<0){
       this.logout().subscribe({
         next: (()=>{
@@ -66,8 +72,9 @@ export class IdentityService{
         })
       });
     }
-    const timeout:number = Math.floor(tokenExpTime*0.8)*10000; // Refresh after 80% of token lifetime expired
-    if(timeout<2){      
+
+    const timeout:number = Math.ceil(tokenExpTime*0.9)*10000; // Refresh after 90% of token lifetime expired
+    if(tokenExpTime<2){      
       this.refreshToken().subscribe();
     } else {
       this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
@@ -111,13 +118,17 @@ export class IdentityService{
 
     const originalDateTime = moment(tokenResp.expireTime);
     // Get the machine's timezone offset in minutes
-    const machineTimezoneOffset = moment().utcOffset();
+    // const machineTimezoneOffset = moment().utcOffset();
     // Apply the machine's timezone offset to the ISO datetime
-    const adjustedDateTime = originalDateTime.utcOffset(machineTimezoneOffset).format('YYYY-MM-DDTHH:mm:ss[Z]');
+    // const adjustedDateTime = originalDateTime.utcOffset(machineTimezoneOffset).format('YYYY-MM-DDTHH:mm:ss[Z]');
+    const adjustedDateTime = originalDateTime.format('YYYY-MM-DD HH:mm:ss');
+    // console.log(adjustedDateTime);
+    const timeDifference = originalDateTime.diff(moment());
 
     this.store.setTokenExpiary(adjustedDateTime);
-    this.store.setTokenExpiaryMinutes(Math.floor((new Date(adjustedDateTime).getTime() - Date.now())/(1000*60)));
-    // this.scheduleRefreshToken();
+    this.store.setTokenExpiaryMinutes(Math.ceil(timeDifference/(1000*60)));
+    
+    this.scheduleRefreshToken();
   }
 
   private getTimeDifferenceInMinutes(expDate:Date, currentDate:Date): number{

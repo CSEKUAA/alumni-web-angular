@@ -186,10 +186,12 @@ h6 {
 }
 
 .custom-carousel .carousel-caption {
-  background-color: rgba(0, 0, 0, 0.5);
-  /* Optional: Adds a semi-transparent background to the captions */
+  background-color: rgba(0, 0, 0, 0.25);
   padding: 1rem;
   border-radius: 1rem;
+  left: 1% !important;
+  right: 1% !important;
+  bottom: 1rem !important;
 }
 
 

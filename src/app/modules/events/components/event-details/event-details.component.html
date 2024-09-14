@@ -1,7 +1,14 @@
 <div class="section container">
     <mat-card class="animate__animated animate__fadeIn animate__faster pb-4 gap-2" *ngIf="event">
-        <div class="header"> 
-            <span class="title m-0 animate__animated animate__jackInTheBox">{{event.eventName}}</span> 
+        <div class="header" (mouseenter)="showButton()" (mouseleave)="hideButton()"> 
+            <span class="title m-0 animate__animated animate__jackInTheBox">{{event.eventName}}</span>
+            @if(isChangeBannarVisible){
+            <div class="file-upload-container">
+                <input type="file" (change)="onFileSelected($event)" id="fileInput" style="display: none;">
+                <a *isAdmin mat-mini-fab aria-label="edit event" matTooltip="Change Event Bannar" matTooltipPosition="below" (click)="triggerFileInput()"
+                class="change-bannar animate__animated animate__pulse animate__fast"><mat-icon>cloud_upload</mat-icon></a>
+            </div>
+            }
         </div>                   
         <div class="actions px-4">
             <button mat-mini-fab aria-label="Back to events" matTooltip="Back to Events" matTooltipPosition="below" 

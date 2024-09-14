@@ -44,4 +44,10 @@ export class EventService{
             catchError(this.error.handleError)
         )
     }
+
+    uploadEventBannar(eventId:number, formData:FormData):Observable<any>{
+        return this.httpClient.post(`${this.eventService}/upload-photo/${eventId}`, formData).pipe(
+            catchError(this.error.handleError)
+        )
+    }
 }

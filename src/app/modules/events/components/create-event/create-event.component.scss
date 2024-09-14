@@ -32,6 +32,30 @@
     padding: 0.2rem 0;
 }
 
+.event-bannar-selection {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+.event-bannar-selection button {
+    padding: 5px !important;
+    width: 150px !important;
+    border-radius: 6px 0 0 6px !important;
+    font-size: 12px;
+}
+
+.event-bannar-selection input {
+    width: 100%;
+    padding: 0 10px;
+    border-radius: 0 6px 6px 0;
+    border: 1px solid;
+}
+
+.event-bannar-selection input:focus-visible {
+    border: 1px solid;
+}
+
 @media (max-width: 550px) {
     .form-row {
         flex-direction: column;
