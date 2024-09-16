@@ -118,17 +118,17 @@ export class IdentityService{
 
     const originalDateTime = moment(tokenResp.expireTime);
     // Get the machine's timezone offset in minutes
-    // const machineTimezoneOffset = moment().utcOffset();
+    const machineTimezoneOffset = moment().utcOffset();
     // Apply the machine's timezone offset to the ISO datetime
-    // const adjustedDateTime = originalDateTime.utcOffset(machineTimezoneOffset).format('YYYY-MM-DDTHH:mm:ss[Z]');
-    const adjustedDateTime = originalDateTime.format('YYYY-MM-DD HH:mm:ss');
+    const adjustedDateTime = originalDateTime.utcOffset(machineTimezoneOffset).format('YYYY-MM-DDTHH:mm:ss[Z]');
+    // const adjustedDateTime = originalDateTime.format('YYYY-MM-DD HH:mm:ss');
     // console.log(adjustedDateTime);
     const timeDifference = originalDateTime.diff(moment());
 
     this.store.setTokenExpiary(adjustedDateTime);
     this.store.setTokenExpiaryMinutes(Math.ceil(timeDifference/(1000*60)));
     
-    this.scheduleRefreshToken();
+    // this.scheduleRefreshToken();
   }
 
   private getTimeDifferenceInMinutes(expDate:Date, currentDate:Date): number{
