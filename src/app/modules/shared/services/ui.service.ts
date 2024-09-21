@@ -30,6 +30,15 @@ export class UIService{
     });
   }
 
+  showInfoAlert(message:string) {
+    Swal.fire({
+      icon: 'info',
+      title: 'Info',
+      text: message,
+      confirmButtonText: 'OKAY'
+    });
+  }
+
   showConfirmationAlert() {
     Swal.fire({
       title: 'Are you sure?',

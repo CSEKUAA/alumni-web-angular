@@ -74,11 +74,7 @@ export class IdentityService{
     }
 
     const timeout:number = Math.ceil(tokenExpTime*0.9)*10000; // Refresh after 90% of token lifetime expired
-    if(tokenExpTime<2){      
-      this.refreshToken().subscribe();
-    } else {
-      this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
-    }
+    this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
   }
 
   private refreshToken(): Observable<any> {
@@ -116,17 +112,11 @@ export class IdentityService{
     this.store.setAccessToken(tokenResp.token);
     this.store.setRefreshToken(tokenResp.refreshToken);
 
-    const originalDateTime = moment(tokenResp.expireTime);
-    // Get the machine's timezone offset in minutes
-    const machineTimezoneOffset = moment().utcOffset();
-    // Apply the machine's timezone offset to the ISO datetime
-    const adjustedDateTime = originalDateTime.utcOffset(machineTimezoneOffset).format('YYYY-MM-DDTHH:mm:ss[Z]');
-    // const adjustedDateTime = originalDateTime.format('YYYY-MM-DD HH:mm:ss');
-    // console.log(adjustedDateTime);
-    const timeDifference = originalDateTime.diff(moment());
+    const originalDateTime = moment().add(tokenResp.expiresInMinutes, "minutes");
+    const adjustedDateTime = originalDateTime.format('YYYY-MM-DD HH:mm:ss');
 
     this.store.setTokenExpiary(adjustedDateTime);
-    this.store.setTokenExpiaryMinutes(Math.ceil(timeDifference/(1000*60)));
+    this.store.setTokenExpiaryMinutes(tokenResp.expiresInMinutes);
     
     // this.scheduleRefreshToken();
   }

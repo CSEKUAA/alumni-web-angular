@@ -79,8 +79,8 @@
                 }
             </div>
             <div class="ext-links">
-                <button mat-fab extended class="btn-app" type="button" style="background-color: firebrick!important;" (click)="isAdd? onToggleAddExternalLink():onToggleEditExternalLink()"><mat-icon>cancel</mat-icon>Cancle</button>
-                <button mat-fab extended class="btn-app" type="submit" [disabled]="extLinksForm.invalid"><mat-icon>check_circle</mat-icon>Submit</button>
+                <button mat-fab extended class="btn-app" type="button" (click)="isAdd?onToggleAddExternalLink():onToggleEditExternalLink()" style="background-color: firebrick!important;" ><mat-icon>cancel</mat-icon>Cancle</button>
+                <button mat-fab extended class="btn-app" type="submit" [disabled]="extLinksForm.invalid" (click)="isAdd? onToggleAddExternalLink():onToggleEditExternalLink()"><mat-icon>check_circle</mat-icon>Submit</button>
             </div>
         </form>
         }                            

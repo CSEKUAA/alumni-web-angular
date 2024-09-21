@@ -29,8 +29,14 @@ export class UserService{
         );
     }
 
+    getUserByStudentId(studentId:string):Observable<any>{
+        return this.httpClient.get(`${this.userService}/get-user/${studentId}`).pipe(
+            catchError(this.error.handleError)
+        )
+    }
+
     uploadProfilePicture(formData:FormData):Observable<any>{
-        return this.httpClient.post(`http://5.189.128.185:8080/api/profile-picture`, formData);
+        return this.httpClient.post(`${this.userService}/profile-picture`, formData);
     }
 
     updateUserProfileInfo(userProfileInfo:UserProfileRequestDTO):Observable<any>{
