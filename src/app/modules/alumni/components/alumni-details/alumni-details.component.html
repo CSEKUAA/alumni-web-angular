@@ -1,1 +1,78 @@
-<p>alumni-details works!</p>
+<div class="event-overview section container" *ngIf="userProfileInfo">
+    <mat-card class="profile-info animate__animated animate__fadeIn animate__delay_10 animate__faster">
+        <div class="header">
+            <button mat-mini-fab aria-label="Back to Profile" matTooltip="Back to Profile" matTooltipPosition="below" class="btn-back" (click)="onBackToAlumniList()"><mat-icon>chevron_left</mat-icon></button>
+            <span class="title m-0">Alumni&apos;s Profile</span>
+            <span></span>
+        </div>
+        <fieldset class="custom-fieldset">
+            <legend class="custom-legend">Presonal Information</legend>
+            <div class="details">
+                <div class="individual">
+                    <span class="label">Full name</span>
+                    <p class="content" [textContent]="userProfileInfo.fullName"></p>
+                </div>
+                <div class="individual">
+                    <span class="label">nick name</span>
+                    <p class="content" [textContent]="userProfileInfo.nickName"></p>
+                </div>
+                <div class="individual">
+                    <span class="label">student id</span>
+                    <p class="content" [textContent]="userProfileInfo.roll"></p>
+                </div>
+                <div class="individual">
+                    <span class="label">blood group</span>
+                    <p class="content" [textContent]="userProfileInfo.bloodGroup"></p>
+                </div>
+                <div class="individual">
+                    <span class="label">birth date</span>
+                    <p class="content" [textContent]="userProfileInfo.dob"></p>
+                </div>
+                <div class="individual">
+                    <span class="label">mobile</span>
+                    <p class="content" [textContent]="userProfileInfo.contactDetail.phoneNumber"></p>
+                </div>
+                <div class="individual">
+                    <span class="label">email</span>
+                    <p class="content" [textContent]="userProfileInfo.contactDetail.email"></p>
+                </div>
+                <div class="individual">
+                    <span class="label">present address</span>
+                    <p class="content">{{userProfileInfo.contactDetail.presentAddress}},{{userProfileInfo.contactDetail.presentCity}}, {{userProfileInfo.contactDetail.presentCountry}}</p>
+                </div>
+                <div class="individual">
+                    <span class="label">permanent address</span>
+                    <p class="content">{{userProfileInfo.contactDetail.permanentAddress}},{{userProfileInfo.contactDetail.permanentCity}}, {{userProfileInfo.contactDetail.permanentCountry}}</p>
+                </div>
+                <div class="individual" *ngIf="this.cvUrl">
+                    <span class="label">CV</span>
+                    <p class="content"><a class="download-cv" (click)="downloadFile()">Download CV</a></p>
+                </div>
+            </div>
+        </fieldset>
+        @if(userProfileInfo.contactDetail.company){                            
+            <fieldset class="custom-fieldset">
+                <legend class="custom-legend">Professional Information</legend>
+                <div class="details">
+                    <div class="individual">
+                        <span class="label">Profession</span>
+                        <p class="content" [textContent]="userProfileInfo.contactDetail.profession"></p>
+                    </div>
+                    <div class="individual">
+                        <span class="label">Designation</span>
+                        <p class="content" [textContent]="userProfileInfo.contactDetail.designation"></p>
+                    </div>
+                    <div class="individual">
+                        <span class="label">Company</span>
+                        <p class="content" [textContent]="userProfileInfo.contactDetail.company"></p>
+                    </div>
+                    <div class="individual">
+                        <span class="label">Company Address</span>
+                        <p class="content" [textContent]="userProfileInfo.contactDetail.companyAddress"></p>
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </mat-card>
+    
+</div>

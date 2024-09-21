@@ -3,7 +3,7 @@
 }
 
 .site-container {
-  min-height: calc(100vh - 319px);
+  min-height: calc(100vh - 30vh);
   display: flex;
   flex-direction: column;
   margin-top: 50px;
@@ -83,11 +83,11 @@ mat-sidenav {
 }
 
 .site-title {
-  font-size: 22px;
-  font-weight: 500;
+  font-size: 24px;
+  font-weight: 700;
   letter-spacing: 1px;
-  color: rgb(3, 122, 233);
-  text-shadow: 1px 1px 2px #0000006b;
+  color: rgb(177 83 223);
+  // text-shadow: 1px 1px 2px #0000006b;
 }
 
 @media (max-width: 991px) {

@@ -1,0 +1,121 @@
+.profile-section-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    transition: 0.3s linear;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #fff;
+}
+
+@import "../../../../../assets/scss/common.scss";
+
+.profile-info .title {
+    text-transform: capitalize;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #5050db;
+}
+
+.profile-info .details,
+.link-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info .details .individual {
+    display: grid;
+    grid-template-columns: 250px auto;
+    transition: 0.3s ease-out;
+    padding: 10px;
+}
+
+.profile-info .details .individual:hover {
+    background-color: rgba($color: $theme-color, $alpha: 0.1);
+    transition: 0.3s ease-in;
+    transition: 0.3s ease-in;
+    border-radius: 10px;
+}
+
+.profile-info .details .individual .label {
+    color: #5050db;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.profile-info .details .individual .content {
+    color: $theme-orange;
+    font-weight: 500;
+    margin: 0 !important;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-back {
+    background-color: #5050db;
+    color: white;
+}
+
+@media(max-width: 850px) {
+    .profile-section-container {
+        display: flex;
+        gap: 30px;
+        flex-direction: column;
+        transition: 0.3s linear;
+    }
+
+    .profile-brief {
+        gap: 20px;
+    }
+
+    .details,
+    .individual {
+        display: flex !important;
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+@media(max-width: 550px) {
+    .top-panel {
+        margin: 0;
+        transition: 0.3s ease;
+        display: flex;
+        gap: 25px;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .profile-brief,
+    .profile-shorts {
+        align-items: center;
+        gap: 5px;
+    }
+}
+
+.download-cv {
+    cursor: pointer;
+    background-color: #5050db;
+    color: white;
+    padding: 0.3rem 0.7rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: 0.2s ease-out;
+}
+
+.download-cv:hover {
+    transition: 0.2s ease-in;
+    background-color: rgb(239 95 48);
+    color: white;
+    text-shadow: 1px 1px 3px black;
+}

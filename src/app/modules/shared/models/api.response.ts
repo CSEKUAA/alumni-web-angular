@@ -2,6 +2,7 @@ export interface LoginResponseDTO{
     token: string;
     refreshToken: string;
     expireTime: string;
+    expiresInMinutes:number;
 }
 
 export interface UserProfileResponseDTO{

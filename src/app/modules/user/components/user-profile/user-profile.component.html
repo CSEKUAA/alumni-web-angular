@@ -2,6 +2,7 @@
     @if(userProfileInfo){
         <div class="profile-section-container">
             <app-profile-outline [userProfile]="userProfileInfo" (onSuccessApplication)="loadProfileInformation()" ></app-profile-outline>
+            <app-cv (onSuccessApplication)="loadProfileInformation()"></app-cv>
             @if(!isUpdateCalled){
             <div class="right-panel">
                 <mat-card class="profile-info animate__animated animate__fadeIn animate__delay_10 animate__faster">
@@ -90,6 +91,4 @@
             }
         </div>
     }
-
-    <app-cv (onSuccessApplication)="loadProfileInformation()"></app-cv>
 </div>

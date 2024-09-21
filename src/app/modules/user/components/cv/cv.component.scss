@@ -1,14 +1,12 @@
 .file-upload-container {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 1001;
+    text-align: center;
 }
 
 .change-button {
-    background-color: rgb(80, 80, 219) !important;
-    padding: 0.4rem;
+    background-color: rgb(153 80 219) !important;
+    padding: 1.2rem;
     color: white !important;
+    transition: 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .change-button mat-icon {
@@ -16,4 +14,10 @@
     width: 25px;
     font-size: 1.5rem;
     margin: 0;
+}
+
+.change-button:hover,
+.change-button::after {
+    background-color: rgb(131 59 197) !important;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
