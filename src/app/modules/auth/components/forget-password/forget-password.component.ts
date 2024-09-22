@@ -32,11 +32,12 @@ export class ForgetPasswordComponent implements OnInit{
       let forgetPasswordModel:ForgetPasswordDTO = <ForgetPasswordDTO> this.forgetPasswordForm.value;
 
       this.authenticationService.forgetPassword(forgetPasswordModel).subscribe({
-        next: (() => {
-          this.uiService.showErrorAlert('Something went wrong while login, please try again!');
+        next: ((resp:any) => {
+          let message:string = resp?resp.message:'';
+          this.uiService.showSuccessAlertWithGoToLogin(message.toUpperCase());
         }),
         error: ((error: Error) =>{
-          this.uiService.showErrorAlert(error.message);
+          this.uiService.showErrorAlert('Unable to send password reset link! Please try correcting email address or try again later!');
         })
       });
     }

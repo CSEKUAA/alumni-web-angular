@@ -90,4 +90,18 @@ export class UIService{
       }
     });
   }
+
+  showSuccessAlertWithGoToLogin(message:string){
+    Swal.fire({
+      title: 'Success',
+      text: message,
+      icon: 'success',
+      showCancelButton: false,
+      confirmButtonText: 'OKAY'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href=`${window.location.origin}/#/auth/login`;
+      }
+    });
+  }
 }
