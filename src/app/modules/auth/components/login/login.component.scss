@@ -30,3 +30,29 @@
   text-transform: uppercase;
   font-size: 1.8rem;
 }
+
+.forget-password {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-top: -15px;
+  font-size: 15px;
+}
+
+.forget-link {
+  text-decoration: none;
+  color: #343dff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  letter-spacing: 0;
+  margin-right: 10px;
+}
+
+.forget-link:hover,
+.forget-link::after,
+.forget-link:active {
+  color: #4448bdef;
+}
