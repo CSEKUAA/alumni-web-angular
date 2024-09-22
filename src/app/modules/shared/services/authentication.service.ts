@@ -7,7 +7,7 @@ import { StoreService } from "./store.service";
 import { IdentityService } from "./identity.service";
 import { UserRole } from "../../../utilities/utilities";
 import { Router } from "@angular/router";
-import { ForgetPasswordDTO } from "../../auth/models/auth.models";
+import { ForgetPasswordDTO, ResetPasswordRequestDTO } from "../../auth/models/auth.models";
 
 @Injectable({
     providedIn:'root'
@@ -67,5 +67,9 @@ export class AuthenticationService{
 
     forgetPassword(model:ForgetPasswordDTO):Observable<any>{
         return this.httpClient.post(`${this.auththenticationService}/forget-password`, model);
+    }
+
+    resetPassword(model:ResetPasswordRequestDTO):Observable<any>{
+        return this.httpClient.post(`${this.auththenticationService}/reset-password`, model);
     }
 }
