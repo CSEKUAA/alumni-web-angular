@@ -13,3 +13,7 @@ export interface LoginDTO{
     password:string;
     loginType:string;
 }
+
+export interface ForgetPasswordDTO{
+    email:string;
+}
