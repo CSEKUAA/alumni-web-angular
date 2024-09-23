@@ -13,3 +13,12 @@ export interface LoginDTO{
     password:string;
     loginType:string;
 }
+
+export interface ForgetPasswordDTO{
+    email:string;
+}
+
+export interface ResetPasswordRequestDTO{
+    token:string;
+    password:string;
+}
