@@ -10,6 +10,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
 import { PublicService } from '../../../shared/services/public.service';
 import { StoreService } from '../../../shared/services/store.service';
+import { PageModel } from '../../../shared/models/ui.models';
 
 @Component({
   selector: 'app-alumni-list',
@@ -51,8 +52,8 @@ export class AlumniListComponent implements OnInit{
     })
   }
 
-  loadAlumnis(){
-    let pageRequest:PageRequestDTO={page:this.page, size:this.size, disciplineName:this.selectedDiscipline};
+  loadAlumnis(page:number=0, size:number=10){
+    let pageRequest:PageRequestDTO={page:page, size:size, disciplineName:this.selectedDiscipline};
     this.publicService.getAllAlumnis(pageRequest).subscribe({
       next:((resp:PagedAPIResponseDTO)=>{
         this.alumnis=[];       
@@ -72,6 +73,12 @@ export class AlumniListComponent implements OnInit{
         };
       })
     })
+  }
+
+  onPage(e:any){
+    let pageInfo:PageModel = <PageModel> e;
+    console.log(e);
+    this.loadAlumnis(pageInfo.pageIndex, pageInfo.pageSize);
   }
 
   ngAfterViewInit() {

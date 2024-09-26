@@ -54,7 +54,9 @@ export class UpdateProfileComponent implements OnInit{
       presentCity: new FormControl(this.userProfile.contactDetail.presentCity),
       presentCountry: new FormControl(this.userProfile.contactDetail.presentCountry),
       profession: new FormControl(this.userProfile.contactDetail.profession),
-      roll: new FormControl(this.userProfile.roll, {validators: [Validators.required]})
+      roll: new FormControl(this.userProfile.roll, {validators: [Validators.required]}),
+      email: new FormControl(this.userProfile.contactDetail.email, {validators: [Validators.required, Validators.email]}),
+      phoneNumber: new FormControl(this.userProfile.contactDetail.phoneNumber, {validators: [Validators.required]})
     });
 
     this.loadCountries();

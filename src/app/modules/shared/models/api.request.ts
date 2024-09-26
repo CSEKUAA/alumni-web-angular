@@ -14,6 +14,8 @@ export interface UserProfileRequestDTO{
     designation: string;
     company: string;
     companyAddress: string;
+    email:string;
+    phoneNumber:string;
 }
 
 export interface ExternalLinkCreateRequestDTO{
