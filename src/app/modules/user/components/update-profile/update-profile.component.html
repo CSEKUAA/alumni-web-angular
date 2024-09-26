@@ -25,6 +25,22 @@
                 </mat-error>
               </mat-form-field>
             </div>
+            <div class="form-row">
+              <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                <mat-label>Email ID</mat-label>
+                <input matInput formControlName="email">
+                <mat-error *ngIf="userProfileForm.get('email')?.invalid && userProfileForm.get('email')?.touched">
+                  Please enter a valid email
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
+                <mat-label>Mobile No</mat-label>
+                <input matInput formControlName="phoneNumber">
+                <mat-error *ngIf="userProfileForm.get('phoneNumber')?.invalid && userProfileForm.get('phoneNumber')?.touched">
+                  Please enter a mobile number
+                </mat-error>
+              </mat-form-field>
+            </div>
             <div class="form-row"> 
                 <mat-form-field class="form-field animate__animated animate__zoomIn animate__faster" appearance="outline">
                   <mat-label>Blood Group</mat-label>

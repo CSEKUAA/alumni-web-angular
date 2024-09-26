@@ -29,7 +29,6 @@ export class CvComponent {
 
       this.contentService.uploadCV(formData).subscribe({
         next: ((resp: any)=> {
-          console.log(resp);
           this.successApplicationEvent.emit(true);
           this.uiService.showSuccessAlert('CV Uploaded to Your Profile!');
         })
