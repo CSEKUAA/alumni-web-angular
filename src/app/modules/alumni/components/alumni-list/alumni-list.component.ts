@@ -77,7 +77,6 @@ export class AlumniListComponent implements OnInit{
 
   onPage(e:any){
     let pageInfo:PageModel = <PageModel> e;
-    console.log(e);
     this.loadAlumnis(pageInfo.pageIndex, pageInfo.pageSize);
   }
 
