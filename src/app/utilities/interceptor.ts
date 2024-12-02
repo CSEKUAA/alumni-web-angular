@@ -35,7 +35,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
       this.identityService.logout();
     }
 
-    if (this.identityService.hasValidAccessToken() && request.url.toString().indexOf('auth/login') < 0) {
+    if (this.identityService.hasValidAccessToken() && 
+      (request.url.toString().indexOf('auth/login') < 0 || request.url.toString().indexOf('auth/forget-password')<0)) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${this.store.getAccessToken()}`,
