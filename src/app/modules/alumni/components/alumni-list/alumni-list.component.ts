@@ -3,14 +3,15 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Title } from '@angular/platform-browser';
 import { AlumniService } from '../../../shared/services/alumni.service';
-import { DisciplineDTO, UserProfileResponseDTO } from '../../../shared/models/api.response';
-import { PagedAPIResponseDTO, PageinfoDTO, PageRequestDTO } from '../../../shared/models/paged.response';
+import { BatchResponseDTO, DisciplineDTO, StudentIdResponseDTO, UserProfileResponseDTO } from '../../../shared/models/api.response';
+import { AlumniPageRequestDTO, PagedAPIResponseDTO, PageinfoDTO, PageRequestDTO } from '../../../shared/models/paged.response';
 import moment from 'moment';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
 import { PublicService } from '../../../shared/services/public.service';
 import { StoreService } from '../../../shared/services/store.service';
 import { PageModel } from '../../../shared/models/ui.models';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-alumni-list',
@@ -26,9 +27,21 @@ export class AlumniListComponent implements OnInit{
   _liveAnnouncer = inject(LiveAnnouncer);
 
   disciplines:DisciplineDTO[]=[];
+  batches:BatchResponseDTO[]=[];
+  stdIds:StudentIdResponseDTO[]=[];
+
+  filteredBatches: BatchResponseDTO[] = [];
+  searchBatch: string = '';
+  selectedBatch: string = '';
+  selectedSID: string = '';
+  selectedName: string = '';
+
   alumnis:UserProfileResponseDTO[]=[];  
   pageInfo!:PageinfoDTO;
   selectedDiscipline!: string;
+  filterBatchKey!: number;
+  filterStudentIdKey!: number;
+  filterNameKey!: string;
 
   // Current Paging Info
   page:number=0;
@@ -47,14 +60,22 @@ export class AlumniListComponent implements OnInit{
       next:((resp:any)=>{
         this.disciplines = <DisciplineDTO[]> resp;
         this.selectedDiscipline=this.disciplines[0].shortName;
+        this.loadBatchesByDept();
         this.loadAlumnis();
       })
-    })
+    });
   }
 
   loadAlumnis(page:number=0, size:number=10){
-    let pageRequest:PageRequestDTO={page:page, size:size, disciplineName:this.selectedDiscipline};
-    this.publicService.getAllAlumnis(pageRequest).subscribe({
+    let pageRequest:AlumniPageRequestDTO={
+      page:page, size:size, 
+      disciplineName:this.selectedDiscipline, 
+      batchCode:this.selectedBatch,
+      studentId:this.selectedSID,
+      name:this.selectedName
+    };
+    
+      this.publicService.getAllAlumnis(pageRequest).subscribe({
       next:((resp:PagedAPIResponseDTO)=>{
         this.alumnis=[];       
         let response:PagedAPIResponseDTO = <PagedAPIResponseDTO> resp; 
@@ -96,5 +117,17 @@ export class AlumniListComponent implements OnInit{
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  loadBatchesByDept(){
+    this.publicService.getAllbatchesByDeptCode(this.selectedDiscipline).subscribe({
+      next:((resp:any)=>{
+        this.batches = <BatchResponseDTO[]>resp;
+      })
+    })
+  }
+
+  loadStudentIdsByBatchCode(){
+
   }
 }

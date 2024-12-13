@@ -1,20 +1,43 @@
 <div class="container">
     <div class="event-action animate__animated animate__zoomIn animate__faster pt-3 px-2">
-        <!-- <mat-form-field class="search-box" appearance="outline">
-            <mat-label>Search</mat-label>
-            <input matInput type="text" placeholder="Search...">
-            <button mat-icon-button matSuffix aria-label="Search icon">
-              <mat-icon>search</mat-icon>
-            </button>
-        </mat-form-field> -->
-        <mat-form-field class="discipline-filter animate__animated animate__zoomIn animate__faster" appearance="outline">
-            <mat-label>Discipline</mat-label>
-            <mat-select [(ngModel)]="selectedDiscipline" required (selectionChange)="loadAlumnis()">
-              @for (discipline of disciplines; track $index) {
-                <mat-option [value]="discipline.shortName">{{discipline.shortName}}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
+      <div class="left-search-boxes">
+        <mat-form-field class="discipline-filter" appearance="outline">
+          <mat-label>Discipline</mat-label>
+          <mat-select [(ngModel)]="selectedDiscipline" required (selectionChange)="loadAlumnis()">
+            @for (discipline of disciplines; track $index) {
+              <mat-option [value]="discipline.shortName">{{discipline.shortName}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="filter-box" appearance="outline">
+          <mat-label>Batch</mat-label>
+          <input matInput [(ngModel)]="selectedBatch" type="text" placeholder="e.g 11" [maxlength]="2">
+          <!-- <button mat-icon-button matSuffix aria-label="Search icon">
+            <mat-icon>search</mat-icon>
+          </button> -->
+        </mat-form-field>
+
+        <mat-form-field class="filter-box" appearance="outline">
+          <mat-label>Student ID</mat-label>
+          <input matInput [(ngModel)]="selectedSID" type="text" [maxlength]="6">
+          <!-- <button mat-icon-button matSuffix aria-label="Search icon">
+            <mat-icon>search</mat-icon>
+          </button> -->
+        </mat-form-field>
+        <mat-form-field class="search-box" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="selectedName" type="text">
+          <!-- <button mat-icon-button matSuffix aria-label="Search icon">
+            <mat-icon>search</mat-icon>
+          </button> -->
+        </mat-form-field>
+      </div>
+      <div class="right-search-button">
+        <button mat-fab extended type="button" (click)="loadAlumnis()" class="btn-app btn-create-event">
+          <mat-icon>check_circle</mat-icon>
+          Search
+        </button>
+      </div>
     </div>
 
     

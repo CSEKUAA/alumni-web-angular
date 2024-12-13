@@ -116,3 +116,13 @@ export interface SkillResponseDTO{
     skillId:number;
     skillName:string;
 }
+
+export interface BatchResponseDTO{
+    deptCode: string;
+    batchCode: string;
+}
+
+export interface StudentIdResponseDTO{
+    batchCode:string;
+    studentId:string;
+}

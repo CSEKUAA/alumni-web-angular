@@ -1,7 +1,33 @@
-.search-box,
-.discipline-filter {
+.search-box {
     width: 100%;
     max-width: 250px;
+}
+
+.discipline-filter,
+.filter-box {
+    width: 100%;
+    max-width: 160px;
+}
+
+.filter-area {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.left-search-boxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0.5rem;
+}
+
+.right-search-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 mat-form-field {
@@ -10,8 +36,7 @@ mat-form-field {
 
 .event-action {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    height: 70px;
     justify-content: space-between;
 }
 
