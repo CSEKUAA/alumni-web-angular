@@ -35,8 +35,7 @@ export class IdentityService{
         tap(()=>{          
           this.store.clearLoginInfo();
           clearTimeout(this.refreshTokenTimeout);
-        }),
-        catchError(this.handleError),
+        })
       );
   }
 

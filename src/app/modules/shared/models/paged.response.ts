@@ -3,6 +3,16 @@ export interface PageRequestDTO{
     size:number;
     disciplineName:string;
 }
+
+export interface AlumniPageRequestDTO{
+    page:number;
+    size:number;
+    disciplineName:string;
+    batchCode:string;
+    studentId:string;
+    name:string;
+}
+
 export interface PagedAPIResponseDTO{
     content:any[];
     last: boolean,

@@ -6,6 +6,7 @@ import { UIService } from '../../../shared/services/ui.service';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UserAccessService } from '../../../shared/services/user.access.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -37,15 +38,12 @@ export class LoginComponent implements OnInit {
           this.uiService.loggedIn.next(true); 
           this.userAccessService.getCurrentUserRole().subscribe({
             next: (()=>{              
-              this.router.navigate(['user/profile']);
+              this.router.navigate(['home']);
             }),
             error:((error:Error)=>{
               this.uiService.showErrorAlert('Something went wrong while login, please try again!');
             })
           })
-        }),
-        error: ((error: Error) =>{
-          this.uiService.showErrorAlert(error.message);
         })
       });
     }

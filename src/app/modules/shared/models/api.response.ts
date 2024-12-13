@@ -1,3 +1,9 @@
+export interface NotFountResponseDTO{
+    date:string;
+    description:string;
+    message:string;
+    value:number;
+}
 export interface LoginResponseDTO{
     token: string;
     refreshToken: string;
@@ -109,4 +115,14 @@ export interface DisciplineDTO{
 export interface SkillResponseDTO{
     skillId:number;
     skillName:string;
+}
+
+export interface BatchResponseDTO{
+    deptCode: string;
+    batchCode: string;
+}
+
+export interface StudentIdResponseDTO{
+    batchCode:string;
+    studentId:string;
 }

@@ -13,6 +13,7 @@ import { IdentityService } from '../modules/shared/services/identity.service';
 import { StoreService } from '../modules/shared/services/store.service';
 import { AlertMessage, ErrorCode, ErrorMessage } from './utilities';
 import { LoaderService } from '../modules/shared/services/loader.service';
+import { NotFountResponseDTO } from '../modules/shared/models/api.response';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
@@ -53,7 +54,12 @@ export class HttpRequestInterceptor implements HttpInterceptor {
       }),
       catchError((error: HttpErrorResponse) => {
         this.loaderService.hide();
-        if (
+        let errorResp:NotFountResponseDTO = error.error;
+
+        if(errorResp.value===ErrorCode.NOT_FOUND && (errorResp.message==="Wrong Password" || errorResp.message==="user not registered yet.")){
+          this.uiService.showErrorAlert(errorResp.message);
+        }
+        else if (
           error.status === ErrorCode.INTERNAL_SERVER_ERROR &&
           error.error.error === ErrorMessage.SERVER_ERROR
         ) {
