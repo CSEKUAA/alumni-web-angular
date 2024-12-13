@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../shared/services/user.service';
 import { UserProfileResponseDTO } from '../../../shared/models/api.response';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { UpdatePasswordRequestDTO } from '../../../shared/models/api.request';
 import { AuthenticationService } from '../../../shared/services/authentication.service';
 import { UIService } from '../../../shared/services/ui.service';
@@ -20,9 +20,9 @@ export class UpdatePasswordComponent implements OnInit{
   ngOnInit(): void {
     this.loadProfileInformation();
     this.updatePasswordForm = this.formBuilder.group({
-      oldPassword: new FormControl('', {validators: Validators.required}),
-      newPassword: new FormControl('', {validators: Validators.required}),
-      confirmPassword: new FormControl('', {validators: Validators.required}),
+      oldPassword: new FormControl('', {validators: [Validators.required, Validators.minLength(5)]}),
+      newPassword: new FormControl('', {validators: [Validators.required, Validators.minLength(5)]}),
+      confirmPassword: new FormControl('', {validators: [Validators.required, Validators.minLength(5)]}),
     }, {
       validator: [
         this.mustMatch('newPassword', 'confirmPassword'),
@@ -57,7 +57,7 @@ export class UpdatePasswordComponent implements OnInit{
 
   // Validator to check if two fields do not match (e.g., oldPassword and newPassword)
   cannotMatch(controlName: string, matchingControlName: string): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: boolean } | null => {
+    return (control: AbstractControl): ValidationErrors | null => {
       const controlToCheck = control.get(controlName);
       const controlToCompare = control.get(matchingControlName);
 
@@ -70,7 +70,7 @@ export class UpdatePasswordComponent implements OnInit{
       }
 
       if (controlToCheck.value === controlToCompare.value) {
-        controlToCompare.setErrors({ cannotMatch: true });
+        controlToCompare.setErrors({ cannotMatch: 'New password cannot be the same as the old password' });
       } else {
         controlToCompare.setErrors(null);
       }

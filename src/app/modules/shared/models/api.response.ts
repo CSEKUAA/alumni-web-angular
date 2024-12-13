@@ -1,3 +1,9 @@
+export interface NotFountResponseDTO{
+    date:string;
+    description:string;
+    message:string;
+    value:number;
+}
 export interface LoginResponseDTO{
     token: string;
     refreshToken: string;
