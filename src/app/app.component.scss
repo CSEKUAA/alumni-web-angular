@@ -98,6 +98,10 @@ mat-sidenav {
     display: flex;
     flex-direction: row-reverse;
   }
+
+  .navigation {
+    align-items: end;
+  }
 }
 
 //END

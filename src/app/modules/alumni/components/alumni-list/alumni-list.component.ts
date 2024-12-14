@@ -39,9 +39,6 @@ export class AlumniListComponent implements OnInit{
   alumnis:UserProfileResponseDTO[]=[];  
   pageInfo!:PageinfoDTO;
   selectedDiscipline!: string;
-  filterBatchKey!: number;
-  filterStudentIdKey!: number;
-  filterNameKey!: string;
 
   // Current Paging Info
   page:number=0;
