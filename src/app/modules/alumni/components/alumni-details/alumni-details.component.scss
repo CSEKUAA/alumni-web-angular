@@ -64,6 +64,13 @@
     color: white;
 }
 
+.profile-photo img {
+    height: 100px;
+    width: 95px;
+    border-radius: 50%;
+    border: 2px solid rgb(31 55 173 / 75%);
+}
+
 @media(max-width: 850px) {
     .profile-section-container {
         display: flex;

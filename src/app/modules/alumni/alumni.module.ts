@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { AlumniDetailsComponent } from './components/alumni-details/alumni-details.component';
 
 
@@ -23,7 +24,8 @@ import { AlumniDetailsComponent } from './components/alumni-details/alumni-detai
     MatPaginatorModule,
     MatTableModule,
     FormsModule,
-    MatSortModule
+    MatSortModule,
+    MatExpansionModule
   ]
 })
 export class AlumniModule { }

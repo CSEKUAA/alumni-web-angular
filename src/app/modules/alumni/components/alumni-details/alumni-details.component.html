@@ -2,8 +2,8 @@
     <mat-card class="profile-info animate__animated animate__fadeIn animate__delay_10 animate__faster">
         <div class="header">
             <button mat-mini-fab aria-label="Back to Profile" matTooltip="Back to Profile" matTooltipPosition="below" class="btn-back" (click)="onBackToAlumniList()"><mat-icon>chevron_left</mat-icon></button>
-            <span class="title m-0">Alumni&apos;s Profile</span>
-            <span></span>
+            <span class="title m-0">{{userProfileInfo.fullName}}&apos;s Profile</span>
+            <span class="profile-photo"><img [src]="userProfileInfo.photo" alt=""></span>
         </div>
         <fieldset class="custom-fieldset">
             <legend class="custom-legend">Presonal Information</legend>
