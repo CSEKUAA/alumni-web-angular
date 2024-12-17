@@ -1,14 +1,120 @@
-.about {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 0;
-}
+// .about {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     padding: 2rem 0;
+// }
+
+// .about-card {
+//     min-width: 450px;
+//     padding: 1.5rem;
+//     width: 500px;
+//     margin: 0 10px;
+//     align-items: center;
+// }
 
 .about-card {
-    min-width: 450px;
-    padding: 1.5rem;
-    width: 500px;
-    margin: 0 10px;
+    margin-top: 1rem;
+    padding: 1.5rem 0.5rem;
+}
+
+.page-start {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
+}
+
+.page-title {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #00bce6, #2962ff 50.31%, #d500f9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin: 0;
+    padding: 20px;
+}
+
+.page-subtitle {
+    font-weight: 400;
+    margin: 0;
+    font-size: 20px;
+    color: rgb(0 0 0/65%);
+    text-align: center;
+}
+
+/* Teams Section */
+.team-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 1rem 0;
+    /* Centers content horizontally */
+}
+
+.employee-card {
+    flex: 1 1 calc(25% - 20px);
+    /* Flexible cards with auto-grow */
+    max-width: 300px;
+    /* Prevents excessive growth */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.employee-card img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.employee-card h3 {
+    font-size: 1.2rem;
+    color: #4caf50;
+    margin-bottom: 5px;
+}
+
+.employee-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Hover Effect */
+.employee-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .employee-card {
+        flex: 1 1 calc(33.33% - 20px);
+        /* Adjusts for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .employee-card {
+        flex: 1 1 calc(50% - 20px);
+        /* Adjusts for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .employee-card {
+        flex: 1 1 calc(100% - 20px);
+        /* Full width for small screens */
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
 }
