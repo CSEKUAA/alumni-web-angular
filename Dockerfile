@@ -1,5 +1,5 @@
 #stage 1
-FROM node:lts as node
+FROM node:lts AS node
 WORKDIR /app
 COPY . .
 RUN npm install -f
